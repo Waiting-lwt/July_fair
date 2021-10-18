@@ -1,0 +1,117 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/wander/wander",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/wander-discover/wander-discover",
+			"style": {
+				"navigationBarTitleText": "发现"
+			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/person-me/person-me",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+        {
+            "path" : "components/springTabs/springTabs",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/my-orders/my-orders",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的买卖",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/my-collections/my-collections",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的收藏",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/my-address/my-address",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的收货地址",
+                "enablePullDownRefresh": false
+            }
+        }
+        ,{
+            "path" : "pages/my-morehistory/my-morehistory",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "更多历史踪迹",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/my-selectaddress/my-selectaddress",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+		
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	
+	"tabBar":{
+		"list":[
+			{
+				"pagePath":"pages/wander/wander",
+				"iconPath":"./static/icon/wander.png",
+				"selectedIconPath":"./static/icon/wanderSelected.png"
+			},
+			{
+				"pagePath":"pages/wander-discover/wander-discover",
+				"iconPath":"./static/icon/deotion.png",
+				"selectedIconPath":"./static/icon/deotionSelected.png"
+			},
+			{
+				"pagePath":"pages/my/my",
+				"iconPath":"./static/icon/mine.png",
+				"selectedIconPath":"./static/icon/mineSelected.png"
+			}
+		]
+	},
+	"condition" : { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [
+			{
+				"name": "", //模式名称
+				"path": "", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			}
+		]
+	}
+}

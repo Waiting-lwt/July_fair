@@ -1,0 +1,53 @@
+.body {
+	margin: 0 auto;
+	width: 700rpx;
+	margin-top: 40rpx;
+}
+
+.areo-history-track{
+	padding-top: 18rpx;
+    padding-left: 23rpx; //48-25
+}
+.title{
+    color: #1E6CB5;
+	padding-top: 20rpx;
+    font-size: 28rpx;
+    line-height: 30rpx;
+    margin-bottom: 20rpx;
+    /* font-family: "PingFang SC"; */
+}
+.title .title-bar{
+    display: inline-block;
+    width: 10rpx;
+    height: 24rpx;
+    background-color: #21277B;
+    border-radius: 4rpx;
+    margin-right: 14rpx;
+}
+.title-name{
+    letter-spacing: 6rpx;
+}
+.history-block{
+    display: block;
+}
+.history-item{
+    display: inline-block;
+    /* text-align: center; */
+    margin-right: 22rpx;
+	vertical-align: top;
+}
+.history-item .pic-box{
+    /* height: 142rpx; */
+	margin-top: 5rpx;
+    height: 194rpx;
+    width: 194rpx;
+    display: flex;
+	float: left;
+    flex-flow: row-reverse;
+}
+.history-item image{
+    width: 184rpx;
+    height: 184rpx;
+    border-radius: 20rpx;
+    box-shadow: 0rpx 6rpx 6rpx #738eae, -6rpx 0 6rpx #738eae, 5rpx 0 5rpx #738eae;
+}

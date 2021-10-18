@@ -1,0 +1,112 @@
+.container {
+  margin: 0 48rpx;
+  /* background-color: #007AFF; */
+}
+.container .top {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  height: 176rpx;
+  width: 100%;
+}
+.container .top .serch {
+  width: 270rpx;
+  height: 66rpx;
+}
+.container .top image {
+  width: 100%;
+  height: 100%;
+}
+.container .top .paimaifabu {
+  width: 44rpx;
+  height: 40.98rpx;
+}
+.container .footer {
+  margin: 0 auto;
+  color: #006ad7;
+}
+swiper {
+  height: 364rpx;
+  width: 654rpx;
+}
+swiper swiper-item {
+  height: 100%;
+  width: 100%;
+}
+swiper swiper-item image {
+  height: 100%;
+  width: 100%;
+}
+.paimai-nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  margin: 56rpx 0;
+  width: 100%;
+  height: 46rpx;
+  /* background-color: #4CD964; */
+}
+.paimai-nav .paimai-nav-left {
+  width: 10rpx;
+  height: 24rpx;
+  background-color: #21277b;
+}
+.paimai-nav .paimai-nav-px,
+.paimai-nav .paimai-nav-fl {
+  height: 46rpx;
+  line-height: 46rpx;
+  text-align: center;
+  width: 96rpx;
+  color: #4f73a5;
+  margin-left: 10rpx;
+  background-color: #e6f0fa;
+  border-radius: 10rpx;
+}
+.paimai-nav .paimai-nav-px text,
+.paimai-nav .paimai-nav-fl text {
+  font-size: 28rpx;
+}
+.paimai-nav > text {
+  -webkit-transform: ;
+          transform: ;
+  color: #4f73a5;
+  font-weight: 400;
+  padding-left: 10rpx;
+  font-size: 28rpx;
+}
+.paimai-nav-null {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.paimai-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.paimai-list view {
+  width: 309rpx;
+  height: 303rpx;
+}
+.paimai-list view image {
+  width: 100%;
+  height: 100%;
+}
+
