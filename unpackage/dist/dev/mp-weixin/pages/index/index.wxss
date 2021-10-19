@@ -8,15 +8,9 @@
   /* 顶部 background-color: #007AFF; */
 }
 .container .top {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
   height: 176rpx;
   width: 100%;
 }
@@ -65,15 +59,9 @@ swiper swiper-item image {
 		}
 	}*/
 .paimai-nav {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
   margin: 56rpx 0;
   width: 100%;
   height: 46rpx;
@@ -87,8 +75,6 @@ swiper swiper-item image {
 .paimai-nav .paimai-nav-jh,
 .paimai-nav .paimai-nav-px,
 .paimai-nav .paimai-nav-fl {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
   position: relative;
   height: 46rpx;
@@ -122,19 +108,12 @@ swiper swiper-item image {
   line-height: 46rpx;
 }
 .paimai-nav-null {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  flex: 1;
 }
 .paimai-list {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
-  -webkit-flex-wrap: wrap;
-          flex-wrap: wrap;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .paimai-list .goodslist {
   position: relative;
@@ -167,7 +146,6 @@ swiper swiper-item image {
   height: 30%;
   width: 100%;
   z-index: 990;
-  background-image: -webkit-linear-gradient(#c7c7c7, #2a2a2a, #000000);
   background-image: linear-gradient(#c7c7c7, #2a2a2a, #000000);
 }
 .paimai-list .goodslist .goodsmask .maskcontainer text {
@@ -184,23 +162,13 @@ swiper swiper-item image {
   width: 94%;
   height: 100%;
   padding: 3px 3%;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
+  justify-content: center;
 }
 .paimai-list .goodslist .goodsmask .maskcontainer .keyword > view {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   border-radius: 10rpx;
   padding: 3rpx 10rpx;
   margin: 54rpx 20rpx 2rpx 0;

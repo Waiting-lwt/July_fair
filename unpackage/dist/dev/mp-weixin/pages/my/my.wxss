@@ -84,8 +84,6 @@
 	float: right;
 }
 .user1{
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
 }
 .user-image{
@@ -108,8 +106,6 @@
     padding-top: 10rpx;
 }
 .user1 .user-info .user-identity-block{
-	display: -webkit-box;
-	display: -webkit-flex;
 	display: flex;
 	height: 42rpx;
 	margin-left: 30rpx;
@@ -153,9 +149,7 @@
     font-size: 20rpx;
 	display: block;
     /* display: flex; */
-    -webkit-box-pack: end;
-    -webkit-justify-content: flex-end;
-            justify-content: flex-end;
+    justify-content: flex-end;
     padding-left: 30rpx;
     padding-top: 25rpx;
 }
@@ -168,15 +162,11 @@
     margin-bottom: 50rpx;
 }
 .user2 .user-tags{
-	display: -webkit-box;
-	display: -webkit-flex;
 	display: flex;
 	margin-top: 20rpx;
 	height: 42rpx;
 }
 .tag-background{
-	display: -webkit-box;
-	display: -webkit-flex;
 	display: flex;
 }
 .user-tags .tag-item{
@@ -255,8 +245,6 @@
 }
 .collection-block{
     height: 82rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
     margin-bottom: 44rpx;
 }
@@ -305,14 +293,9 @@
 	margin-top: 5rpx;
     height: 194rpx;
     width: 194rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
 	float: left;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: reverse;
-    -webkit-flex-flow: row-reverse;
-            flex-flow: row-reverse;
+    flex-flow: row-reverse;
 }
 .history-item image{
     width: 184rpx;
