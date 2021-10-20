@@ -99,7 +99,7 @@
 							<text v-if="item.status==6">买家申请退款：未同意</text>
 							<text v-if="item.status==7">买家申请退款：已同意</text>
 						</view>
-						<view class="sell-icon" @tap="ordersMgt2">···</view>
+						<view class="sell-icon" @tap="ordersMgt2(item.good_id)">···</view>
 				    </view>
 				</view>
 			</view>
@@ -179,14 +179,16 @@
 							<text>{{item.status}}</text>
 						</view>
 						<text class="auctioning" v-show="item.rank">我的排位 {{item.rank}}</text>
-						<view class="sell-icon" @tap="ordersMgt2">···</view>
+						<view class="sell-icon" @tap="ordersMgt2(item.good_id)"
+						v-show="item.status!=''&&item.status!='完善收获信息'">···</view>
 				    </view>
 				</view>
 			</view>
 			
 			<!-- 拍品 -->
 			<view class="content" v-if="auctionIndex==1">
-				<view class="goods-item" v-for="(item,index1) in showAuction" @tap="toClassify(item.id)">
+				<view class="goods-item" v-for="(item,index1) in showAuction" @tap="toClassify(item.id)"
+				:class="{outTime:(item.status=='无人竞拍已超时')}">
 				    <view class="item-img">
 						<image class="item-pic" mode="scaleToFill" :src="item.intro_image[0]"></image>
 						<view class="seller-item" v-show="item.portrait">
@@ -213,7 +215,8 @@
 							<text>{{item.status}}</text>
 						</view>
 						<text class="auctioning" v-show="item.status==''">竞拍人数 {{item.totalBidPersons||0}}</text>
-						<view class="sell-icon" @tap="ordersMgt2">···</view>
+						<view class="sell-icon" @tap="ordersMgt2(item.good_id)"
+						v-show="item.status!=''&&item.status!='买家未正式下单'">···</view>
 					</view>
 				</view>
 			</view>

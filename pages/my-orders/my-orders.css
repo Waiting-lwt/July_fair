@@ -116,7 +116,7 @@
     border: 2rpx solid #006fff;
     border-radius: 20rpx;
     box-shadow: 0 3rpx 10rpx rgb(200,200,200) inset,0 3rpx 10rpx rgb(200,200,200);
-    
+
     display: flex;
     /* position: relative; */
 }
@@ -250,4 +250,8 @@
 	text-align: center;
 	font-size: 22rpx;
 	color: #006AD7;
+}
+.outTime{
+	border-color: #707070;
+	color: #707070;
 }
