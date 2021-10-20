@@ -48,7 +48,7 @@
 		</view>
 		<!-- 商品详情 -->
 		<view class="content" v-show="functionIndex==0">
-			<view class="goods-item" v-for="(item,index1) in goods" :key="index1" @tap="toClassify(item.id)">
+			<view class="goods-item" v-for="(item,index1) in showGoods" :key="index1" @tap="toClassify(item.id)">
 			    <view class="item-img">
 					<image class="item-pic" mode="scaleToFill" :src="item.introImage[0]"></image>
 					
@@ -120,7 +120,7 @@
 		
 		<!-- 拍卖品 -->
 		<view class="content">
-			<view class="goods-item" v-for="(item,index1) in auctions" :key="index1" @tap="toClassify(item.id)">
+			<view class="goods-item" v-for="(item,index1) in showAuctions" :key="index1" @tap="toClassify(item.id)">
 			    <view class="item-img">
 					<image class="item-pic" mode="scaleToFill" :src="item.intro_image[0]"></image>
 					
@@ -128,7 +128,7 @@
 			    <view class="item-block">
 			        <view class="item-detail">
 			            <text class="item-title">{{item.name}}</text>
-			            <text class="item-date">预计剩余时间 {{item.remainingTimeF}}</text>
+			            <text class="item-date">{{item.restTimeF}}</text>
 			            <text class="item-payment">当前最高价格 ￥{{item.maxBid}}</text>
 			        </view>
 					<view class="item-tags" v-for="(item_tags,index) in item.tags" :key="index">
@@ -153,20 +153,26 @@
 				userid:1,
 				showSpringBox:false,
 				
-				showItems:[],
+				// showItems:[],
 				count:4,
 				
 				//商品
-				page1:0,
-				goods:[], // 未进行排序的good
-				goods0:[], // 进行排序的good
+				showGoods:[],
+				goods:{items:[],page:0}, // 未进行排序的good
+				goodsPriceUp:{items:[],page:0}, // 进行排序的good
+				goodsPriceDown:{items:[],page:0}, // 进行排序的good
+				goodsInventUp:{items:[],page:0}, // 进行排序的good
+				goodsInventDown:{items:[],page:0}, // 进行排序的good
 				sortTitle1:["价格","库存"],
 				sortIndex1:[0,0],//无序0 升序1 降序2,
 				
 				//拍卖品
-				page2:0,
-				auctions:[], // 未进行排序的auction
-				auctions0:[], // 进行排序的auction
+				showAuctions:[],
+				auctions:{items:[],page:0}, // 未进行排序的good
+				auctionsMaxBidUp:{items:[],page:0}, // 进行排序的good
+				auctionsMaxBidDown:{items:[],page:0}, // 进行排序的good
+				auctionsRestTimeUp:{items:[],page:0}, // 进行排序的good
+				auctionsRestTimeDown:{items:[],page:0}, // 进行排序的good
 				sortTitle2:["价格","剩余时间"],
 				sortIndex2:[0,0],//无序0 升序1 降序2,
 				
@@ -177,92 +183,143 @@
 			changeFunIndex(index){
 				this.functionIndex=index
 				console.log(index)
-				if(this.functionIndex==0) this.showItems=this.goods
-				else this.showItems=this.auctions
-				console.log(this.showItems)
 			},
-			//根据functionIndex判断跳转页面
+			//跳转商品/拍卖品页面
 			toClassify(id){
 				
 			},
-			//商品
-			async getGoods(){
+			//获取商品
+			async getGoods(attribute="",way=-1,result=this.goods){
 				let res = await this.$myRequest({
-					url: "/goods/collect",
+					url: "/goods/getCollectionCommons",
 					data:{
 						id:2, //test
-						type:0, //0:普通商品，1:拍卖品
-						pageNum:this.page1,
+						attribute:attribute, // price or inventory
+						way:way, //0:升序,1：降序
+						pageNum:result.page,
 						pageSize:this.count,
 					},
 				})
 				
-				console.log(res)
 				if(res.data.data.length){
-					this.page1++;
-					this.goods=[...this.goods,...res.data.data];
-					this.goods0=[...this.goods0,...res.data.data];
+					result.page++;
+					result.items=[...result.items,...res.data.data];
+					this.showGoods =result.items
 				}
-				
-				if(this.functionIndex==0) this.showItems=this.goods
-				else this.showItems=this.auctions
-				console.log(this.goods)
-								
-				console.log("success")
-					
 			},
 			
 			//拍卖品
-			async getAuctions(attr=''){
+			async getAuctions(attribute="",way=-1,result=this.auctions){
 				let res = await this.$myRequest({
 					url: "/goods/getCollectionAuctions",
 					data:{
 						id:2, //test
-						attribute:attr, // maxBid or restTime
-						pageNum:this.page2,
+						attribute:attribute, // maxBid or restTime
+						way:way, //0:升序,1：降序
+						pageNum:result.page,
 						pageSize:this.count,
 					},
 				})
-				console.log(res)
 				if(res.data.data.length){
-					this.page2++;
+					result.page++;
 					for(let i=0;i<res.data.data.length;i++){
 						let sub=res.data.data[i].end_time - res.data.data[i].start_time
-						res.data.data[i]['remainingTime']=sub
-						res.data.data[i]['remainingTimeF']=this.$formatTime(sub)
+						if(res.data.data[i]['restTime'] < 0)
+							res.data.data[i]['restTimeF']="已结束 "+(-res.data.data[i]['restTime'])+" 天"
+						else
+							res.data.data[i]['restTimeF']="剩余时间 "+res.data.data[i]['restTime']+" 天"
 					}
-					this.auctions=[...this.auctions,...res.data.data];
+					result.items=[...result.items,...res.data.data];
+					this.showAuctions =result.items
 				}
-				
-				console.log(this.auctions)
+				console.log(result)
 			},
 			
-			sort11(){//商品-价格
+			sort11(){//商品-价格 price
 				// this.sortIndex1[0]=(this.sortIndex1[0]+1)%3;
 				// this.sortIndex1[1]=0;
 				this.$set(this.sortIndex1,0,(this.sortIndex1[0]+1)%3)
 				this.$set(this.sortIndex1,1,0)
+				if(this.sortIndex1[0]==1){//升序
+					if(this.goodsPriceUp.page==0){
+						this.getGoods("price",0,this.goodsPriceUp)
+					}
+					else this.showGoods = this.goodsPriceUp.items
+				}
+				else if(this.sortIndex1[0]==2){//降序
+					if(this.goodsPriceDown.page==0){
+						this.getGoods("price",1,this.goodsPriceDown)
+					}
+					else this.showGoods = this.goodsPriceDown.items
+				}
+				else{ //无序
+					this.showGoods=this.goods.items
+				}
 			},
-			sort12(){//商品-库存
+			sort12(){//商品-库存 inventory
 				// this.sortIndex1[1]=(this.sortIndex1[1]+1)%3;
 				// this.sortIndex1[0]=0;
 				this.$set(this.sortIndex1,1,(this.sortIndex1[1]+1)%3)
 				this.$set(this.sortIndex1,0,0)
+				if(this.sortIndex1[1]==1){//升序
+					if(this.goodsInventUp.page==0){
+						this.getGoods("inventory",0,this.goodsInventUp)
+					}
+					else this.showGoods = this.goodsInventUp.items
+				}
+				else if(this.sortIndex1[1]==2){//降序
+					if(this.goodsInventDown.page==0){
+						this.getGoods("inventory",1,this.goodsInventDown)
+					}
+					else this.showGoods = this.goodsInventDown.items
+				}
+				else{ //无序
+					this.showGoods=this.goods.items
+				}
 			},
 			
-			sort21(){//拍卖品-价格
+			sort21(){//拍卖品-当前最高价 maxBid
 				// this.sortIndex2[0]=(this.sortIndex2[0]+1)%3;
 				// this.sortIndex2[1]=0;
 				this.$set(this.sortIndex2,0,(this.sortIndex2[0]+1)%3)
 				this.$set(this.sortIndex2,1,0)
+				if(this.sortIndex2[0]==1){//升序
+					if(this.auctionsMaxBidUp.page==0){
+						this.getAuctions("maxBid",0,this.auctionsMaxBidUp)
+					}
+					else this.showAuctions = this.auctionsMaxBidUp.items
+				}
+				else if(this.sortIndex2[0]==2){//降序
+					if(this.auctionsMaxBidDown.page==0){
+						this.getAuctions("maxBid",1,this.auctionsMaxBidDown)
+					}
+					else this.showAuctions = this.auctionsMaxBidDown.items
+				}
+				else{ //无序
+					this.showAuctions=this.auctions.items
+				}
 			},
-			sort22(){//拍卖品-剩余时间
+			sort22(){//拍卖品-剩余时间 restTime
 				// this.sortIndex2[1]=(this.sortIndex2[1]+1)%3;
 				// this.sortIndex2[0]=0;
 				this.$set(this.sortIndex2,1,(this.sortIndex2[1]+1)%3)
 				this.$set(this.sortIndex2,0,0)
+				if(this.sortIndex2[1]==1){//升序
+					if(this.auctionsRestTimeUp.page==0){
+						this.getAuctions("restTime",0,this.auctionsRestTimeUp)
+					}
+					else this.showAuctions = this.auctionsRestTimeUp.items
+				}
+				else if(this.sortIndex2[1]==2){//降序
+					if(this.auctionsRestTimeDown.page==0){
+						this.getAuctions("restTime",1,this.auctionsRestTimeDown)
+					}
+					else this.showAuctions = this.auctionsRestTimeDown.items
+				}
+				else{ //无序
+					this.showAuctions=this.auctions.items
+				}
 			},
-			
 		},
 		
 		/**
@@ -302,10 +359,24 @@
 		 */
 		onReachBottom: function() {
 			if(this.functionIndex==0){
-				this.getGoods()
+				if(this.sortIndex1[0]!=0)//price
+					if(this.sortIndex1[0]==1) this.getGoods("price",0,this.goodsPriceUp)
+					if(this.sortIndex1[0]==2) this.getGoods("price",1,this.goodsPriceDown)
+				else if(this.sortIndex1[1]!=0)//inventory
+					if(this.sortIndex1[1]==1) this.getGoods("inventory",0,this.goodsInventUp)
+					if(this.sortIndex1[1]==2) this.getGoods("inventory",1,this.goodsInventDown)
+				else
+					this.getGoods()
 			}
 			else if(this.functionIndex==1){
-				this.getAuctions()
+				if(this.sortIndex2[0]!=0)//maxBid
+					if(this.sortIndex2[0]==1) this.getAuctions("maxBid",0,this.auctionsMaxBidUp)
+					if(this.sortIndex2[0]==2) this.getAuctions("maxBid",1,this.auctionsMaxBidDown)
+				else if(this.sortIndex2[1]!=0)//restTime
+					if(this.sortIndex2[1]==1) this.getAuctions("restTime",0,this.auctionsRestTimeUp)
+					if(this.sortIndex2[1]==2) this.getAuctions("restTime",1,this.auctionsRestTimeDown)
+				else
+					this.getAuctions()
 			}
 		},
 		/**

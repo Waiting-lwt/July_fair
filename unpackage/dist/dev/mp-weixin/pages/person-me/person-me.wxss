@@ -331,8 +331,6 @@
 	margin-bottom: 20rpx;
 }
 .user-identity-block{
-	display: -webkit-box;
-	display: -webkit-flex;
 	display: flex;
 	margin-left: 30rpx;
     margin-top: 25rpx;

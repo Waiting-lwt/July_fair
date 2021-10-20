@@ -111,22 +111,18 @@
 
 .goods-item{
     margin-top: 22rpx;
-    width: 100%;
-    height: 330rpx;
+    padding: 22rpx 22rpx 22rpx 22rpx;
     margin-top: 22rpx;
     border: 2rpx solid #006fff;
     border-radius: 20rpx;
     box-shadow: 0 3rpx 10rpx rgb(200,200,200) inset,0 3rpx 10rpx rgb(200,200,200);
-    display: block;
-    position: relative;
+    
+    display: flex;
+    /* position: relative; */
 }
 .item-img{
-    position: absolute;
-	display: inline-block;
-    margin-left: 22rpx;
-    margin-top: 22rpx;
-	/* top: 50%;
-	transform: translate(0, -50%); */
+    position: relative;
+	display: block;
 }
 .item-pic{
 	display: block;
@@ -136,7 +132,7 @@
     box-shadow: 0rpx 6rpx 10rpx #000;
 }
 .seller-item{
-	display: block;
+	/* display: block; */
 	height: 50rpx;
     margin-top: 22rpx;
 	/* border: 1rpx solid #000000; */
@@ -157,9 +153,10 @@
 }
 
 .item-block{
+	display: block;
     box-sizing: border-box;
-    padding-top: 30rpx;
-    margin-left: 280rpx;
+	width: 450rpx;
+    margin-left: 20rpx;
 }
 .item-detail{
     /* padding-right: 48rpx; */
@@ -177,49 +174,63 @@
     font-size: 34rpx;
     color: #4F73A5;
 }
-.item-detail .item-date{
+.item-detail .item-text{
     display: block;
     line-height: 24rpx;
-	height: 50rpx;
+	margin: 10rpx 0 10rpx 0;
 	overflow: scroll;
-    font-size: 16rpx;
+    font-size: 24rpx;
     padding-top: 10rpx;
     color: rgb(142, 142, 142);
 }
-.item-detail .item-payment{
+.item-detail .item-price{
     display: block;
 	float: right;
     line-height: 24rpx;
 	height: 60rpx;
-    font-size: 16rpx;
-    padding-top: 50rpx;
-    padding-right: 70rpx;
+    font-size: 24rpx;
+    padding-top: 60rpx;
+    padding-right: 30rpx;
     color: rgb(142, 142, 142);
 }
 .auctioning{
-    display: block;
 	float: left;
     line-height: 24rpx;
-	height: 60rpx;
+	margin: 10rpx 0 10rpx 0;
+	overflow: scroll;
     font-size: 28rpx;
-    padding-right: 70rpx;
+
+	display: inline-block;
+	height: 60rpx;
+	width: 300rpx;
+    line-height: 60rpx;
+    font-size: 28rpx;
     color: rgb(63, 63, 63);
 }
-.sell-item{
+.item-block .sell-item{
 	display: inline-block;
-	clear: right;
 	background-color: #cfe1f4;
-	margin-left: 20rpx;
+	margin: 0 30rpx 0 30rpx;
 	border-radius: 10rpx;
 	height: 60rpx;
-	width: 250rpx;
+	width: 260rpx;
     line-height: 60rpx;
     font-size: 32rpx;
 	text-align: center;
 	color: #0069D6;
 }
+.item-block .sell-text{
+	display: inline-block;
+	height: 60rpx;
+	width: 300rpx;
+    line-height: 60rpx;
+	text-align: center;
+    font-size: 28rpx;
+	padding-left: 20rpx;
+	color: #0069D6;
+}
 .sell-icon{
-    position: absolute;
+    /* position: absolute; */
     margin-left: 50rpx;
     margin-top: 6rpx;
 	height: 48rpx;
