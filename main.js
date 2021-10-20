@@ -43,5 +43,3 @@ export function createApp() {
   }
 }
 // #endif
-
-//test
