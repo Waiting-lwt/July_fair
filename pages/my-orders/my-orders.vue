@@ -30,9 +30,15 @@
 				</view>
 				<view class="arrivalNavigation" v-show="showSpringBox1">
 					<view class="sideNavigation">
-						<template v-for="(item,index) in progress1">
+						<template v-if="marketIndex==0" v-for="(item,index) in progress1_1.texts">
 							<view v-show="index!=0" class="liBottomBorder"></view>
-							<view class="navigatorStyle" @tap="marketsProcess(index)" :key="index">
+							<view class="navigatorStyle" @tap="marketsBuyProcess(index)" :key="index">
+								<text>{{item}}</text>
+							</view>
+						</template>
+						<template v-if="marketIndex==1" v-for="(item,index) in progress1_2.texts">
+							<view v-show="index!=0" class="liBottomBorder"></view>
+							<view class="navigatorStyle" @tap="marketsSellProcess(index)" :key="index">
 								<text>{{item}}</text>
 							</view>
 						</template>
@@ -42,37 +48,56 @@
 			</view>
 			
 			<view class="content">
-				<view class="goods-item" v-for="(item,index1) in showMarket" :key="item.id" @tap="toClassify(item.id)">
+				<view class="goods-item" v-for="(item,index1) in showMarket" @tap="toClassify(item.id)">
 				    <view class="item-img">
-						<image class="item-pic" mode="scaleToFill" :src="item.introImage"></image>
-						
+						<view>
+							<image class="item-pic" mode="scaleToFill" :src="item.introImage"></image>
+						</view>
 						<view class="seller-item">
 							<image class="seller-pic" :src="item.userImage"></image>
 							<text class="seller-name">{{item.userName}}</text>
 						</view>
 					</view>
-				    <view class="item-block">
-				        <view class="item-detail">
-				            <text class="item-title">{{item.name}}</text>
-				            <text class="item-date">下单时间 {{item.time}}</text>
-				            <text class="item-payment">实收款 ￥{{item.totalPrice}}</text>
-				        </view>
+				    <view class="item-block" v-if="marketIndex==0" >
+						<view class="item-detail">
+						    <text class="item-title">{{item.name}}</text>
+						    <text class="item-text">下单时间 {{item.time}}</text>
+						    <text class="item-price">实付款 ￥{{item.totalPrice}}</text>
+						</view>
 						<!-- 0:未确认，1:未发货，2:未收货，3:未评价，4:退款中，5:已评价 -->
-						<view class="sell-item" v-if="marketIndex==0" @tap="ordersMgt1">
-							<text v-if="item.status==0">未确认</text>
-							<text v-if="item.status==1">未发货</text>
+						<view class="sell-item" @tap="ordersMgt1"
+						v-if="item.status==2||item.status==3||item.status==5" >
+							<!-- <text v-if="item.status==0">确认收货</text> -->
 							<text v-if="item.status==2">确认收货</text>
 							<text v-if="item.status==3">写评价</text>
-							<text v-if="item.status==4">退款中...</text>
 							<text v-if="item.status==5">查看评价</text>
 						</view>
-						<view class="sell-item" v-if="marketIndex==1" @tap="ordersMgt1">
-							<text v-if="item.status==0">未确认</text>
+						<view class="sell-text" v-else>
+							<text v-if="item.status==1">未发货</text>
+							<text v-if="item.status==4">退货中：等待商家回应</text>
+							<text v-if="item.status==6">退货中：商家未同意</text>
+							<text v-if="item.status==7">退货中：商家已同意</text>
+						</view>
+						<view class="sell-icon" @tap="ordersMgt2">···</view>
+				    </view>
+				    <view class="item-block" v-if="marketIndex==1" >
+					    <view class="item-detail">
+					        <text class="item-title">{{item.name}}</text>
+					        <text class="item-text">下单时间 {{item.time}}</text>
+					        <text class="item-price">实收款 ￥{{item.totalPrice}}</text>
+					    </view>
+						<view class="sell-item" @tap="ordersMgt1"
+						v-if="item.status==1||item.status==4||item.status==5">
+							<!-- <text v-if="item.status==0">买家未确认</text> -->
 							<text v-if="item.status==1">去发货</text>
-							<text v-if="item.status==2">未确认收货</text>
-							<text v-if="item.status==3">未评价</text>
-							<text v-if="item.status==4">退款中...</text>
+							<text v-if="item.status==4">买家申请退款</text>
 							<text v-if="item.status==5">查看评价</text>
+						</view>
+						<view class="sell-text" v-else>
+							<text v-if="item.status==2">买家未收货</text>
+							<text v-if="item.status==3">买家未评价</text>
+							<text v-if="item.status==6">买家申请退款：未同意</text>
+							<text v-if="item.status==7">买家申请退款：已同意</text>
 						</view>
 						<view class="sell-icon" @tap="ordersMgt2">···</view>
 				    </view>
@@ -107,13 +132,13 @@
 				</view>
 				<view class="arrivalNavigation" v-show="showSpringBox2">
 					<view class="sideNavigation">
-						<template v-if="auctionIndex==0" v-for="(item,index) in progress2_1">
+						<template v-if="auctionIndex==0" v-for="(item,index) in progress2_1.texts">
 							<view v-show="index!=0" class="liBottomBorder"></view>
 							<view class="navigatorStyle" @tap="auctionsBuyProcess(index)" :key="index">
 								<text>{{item}}</text>
 							</view>
 						</template>
-						<template v-if="auctionIndex==1" v-for="(item,index) in progress2_2">
+						<template v-if="auctionIndex==1" v-for="(item,index) in progress2_2.texts">
 							<view v-show="index!=0" class="liBottomBorder"></view>
 							<view class="navigatorStyle" @tap="auctionsSellProcess(index)" :key="index">
 								<text>{{item}}</text>
@@ -126,30 +151,34 @@
 		
 			<!-- 竞拍 -->
 			<view class="content" v-if="auctionIndex==0">
-				<view class="goods-item" v-for="(item,index1) in showAuctionBuyer" :key="item.id" @tap="toClassify(item.id)">
+				<view class="goods-item" v-for="(item,index1) in showAuction" :key="item.good_id" @tap="toClassify(item.id)">
 				    <view class="item-img">
-						<image class="item-pic" mode="scaleToFill" :src="item.introImage"></image>
-						
-						<view class="seller-item">
-							<image class="seller-pic" :src="item.userImage"></image>
-							<text class="seller-name">{{item.userName}}</text>
+						<image class="item-pic" mode="scaleToFill" :src="item.intro_image[0]"></image>
+						<view class="seller-item" v-show="item.portrait">
+							<image class="seller-pic" :src="item.portrait"></image>
+							<text class="seller-name">{{item.seller_name}}</text>
 						</view>
 					</view>
 				    <view class="item-block">
 				        <view class="item-detail">
 				            <text class="item-title">{{item.name}}</text>
-				            <text class="item-date">拍得时间 {{item.time}}</text>
-				            <text class="item-payment">最终竞拍价格 ￥{{item.totalPrice}}</text>
+				            <text class="item-text" v-show="item.restTime!='已结束'">剩余时间 {{item.restTime}} 天</text>
+				            <text class="item-text" v-show="item.getAunctionTime">拍得时间 {{item.getAunctionTime}}</text>
+				            <text class="item-text" v-show="item.maxBid_Recently">当前最高价格 {{item.maxBid_Recently}}</text>
+				            <text class="item-price" v-show="item.total_price">最终竞拍价格 ￥{{item.total_price}}</text>
 				        </view>
 						<!-- 0:未确认，1:未发货，2:未收货，3:未评价，4:退款中，5:已评价 -->
-						<view class="sell-item" @tap="ordersMgt1">
-							<text v-if="item.status==0">未确认</text>
-							<text v-if="item.status==1">未发货</text>
-							<text v-if="item.status==2">确认收货</text>
-							<text v-if="item.status==3">写评价</text>
-							<text v-if="item.status==4">退款中...</text>
-							<text v-if="item.status==5">查看评价</text>
+						<view class="sell-item" 
+						v-if="(item.status=='完善收获信息'||
+						item.status=='确认收货'||
+						item.status=='写评价'||
+						item.status=='查看评价')" @tap="ordersMgt1">
+							<text>{{item.status}}</text>
 						</view>
+						<view class="sell-text" v-else-if="(item.status!='')">
+							<text>{{item.status}}</text>
+						</view>
+						<text class="auctioning" v-show="item.rank">我的排位 {{item.rank}}</text>
 						<view class="sell-icon" @tap="ordersMgt2">···</view>
 				    </view>
 				</view>
@@ -157,37 +186,35 @@
 			
 			<!-- 拍品 -->
 			<view class="content" v-if="auctionIndex==1">
-				<view class="goods-item" v-for="(item,index1) in showAuctionSeller" :key="item.id" 
-				@tap="toClassify(item.id)" style="height: 285rpx;">
+				<view class="goods-item" v-for="(item,index1) in showAuction" @tap="toClassify(item.id)">
 				    <view class="item-img">
 						<image class="item-pic" mode="scaleToFill" :src="item.intro_image[0]"></image>
-						
+						<view class="seller-item" v-show="item.portrait">
+							<image class="seller-pic" :src="item.portrait"></image>
+							<text class="seller-name">{{item.buyer_name}}</text>
+						</view>
 					</view>
 				    <view class="item-block">
 				        <view class="item-detail">
-				            <text class="item-title">{{item.name}}</text>
-				            <text class="item-date">剩余时间: {{item.restTime}}</text>
-				            <text class="item-payment"style="padding-top:0rpx; float:left;">
-								当前最高价格 ￥{{item.maxBid_Recently}}</text>
+							<text class="item-title">{{item.name}}</text>
+						    <text class="item-text" v-show="item.restTime!='已结束'">剩余时间 {{item.restTime}} 天</text>
+							<text class="item-text" v-show="item.getAunctionTime">拍得时间 {{item.getAunctionTime}}</text>
+						    <text class="item-text" v-show="item.maxBid_Recently">当前最高价格 {{item.maxBid_Recently}}</text>
+						    <text class="item-price" v-show="item.total_price">最终竞拍价格 ￥{{item.total_price}}</text>
 				        </view>
 						<!-- status : 0:未确认，1:去发货,2:查看物流,3:拍卖用户还未评价,4:退款中,5:拍卖用户已评价，6:重新上架 -->
-						<template v-if="item.status===''">
-							<text class="auctioning">竞拍人数 {{item.totalBidPersons}}</text>
-						</template>
-						<template v-else>
-							<view class="sell-item" @tap="ordersMgt1">
-								<text v-if="item.status===''">正在拍卖</text>
-								<!-- <text v-if="item.status===0">未确认</text>
-								<text v-if="item.status==1">去发货</text>
-								<text v-if="item.status==2">查看物流</text>
-								<text v-if="item.status==3">拍卖用户还未评价</text>
-								<text v-if="item.status==4">退款中</text>
-								<text v-if="item.status==5">拍卖用户已评价</text> -->
-								<text>{{item.status}}</text>
-							</view>
-							<view class="sell-icon" @tap="ordersMgt2">···</view>
-						</template>
-				    </view>
+						<view class="sell-item"
+						v-if="(item.status=='去发货'||
+						item.status=='买家申请退款'||
+						item.status=='查看评价')" @tap="ordersMgt1">
+							<text>{{item.status}}</text>
+						</view>
+						<view class="sell-text" v-else-if="(item.status!='')">
+							<text>{{item.status}}</text>
+						</view>
+						<text class="auctioning" v-show="item.status==''">竞拍人数 {{item.totalBidPersons||0}}</text>
+						<view class="sell-icon" @tap="ordersMgt2">···</view>
+					</view>
 				</view>
 			</view>
 			
@@ -211,61 +238,28 @@
 				//市集——购买 0:未确认，1:未发货，2:未收货，3:未评价，4:退款中，5:已评价
 				marketTitle:["我的购买","我的卖出"],
 				marketIndex:0,
-				page1_1:0,
-				progress1:["未确认","未发货","未收货","未评价","退款中","已评价","全部"],
-				progress1_1:["未确认","未发货","未收货","未评价","退款中","已评价","全部"],
-				marketBuyer:[],
-				marketBuyer0:[],
-				marketBuyer1:[],
-				marketBuyer2:[],
-				marketBuyer3:[],
-				marketBuyer4:[],
-				marketBuyer5:[],
+				progress1_1:{index:0,texts:["全部","未发货","未收货","未评价","退款中","已评价"]},
+				marketBuyer:{items:[],page:0},
 				
 				//市集——卖出
-				page1_2:0,
-				progress1_2:["未确认","未发货","未收货","未评价","退款中","已评价","全部"],
-				marketSeller:[],
-				marketSeller0:[],
-				marketSeller1:[],
-				marketSeller2:[],
-				marketSeller3:[],
-				marketSeller4:[],
-				marketSeller5:[],
+				progress1_2:{index:0,texts:["全部","未发货","未收货","未评价","退款中","已评价"]},
+				marketSeller:{items:[],page:0},
 				
 				showMarket:[],
 				
 				//拍卖——购买
 				auctionTitle:["我的竞拍","我的拍品"],
 				auctionIndex:0,
-				page2_1:0,
-				progress2_1:["未确认","未发货","未收货","未评价","退款中","已评价","全部"],
-				auctionBuyer:[],
-				auctionBuyer0:[],
-				auctionBuyer1:[],
-				auctionBuyer2:[],
-				auctionBuyer3:[],
-				auctionBuyer4:[],
-				auctionBuyer5:[],
-				showAuctionBuyer:[],
+				progress2_1:{index:0,texts:["全部","正在拍卖","未拍得","未确认","未发货","未收货","未评价","退款中","已评价"]},
+				auctionBuyer:{items:[],page:0},
 				
 				//拍卖——卖出
-				page2_2:0,
-				progress2_2:["正在拍卖","未确认","未发货","发货中","买家未评价","退款中","买家已评价","已过期","全部"],
-				auctionSeller:[],
-				auctionSeller_:[],
-				auctionSeller0:[],
-				auctionSeller1:[],
-				auctionSeller2:[],
-				auctionSeller3:[],
-				auctionSeller4:[],
-				auctionSeller5:[],
-				auctionSeller6:[],
-				showAuctionSeller:[],
+				progress2_2:{index:0,texts:["全部","正在拍卖","未确认","未发货","未收货","未评价","退款中","已评价","已超时"]},
+				auctionSeller:{items:[],page:0},
 				
 				showAuction:[],
 				
-				count:3,
+				count:4,
 			}
 		},
 		methods: {
@@ -274,96 +268,98 @@
 				this.functionIndex=index
 				console.log(index)
 				if(this.functionIndex==0){
-					if(this.marketIndex==0){
-						if(this.page1_1==0) this.marketsBuy()
-						this.showMarket=this.marketBuyer
-					}
-					else{
-						console.log(this.marketSeller)
-						if(this.page1_2==0) this.marketsSell()
-						this.showMarket=this.marketSeller
-					}
+					this.changeMarIndex(this.marketIndex)
 				}
 				else{
-					if(this.auctionIndex==0) {
-						if(this.page2_1==0) this.auctionsBuy()
-						this.showAuction=this.auctionBuyer
-					}
-					else{
-						if(this.page2_2==0) this.auctionsSell()
-						this.showAuction=this.auctionSeller
-					}
+					this.changeAucIndex(this.auctionIndex)
 				}
 			},
 			changeMarIndex(index){
 				this.marketIndex=index
-				console.log(index)
 				if(this.marketIndex==0){
-					if(this.page1_1==0) this.marketsBuy()
-					this.showMarket=this.marketBuyer
+					this.marketsBuyProcess()
 				}
 				else{
-					console.log(this.marketSeller)
-					if(this.page1_2==0) this.marketsSell()
-					this.showMarket=this.marketSeller
+					this.marketsSellProcess()
 				}
 			},
 			changeAucIndex(index){
 				this.auctionIndex=index
-				console.log(index)
 				if(this.auctionIndex==0) {
-					if(this.page2_1==0) this.auctionsBuy()
-					this.showAuction=this.auctionBuyer
+					this.auctionsBuyProcess()
 				}
 				else{
-					if(this.page2_2==0) this.auctionsSell()
-					this.showAuction=this.auctionSeller
+					this.auctionsSellProcess()
 				}
 			},
-			marketsProcess(index){
-				this.showSpringBox1=false
-				if(this.marketIndex==0){
-					if(index==0) this.showMarket=this.marketBuyer0
-					else if(index==1) this.showMarket=this.marketBuyer1
-					else if(index==2) this.showMarket=this.marketBuyer2
-					else if(index==3) this.showMarket=this.marketBuyer3
-					else if(index==4) this.showMarket=this.marketBuyer4
-					else if(index==5) this.showMarket=this.marketBuyer5
-					else if(index==6) this.showMarket=this.marketBuyer
+			marketsBuyProcess(index=0,update=false){
+				if(update==false){
+					this.showSpringBox1=false
+					this.marketBuyer.page=0
+					this.marketBuyer.items=[]
 				}
-				else{
-					if(index==0) this.showMarket=this.marketSeller0
-					else if(index==1) this.showMarket=this.marketSeller1
-					else if(index==2) this.showMarket=this.marketSeller2
-					else if(index==3) this.showMarket=this.marketSeller3
-					else if(index==4) this.showMarket=this.marketSeller4
-					else if(index==5) this.showMarket=this.marketSeller5
-					else if(index==6) this.showMarket=this.marketSeller
-				}
-			},
-			auctionsBuyProcess(index){
-				this.showSpringBox2=false
-					if(index==0) this.showAuctionBuyer=this.auctionBuyer0
-					else if(index==1) this.showAuctionBuyer=this.auctionBuyer1
-					else if(index==2) this.showAuctionBuyer=this.auctionBuyer2
-					else if(index==3) this.showAuctionBuyer=this.auctionBuyer3
-					else if(index==4) this.showAuctionBuyer=this.auctionBuyer4
-					else if(index==5) this.showAuctionBuyer=this.auctionBuyer5
-					else if(index==6) this.showAuctionBuyer=this.auctionBuyer
 				
+				if(index==0){//全部
+					this.getMarketsBuy()
+				}
+				else if(index<=5){
+					this.getMarketsBuy(index)
+				}
+				this.progress1_1.index=index
 			},
-			auctionsSellProcess(index){
-				this.showSpringBox2=false
-					if(index==0) this.showAuctionSeller=this.auctionSeller_
-					else if(index==1) this.showAuctionSeller=this.auctionSeller0
-					else if(index==2) this.showAuctionSeller=this.auctionSeller1
-					else if(index==3) this.showAuctionSeller=this.auctionSeller2
-					else if(index==4) this.showAuctionSeller=this.auctionSeller3
-					else if(index==5) this.showAuctionSeller=this.auctionSeller4
-					else if(index==6) this.showAuctionSeller=this.auctionSeller5
-					else if(index==7) this.showAuctionSeller=this.auctionSeller6
-					else if(index==8) this.showAuctionSeller=this.auctionSeller
+			marketsSellProcess(index=0,update=false){
+				if(update==false){
+					this.showSpringBox1=false
+					this.marketSeller.page=0
+					this.marketSeller.items=[]
+				}
 				
+				if(index==0){//全部
+					this.getMarketsSell()
+				}
+				else if(index<=5){
+					this.getMarketsSell(index)
+				}
+				this.progress1_2.index=index
+			},
+			auctionsBuyProcess(index=0,update=false){
+				if(update==false){
+					this.showSpringBox2=false
+					this.auctionBuyer.page=0
+					this.auctionBuyer.items=[]
+				}
+				
+				if(index==0){//全部
+					this.getAuctionsBuy()
+				}
+				else if(index<=2){ //1,2
+					this.getAuctionsBuy(-1)
+				}
+				else if(index<=8){
+					this.getAuctionsBuy(index-3)
+				}
+				this.progress2_1.index=index
+			},
+			auctionsSellProcess(index=0,update=false){
+				if(update==false){
+					this.showSpringBox2=false
+					this.auctionSeller.page=0
+					this.auctionSeller.items=[]
+				}
+				
+				if(index==0){//全部
+					this.getAuctionsSell()
+				}
+				else if(index==1){
+					this.getAuctionsSell(-1)
+				}
+				else if(index<=7){
+					this.getAuctionsSell(index-2)
+				}
+				else if(index==8){
+					this.getAuctionsSell(8)
+				}
+				this.progress2_2.index=index
 			},
 			ordersMgt1(){
 				console.log("Mgt1")
@@ -373,206 +369,167 @@
 				     itemList: ["查看物流", "取消订单"],
 				     success: function (res) {
 				       if (!res.cancel) {
-				         console.log(res.tapIndex)//这里是点击了那个按钮的下标
+						 //点击了那个按钮的下标
+				         console.log(res.tapIndex)
 				       }
 				     }
 				})
 			},
 			
 			//市集——我的购买
-			async getMarketsBuy(k){
+			async getMarketsBuy(k=null){
 				let res = await this.$myRequest({
 					url: "/order/buyer",
 					data:{
 						id:2, //test
 						type:0, //0:普通商品，1:拍卖品
-						status:k, //0:未确认，1:未发货，2:未收货，3:未评价，4:退款中，5:已评价
-						pageNum:this.page1_1,
+						status:k, 
+						pageNum:this.marketBuyer.page,
 						pageSize:this.count,
 					},
 				})
-				for(let i=0;i<res.data.data.length;i++){
-					res.data.data[i].time=this.$formatDate(res.data.data[i].time)
-					res.data.data[i].introImage=res.data.data[i].introImage.slice(2,res.data.data[i].introImage.length-2)
-					let image = await this.$myRequest({
-						url: "/user/baseInformation",
-						data:{
-							id:res.data.data[i].buyerId,
-						},
-					})
-					res.data.data[i]['userImage']=image.data.data.portrait
-					res.data.data[i]['userName']=image.data.data.name
+				if(res.data.data.length){
+					this.marketBuyer.page++
+					for(let i=0;i<res.data.data.length;i++){
+						res.data.data[i].time=this.$formatDate(res.data.data[i].time)
+						res.data.data[i].introImage=res.data.data[i].introImage.slice(2,res.data.data[i].introImage.length-2)
+						let image = await this.$myRequest({
+							url: "/user/baseInformation",
+							data:{
+								id:res.data.data[i].buyerId,
+							},
+						})
+						res.data.data[i]['userImage']=image.data.data.portrait
+						res.data.data[i]['userName']=image.data.data.name
+					}
 				}
-				if(k==0) this.marketBuyer0=[...this.marketBuyer0,...res.data.data]
-				else if(k==1) this.marketBuyer1=[...this.marketBuyer1,...res.data.data]
-				else if(k==2) this.marketBuyer2=[...this.marketBuyer2,...res.data.data]
-				else if(k==3) this.marketBuyer3=[...this.marketBuyer3,...res.data.data]
-				else if(k==4) this.marketBuyer4=[...this.marketBuyer4,...res.data.data]
-				else if(k==5) this.marketBuyer5=[...this.marketBuyer5,...res.data.data]
-				return res;
-			},
-			async marketsBuy(){
-				for(let k=0;k<=5;k++){
-					await this.getMarketsBuy(k)
+				this.marketBuyer.items=[...this.marketBuyer.items,...res.data.data]
+				this.showMarket=this.marketBuyer.items
+				if(k==4){
+					this.getMarketsBuy(6)
 				}
-				this.page1_1++;
-				this.marketBuyer=[...this.marketBuyer,...this.marketBuyer0]
-				this.marketBuyer=[...this.marketBuyer,...this.marketBuyer1]
-				this.marketBuyer=[...this.marketBuyer,...this.marketBuyer2]
-				this.marketBuyer=[...this.marketBuyer,...this.marketBuyer3]
-				this.marketBuyer=[...this.marketBuyer,...this.marketBuyer4]
-				this.marketBuyer=[...this.marketBuyer,...this.marketBuyer5]
-				
-				if(this.marketIndex==0) this.showMarket=this.marketBuyer
-				else this.showMarket=this.marketSeller
-				console.log(this.marketBuyer)
+				else if(k==6){
+					this.getMarketsBuy(7)
+				}
+				console.log(this.showMarket)
 			},
 			
 			
 			//市集——我的卖出
-			async getMarketsSell(k){
+			async getMarketsSell(k=null){
 				let res = await this.$myRequest({
 					url: "/order/seller",
 					data:{
 						id:1, //test
 						type:0, //0:普通商品，1:拍卖品
 						status:k, //0:未确认，1:未发货，2:未收货，3:未评价，4:退款中，5:已评价
-						pageNum:this.page1_2,
+						pageNum:this.marketSeller.page,
 						pageSize:this.count,
 					},
 				})
-				for(let i=0;i<res.data.data.length;i++){
-					res.data.data[i].time=this.$formatDate(res.data.data[i].time)
-					res.data.data[i].introImage=res.data.data[i].introImage.slice(2,res.data.data[i].introImage.length-2)
-					let image = await this.$myRequest({
-						url: "/user/baseInformation",
-						data:{
-							id:res.data.data[i].sellerId,
-						},
-					})
-					res.data.data[i]['userImage']=image.data.data.portrait
-					res.data.data[i]['userName']=image.data.data.name
+				if(res.data.data.length){
+					this.marketSeller.page++
+					for(let i=0;i<res.data.data.length;i++){
+						res.data.data[i].time=this.$formatDate(res.data.data[i].time)
+						res.data.data[i].introImage=res.data.data[i].introImage.slice(2,res.data.data[i].introImage.length-2)
+						let image = await this.$myRequest({
+							url: "/user/baseInformation",
+							data:{
+								id:res.data.data[i].sellerId,
+							},
+						})
+						res.data.data[i]['userImage']=image.data.data.portrait
+						res.data.data[i]['userName']=image.data.data.name
+					}
 				}
-				if(k==0) this.marketSeller=[...this.marketSeller0,...res.data.data]
-				else if(k==1) this.marketSeller1=[...this.marketSeller1,...res.data.data]
-				else if(k==2) this.marketSeller2=[...this.marketSeller2,...res.data.data]
-				else if(k==3) this.marketSeller3=[...this.marketSeller3,...res.data.data]
-				else if(k==4) this.marketSeller4=[...this.marketSeller4,...res.data.data]
-				else if(k==5) this.marketSeller5=[...this.marketSeller5,...res.data.data]
-				return res;
-			},
-			async marketsSell(){
-				for(let k=0;k<=5;k++){
-					await this.getMarketsSell(k)
+				this.marketSeller.items=[...this.marketSeller.items,...res.data.data]
+				this.showMarket=this.marketSeller.items
+				if(k==4){
+					this.getMarketsSell(6)
+					}
+				else if(k==6){
+					this.getMarketsSell(7)
 				}
-				this.page1_2++;
-				this.marketSeller=[...this.marketSeller,...this.marketSeller0]
-				this.marketSeller=[...this.marketSeller,...this.marketSeller1]
-				this.marketSeller=[...this.marketSeller,...this.marketSeller2]
-				this.marketSeller=[...this.marketSeller,...this.marketSeller3]
-				this.marketSeller=[...this.marketSeller,...this.marketSeller4]
-				this.marketSeller=[...this.marketSeller,...this.marketSeller5]
-				
-				if(this.marketIndex==0) this.showMarket=this.marketBuyer
-				else this.showMarket=this.marketSeller
-				console.log(this.marketSeller)
+				console.log(this.showMarket)
 			},
 			
 			//拍卖——我的竞拍
-			async getAuctionsBuy(k){
+			async getAuctionsBuy(k=null){
+				console.log(k)
 				let res = await this.$myRequest({
-					url: "/order/buyer",
+					url: "/goods/getMyBidAuctions",
 					data:{
 						id:2, //test
-						type:1, //0:普通商品，1:拍卖品
-						status:k, //0:未确认，1:未发货，2:未收货，3:未评价，4:退款中，5:已评价
-						pageNum:this.page2_1,
+						attribute:k,
+						// 1:未发货,2:确认收货,3:写评价,5:查看评价,
+						// 4:退款中:等待商家回应,6:退款中:商家已同意,7:退款中:商家未同意,
+						// 未拍：0:正式下单，8:完善收获信息，其他值返回status=""
+						pageNum:this.auctionBuyer.page,
 						pageSize:this.count,
 					},
 				})
-				for(let i=0;i<res.data.data.length;i++){
-					res.data.data[i].time=this.$formatDate(res.data.data[i].time)
-					res.data.data[i].introImage=res.data.data[i].introImage.slice(2,res.data.data[i].introImage.length-2)
-					let image = await this.$myRequest({
-						url: "/user/baseInformation",
-						data:{
-							id:res.data.data[i].buyerId,
-						},
-					})
-					res.data.data[i]['userImage']=image.data.data.portrait
-					res.data.data[i]['userName']=image.data.data.name
+				if(res.data.data.length){
+					this.auctionBuyer.page++
+					for(let i=0;i<res.data.data.length;i++){
+						if('seller_id' in res.data.data[i]){
+							res.data.data[i].getAunctionTime=this.$formatDate(res.data.data[i].getAunctionTime)
+						}
+					
+						if(this.progress2_1.index==1){//正在拍卖
+							if(!'rank' in res.data.data[i]){
+								res.data.data.splice(i,1)
+							}
+						}
+						else if(this.progress2_1.index==2){//未拍得
+							if('rank' in res.data.data[i]){
+								res.data.data.splice(i,1)
+							}
+						}
+					}
 				}
-				if(k==0) this.auctionBuyer0=[...this.auctionBuyer0,...res.data.data]
-				else if(k==1) this.auctiontBuyer1=[...this.auctionBuyer1,...res.data.data]
-				else if(k==2) this.auctionBuyer2=[...this.auctionBuyer2,...res.data.data]
-				else if(k==3) this.auctionBuyer3=[...this.auctionBuyer3,...res.data.data]
-				else if(k==4) this.auctionBuyer4=[...this.auctionBuyer4,...res.data.data]
-				else if(k==5) this.auctionBuyer5=[...this.auctionBuyer5,...res.data.data]
-				
-				return res;
-			},
-			async auctionsBuy(){
-				for(let k=0;k<=5;k++){
-					await this.getAuctionsBuy(k)
+				this.auctionBuyer.items=[...this.auctionBuyer.items,...res.data.data]
+				this.showAuction=this.auctionBuyer.items
+				if(k==4){
+					this.getAuctionsBuy(6)
+					}
+				else if(k==6){
+					this.getAuctionsBuy(7)
 				}
-				this.page2_1++;
-				this.auctionBuyer=[...this.auctionBuyer,...this.auctionBuyer0]
-				this.auctionBuyer=[...this.auctionBuyer,...this.auctionBuyer1]
-				this.auctionBuyer=[...this.auctionBuyer,...this.auctionBuyer2]
-				this.auctionBuyer=[...this.auctionBuyer,...this.auctionBuyer3]
-				this.auctionBuyer=[...this.auctionBuyer,...this.auctionBuyer4]
-				this.auctionBuyer=[...this.auctionBuyer,...this.auctionBuyer5]
-				
-				this.showAuctionBuyer=this.auctionBuyer
-				console.log(this.auctionBuyer)
+				console.log(this.showAuction)
 			},
 			
 			//拍卖——我的拍品
-			async getAuctionsSell(k){
-				k=String(k)
+			async getAuctionsSell(k=null){
+				console.log(k)
 				let res = await this.$myRequest({
 					url: "/goods/getMyAuctions",
 					data:{
 						id:1, //test
-						//attribute指定以（价格,剩余时间,进度）排序：传入 price（返回价格降序） 或 
-						//restTime (返回剩余时间升序) 或 
-						//0-6中的某个值(分别对应不同的进度，0:未确认，1:去发货,2:查看物流,3:拍卖用户还未评价,4:退款中,5:拍卖用户已评价，6:重新上架) 
+						//attribute指定0-6中的某个值(分别对应不同的进度，
+						//0:买家未正式下单，1:去发货,2:买家未收货,3:买家未评价,4:买家申请退款,5:查看评价，6:无人竞拍已超时
 						//不传默认id排列返回
 						attribute: k,
+						pageNum:this.auctionSeller.page,
+						pageSize:this.count,
 					},
 				})
-				if(k==-1) this.auctionSeller_=[...this.auctionSeller_,...res.data.data]
-				else if(k==0) this.auctionSeller0=[...this.auctionSeller0,...res.data.data]
-				else if(k==1) this.auctionSeller1=[...this.auctionSeller1,...res.data.data]
-				else if(k==2) this.auctionSeller2=[...this.auctionSeller2,...res.data.data]
-				else if(k==3) this.auctionSeller3=[...this.auctionSeller3,...res.data.data]
-				else if(k==4) this.auctionSeller4=[...this.auctionSeller4,...res.data.data]
-				else if(k==5) this.auctionSeller5=[...this.auctionSeller5,...res.data.data]
-				else if(k==6) this.auctionSeller6=[...this.auctionSeller6,...res.data.data]
-				
-				return res;
-			},
-			async auctionsSell(){
-				for(let k=-1;k<=6;k++){
-					await this.getAuctionsSell(k)
+				if(res.data.data.length){
+					this.auctionSeller.page++
+					for(let i=0;i<res.data.data.length;i++){
+						if('buyer_id' in res.data.data[i]){
+							res.data.data[i].getAunctionTime=this.$formatDate(res.data.data[i].getAunctionTime)
+						}
+					}
 				}
-				
-				for(let i=0;i<this.auctionSeller_.length;i++){
-					if('totalBidPersons' in this.auctionSeller_[i]==false) 
-						this.auctionSeller_[i]['totalBidPersons']=0
+				this.auctionSeller.items=[...this.auctionSeller.items,...res.data.data]
+				this.showAuction=this.auctionSeller.items
+				if(k==4){
+					this.getAuctionsSell(6)
+					}
+				else if(k==6){
+					this.getAuctionsSell(7)
 				}
-				this.page2_2++;
-				this.auctionSeller=[...this.auctionSeller,...this.auctionSeller_]
-				this.auctionSeller=[...this.auctionSeller,...this.auctionSeller0]
-				this.auctionSeller=[...this.auctionSeller,...this.auctionSeller1]
-				this.auctionSeller=[...this.auctionSeller,...this.auctionSeller2]
-				this.auctionSeller=[...this.auctionSeller,...this.auctionSeller3]
-				this.auctionSeller=[...this.auctionSeller,...this.auctionSeller4]
-				this.auctionSeller=[...this.auctionSeller,...this.auctionSeller5]
-				this.auctionSeller=[...this.auctionSeller,...this.auctionSeller6]
-				
-				this.showAuctionSeller=this.auctionSeller
-				console.log(this.auctionSeller)
+				console.log(this.showAuction)
 			},
 		},
 		
@@ -583,10 +540,10 @@
 			if(option.type){
 				this.functionIndex = Number(option.type)
 			}
-			if(this.functionIndex==0&&this.marketIndex==0) this.marketsBuy()
-			else if(this.functionIndex==0&&this.marketIndex==1) this.marketsSell()
-			else if(this.functionIndex==1&&this.marketIndex==0) this.auctionsBuy()
-			else if(this.functionIndex==1&&this.marketIndex==1) this.auctionsSell()
+			if(this.functionIndex==0&&this.marketIndex==0) this.getMarketsBuy()
+			else if(this.functionIndex==0&&this.marketIndex==1) this.getMarketsSell()
+			else if(this.functionIndex==1&&this.marketIndex==0) this.getAuctionsBuy()
+			else if(this.functionIndex==1&&this.marketIndex==1) this.getAuctionsSell()
 		},
 		/**
 		 * 生命周期函数--监听页面初次渲染完成
@@ -603,8 +560,7 @@
 		/**
 		 * 生命周期函数--监听页面卸载
 		 */
-		onUnload: function() {
-		},
+		onUnload: function() {},
 		/**
 		 * 页面相关事件处理函数--监听用户下拉动作
 		 */
@@ -612,7 +568,16 @@
 		/**
 		 * 页面上拉触底事件的处理函数
 		 */
-		onReachBottom: function() {},
+		onReachBottom: function() {
+			if(this.functionIndex==0&&this.marketIndex==0)
+				this.marketsBuyProcess(this.progress1_1.index,true)
+			else if(this.functionIndex==0&&this.marketIndex==1)
+				this.marketsSellProcess(this.progress1_2.index,true)
+			else if(this.functionIndex==1&&this.auctionIndex==0)
+				this.auctionsBuyProcess(this.progress2_1.index,true)
+			else if(this.functionIndex==1&&this.auctionIndex==1)
+				this.auctionsSellProcess(this.progress2_2.index,true)
+		},
 		/**
 		 * 用户点击右上角分享
 		 */

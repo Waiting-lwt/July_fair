@@ -4,13 +4,11 @@
 }
 
 .areo-top{
+    display: block;
     padding-top: 30rpx;
     padding-left: 48rpx;
     padding-right: 48rpx;
     color: #fff;
-}
-.user{
-    display: block;
 }
 .user0{
     display: block;
