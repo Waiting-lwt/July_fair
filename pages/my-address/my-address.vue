@@ -133,6 +133,8 @@
 				this.$set(this.address[index],'phone',this.editAddressCopy[1])
 				this.$set(this.address[index],'location',this.editAddressCopy[2])
 				this.$set(this.address[index],'editable',0)
+				//虽然这样写好笨，但我也不知道为啥真的刷新不了555，跪求一位大佬改改
+				this.$forceUpdate()
 			},
 			//确认修改
 			async enterAlter(index){
