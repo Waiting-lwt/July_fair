@@ -1,8 +1,8 @@
 <template>
 	<view class="areo-main">
 		
-		<view class="modal-mask" v-show="hasLogin==false"></view>
-		<view class="tipRegistrate" v-show="hasLogin==false">
+		<view class="modal-mask" v-if="hasLogin==false"></view>
+		<view class="tipRegistrate" v-if="hasLogin==false">
 			<view class="tipDetail">
 				<text class="tipRegistrate-text" style="padding-left: 50rpx;">
 					注册认证后即可解锁完整功能</text>
@@ -23,7 +23,7 @@
 					</svg>
 				</view>
 				
-				<view class="modal-mask" @tap="showSpringBox=(showSpringBox+1)%2;" v-show="showSpringBox==true"></view>
+				<view class="modal-mask" @tap="showSpringBox=(showSpringBox+1)%2;" v-if="showSpringBox==true"></view>
 				<view class="arrivalNavigation" v-if="showSpringBox">
 					<view class="sideNavigation">
 						<navigator class="navigatorStyle" url="../../pages/index/index">

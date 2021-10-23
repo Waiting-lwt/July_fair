@@ -469,6 +469,7 @@ var _default =
     },
     marketsBuyProcess: function marketsBuyProcess() {var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;var update = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       if (update == false) {
+        this.showMarket = [];
         this.showSpringBox1 = false;
         this.marketBuyer.page = 0;
         this.marketBuyer.items = [];
@@ -484,6 +485,7 @@ var _default =
     },
     marketsSellProcess: function marketsSellProcess() {var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;var update = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       if (update == false) {
+        this.showMarket = [];
         this.showSpringBox1 = false;
         this.marketSeller.page = 0;
         this.marketSeller.items = [];
@@ -499,6 +501,7 @@ var _default =
     },
     auctionsBuyProcess: function auctionsBuyProcess() {var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;var update = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       if (update == false) {
+        this.showAuction = [];
         this.showSpringBox2 = false;
         this.auctionBuyer.page = 0;
         this.auctionBuyer.items = [];
@@ -517,6 +520,7 @@ var _default =
     },
     auctionsSellProcess: function auctionsSellProcess() {var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;var update = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       if (update == false) {
+        this.showAuction = [];
         this.showSpringBox2 = false;
         this.auctionSeller.page = 0;
         this.auctionSeller.items = [];
@@ -552,7 +556,7 @@ var _default =
     },
 
     //市集——我的购买
-    getMarketsBuy: function getMarketsBuy() {var _arguments = arguments,_this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var k, res, i, image;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:k = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : null;_context.next = 3;return (
+    getMarketsBuy: function getMarketsBuy() {var _arguments = arguments,_this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var k, res, i, image;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:k = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : -1;_context.next = 3;return (
                   _this.$myRequest({
                     url: "/order/buyer",
                     data: {
@@ -591,7 +595,7 @@ var _default =
 
 
     //市集——我的卖出
-    getMarketsSell: function getMarketsSell() {var _arguments2 = arguments,_this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var k, res, i, image;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:k = _arguments2.length > 0 && _arguments2[0] !== undefined ? _arguments2[0] : null;_context2.next = 3;return (
+    getMarketsSell: function getMarketsSell() {var _arguments2 = arguments,_this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var k, res, i, image;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:k = _arguments2.length > 0 && _arguments2[0] !== undefined ? _arguments2[0] : -1;_context2.next = 3;return (
                   _this2.$myRequest({
                     url: "/order/seller",
                     data: {
@@ -630,7 +634,23 @@ var _default =
 
     //拍卖——我的竞拍
     getAuctionsBuy: function getAuctionsBuy() {var _arguments3 = arguments,_this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var k, res, i;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:k = _arguments3.length > 0 && _arguments3[0] !== undefined ? _arguments3[0] : null;
-                console.log(k);_context3.next = 4;return (
+                console.log(k);
+                res = {};if (!(
+                k == null)) {_context3.next = 9;break;}_context3.next = 6;return (
+                  _this3.$myRequest({
+                    url: "/goods/getMyBidAuctions",
+                    data: {
+                      id: 2, //test
+                      // attribute:k,
+                      // 1:未发货,2:确认收货,3:写评价,5:查看评价,
+                      // 4:退款中:等待商家回应,6:退款中:商家已同意,7:退款中:商家未同意,
+                      // 未拍：0:正式下单，8:完善收获信息，其他值返回status=""
+                      pageNum: _this3.auctionBuyer.page,
+                      pageSize: _this3.count } }));case 6:res = _context3.sent;_context3.next = 12;break;case 9:_context3.next = 11;return (
+
+
+
+
                   _this3.$myRequest({
                     url: "/goods/getMyBidAuctions",
                     data: {
@@ -640,7 +660,8 @@ var _default =
                       // 4:退款中:等待商家回应,6:退款中:商家已同意,7:退款中:商家未同意,
                       // 未拍：0:正式下单，8:完善收获信息，其他值返回status=""
                       pageNum: _this3.auctionBuyer.page,
-                      pageSize: _this3.count } }));case 4:res = _context3.sent;
+                      pageSize: _this3.count } }));case 11:res = _context3.sent;case 12:
+
 
 
                 if (res.data.data.length) {
@@ -670,12 +691,28 @@ var _default =
                 if (k == 6) {
                   _this3.getAuctionsBuy(7);
                 }
-                console.log(_this3.showAuction);case 10:case "end":return _context3.stop();}}}, _callee3);}))();
+                console.log(_this3.showAuction);case 17:case "end":return _context3.stop();}}}, _callee3);}))();
     },
 
     //拍卖——我的拍品
     getAuctionsSell: function getAuctionsSell() {var _arguments4 = arguments,_this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var k, res, i;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:k = _arguments4.length > 0 && _arguments4[0] !== undefined ? _arguments4[0] : null;
-                console.log(k);_context4.next = 4;return (
+                console.log(k);
+                res = {};if (!(
+                k == null)) {_context4.next = 9;break;}_context4.next = 6;return (
+                  _this4.$myRequest({
+                    url: "/goods/getMyAuctions",
+                    data: {
+                      id: 1, //test
+                      //attribute指定0-6中的某个值(分别对应不同的进度，
+                      //0:买家未正式下单，1:去发货,2:买家未收货,3:买家未评价,4:买家申请退款,5:查看评价，6:无人竞拍已超时
+                      //不传默认id排列返回
+                      // attribute: k,
+                      pageNum: _this4.auctionSeller.page,
+                      pageSize: _this4.count } }));case 6:res = _context4.sent;_context4.next = 12;break;case 9:_context4.next = 11;return (
+
+
+
+
                   _this4.$myRequest({
                     url: "/goods/getMyAuctions",
                     data: {
@@ -685,7 +722,8 @@ var _default =
                       //不传默认id排列返回
                       attribute: k,
                       pageNum: _this4.auctionSeller.page,
-                      pageSize: _this4.count } }));case 4:res = _context4.sent;
+                      pageSize: _this4.count } }));case 11:res = _context4.sent;case 12:
+
 
 
                 if (res.data.data.length) {
@@ -704,7 +742,7 @@ var _default =
                 if (k == 6) {
                   _this4.getAuctionsSell(7);
                 }
-                console.log(_this4.showAuction);case 10:case "end":return _context4.stop();}}}, _callee4);}))();
+                console.log(_this4.showAuction);case 17:case "end":return _context4.stop();}}}, _callee4);}))();
     } },
 
 

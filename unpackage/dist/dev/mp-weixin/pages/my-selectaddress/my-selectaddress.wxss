@@ -27,7 +27,8 @@
 }
 .addressInfo-block2{
 	display: block;
-	margin-left: 120rpx;
+	padding: 0.1rpx 10rpx 0.1rpx 120rpx; /*???
+ */
 }
 .addressInfo-text{
 	display: block;
@@ -61,7 +62,7 @@
 	line-height: 80rpx;
 }
 .addressInput-block{
-	display: inline-block;
+	display: block;
 	height: 32rpx;
 	margin: 15rpx 10rpx 15rpx 20rpx;
 	padding-left: 15rpx;
@@ -69,9 +70,19 @@
 	background-color: #def2ff;
 	border-radius: 10rpx;
 }
+input{
+	min-height:24rpx;
+}
 .addressInput-text{
+	display: block;
+	margin: 15rpx 10rpx 28rpx 20rpx;
+	padding-left: 15rpx;
+	border: 1rpx solid #cae3e8;
+	background-color: #e1efff;
+	border-radius: 10rpx;
+	
 	font-size: 24rpx;
-	height: 24rpx;
+	height: 30rpx;
 	width:200px;
 }
 .modal-mask{

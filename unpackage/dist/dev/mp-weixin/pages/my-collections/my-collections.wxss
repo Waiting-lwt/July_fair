@@ -136,7 +136,7 @@
     line-height: 24rpx;
 	height: 30rpx;
 	overflow: hidden;
-    font-size: 16rpx;
+    font-size: 24rpx;
     padding-top: 10rpx;
     color: rgb(142, 142, 142);
 }
@@ -145,7 +145,7 @@
     line-height: 24rpx;
 	height: 40rpx;
 	overflow: hidden;
-    font-size: 16rpx;
+    font-size: 24rpx;
     padding-top: 10rpx;
     color: rgb(142, 142, 142);
 }

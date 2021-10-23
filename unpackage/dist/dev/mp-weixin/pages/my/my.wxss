@@ -80,6 +80,7 @@
 }
 .address{
 	float: right;
+	font-size: 32rpx;
 }
 .user1{
     display: -webkit-box;
@@ -202,6 +203,7 @@
 .discounts{
 	/* right: 60rpx; */
 	margin-left: 35rpx;
+	font-size: 32rpx;
 }
 .areo-body-box{
 	letter-spacing: 2rpx;
@@ -281,8 +283,8 @@
     font-size: 24rpx;
 	-webkit-transform-origin: 0 0;
 	        transform-origin: 0 0;
-	-webkit-transform:scale(0.6);
-	        transform:scale(0.6);
+	-webkit-transform:scale(0.7);
+	        transform:scale(0.7);
     line-height: 32rpx;
     color: #707070;
 }
@@ -323,6 +325,6 @@
     text-align: center;
     font-size: 22rpx;
     color: #006AD7;
-	margin-bottom: 140rpx;
+	margin-bottom: 20rpx;
 }
 

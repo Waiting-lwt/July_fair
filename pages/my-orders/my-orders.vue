@@ -3,7 +3,7 @@
 		<Tabs @returnIndex="changeFunIndex" :title="functionTitle" :functionIndex="functionIndex"></Tabs>
 		
 		<!-- 市集 -->
-		<view v-show="functionIndex==0">
+		<view v-if="functionIndex==0">
 			<view class="title">
 				
 				<!-- 购买 or 卖出 -->
@@ -14,7 +14,7 @@
 				</view>
 				
 				<!-- 进度 -->
-				<view class="modal-mask" @tap="showSpringBox1=(showSpringBox1+1)%2;" v-show="showSpringBox1==true"></view>
+				<view class="modal-mask" @tap="showSpringBox1=(showSpringBox1+1)%2;" v-if="showSpringBox1==true"></view>
 				<view class="title-sort" @tap="showSpringBox1=(showSpringBox1+1)%2">
 					<text class="springText">进度</text>
 					<text v-if="showSpringBox1==false" class="springBoxDown">
@@ -28,16 +28,16 @@
 						</svg>
 					</text>
 				</view>
-				<view class="arrivalNavigation" v-show="showSpringBox1">
+				<view class="arrivalNavigation" v-if="showSpringBox1">
 					<view class="sideNavigation">
 						<template v-if="marketIndex==0" v-for="(item,index) in progress1_1.texts">
-							<view v-show="index!=0" class="liBottomBorder"></view>
+							<view v-if="index!=0" class="liBottomBorder"></view>
 							<view class="navigatorStyle" @tap="marketsBuyProcess(index)" :key="index">
 								<text>{{item}}</text>
 							</view>
 						</template>
 						<template v-if="marketIndex==1" v-for="(item,index) in progress1_2.texts">
-							<view v-show="index!=0" class="liBottomBorder"></view>
+							<view v-if="index!=0" class="liBottomBorder"></view>
 							<view class="navigatorStyle" @tap="marketsSellProcess(index)" :key="index">
 								<text>{{item}}</text>
 							</view>
@@ -106,7 +106,7 @@
 		</view>
 		
 		<!-- 拍卖————我的竞拍 -->
-		<view v-show="functionIndex==1">
+		<view v-if="functionIndex==1">
 			<view class="title">
 				<!-- 竞拍 or 拍品 -->
 				<view class="title-option" v-for="(item,index) in auctionTitle" :key="index"
@@ -116,7 +116,7 @@
 				</view>
 				
 				<!-- 进度 -->
-				<view class="modal-mask" @tap="showSpringBox2=(showSpringBox2+1)%2;" v-show="showSpringBox2==true"></view>
+				<view class="modal-mask" @tap="showSpringBox2=(showSpringBox2+1)%2;" v-if="showSpringBox2==true"></view>
 				<view class="title-sort" @tap="showSpringBox2=(showSpringBox2+1)%2">
 					<text class="springText">进度</text>
 					<text v-if="showSpringBox2==false" class="springBoxDown">
@@ -130,16 +130,16 @@
 						</svg>
 					</text>
 				</view>
-				<view class="arrivalNavigation" v-show="showSpringBox2">
+				<view class="arrivalNavigation" v-if="showSpringBox2">
 					<view class="sideNavigation">
 						<template v-if="auctionIndex==0" v-for="(item,index) in progress2_1.texts">
-							<view v-show="index!=0" class="liBottomBorder"></view>
+							<view v-if="index!=0" class="liBottomBorder"></view>
 							<view class="navigatorStyle" @tap="auctionsBuyProcess(index)" :key="index">
 								<text>{{item}}</text>
 							</view>
 						</template>
 						<template v-if="auctionIndex==1" v-for="(item,index) in progress2_2.texts">
-							<view v-show="index!=0" class="liBottomBorder"></view>
+							<view v-if="index!=0" class="liBottomBorder"></view>
 							<view class="navigatorStyle" @tap="auctionsSellProcess(index)" :key="index">
 								<text>{{item}}</text>
 							</view>
@@ -154,7 +154,7 @@
 				<view class="goods-item" v-for="(item,index1) in showAuction" :key="item.good_id" @tap="toClassify(item.id)">
 				    <view class="item-img">
 						<image class="item-pic" mode="scaleToFill" :src="item.intro_image[0]"></image>
-						<view class="seller-item" v-show="item.portrait">
+						<view class="seller-item" v-if="item.portrait">
 							<image class="seller-pic" :src="item.portrait"></image>
 							<text class="seller-name">{{item.seller_name}}</text>
 						</view>
@@ -162,10 +162,10 @@
 				    <view class="item-block">
 				        <view class="item-detail">
 				            <text class="item-title">{{item.name}}</text>
-				            <text class="item-text" v-show="item.restTime!='已结束'">剩余时间 {{item.restTime}} 天</text>
-				            <text class="item-text" v-show="item.getAunctionTime">拍得时间 {{item.getAunctionTime}}</text>
-				            <text class="item-text" v-show="item.maxBid_Recently">当前最高价格 {{item.maxBid_Recently}}</text>
-				            <text class="item-price" v-show="item.total_price">最终竞拍价格 ￥{{item.total_price}}</text>
+				            <text class="item-text" v-if="item.restTime!='已结束'">剩余时间 {{item.restTime}} 天</text>
+				            <text class="item-text" v-if="item.getAunctionTime">拍得时间 {{item.getAunctionTime}}</text>
+				            <text class="item-text" v-if="item.maxBid_Recently">当前最高价格 {{item.maxBid_Recently}}</text>
+				            <text class="item-price" v-if="item.total_price">最终竞拍价格 ￥{{item.total_price}}</text>
 				        </view>
 						<!-- 0:未确认，1:未发货，2:未收货，3:未评价，4:退款中，5:已评价 -->
 						<view class="sell-item" 
@@ -178,9 +178,9 @@
 						<view class="sell-text" v-else-if="(item.status!='')">
 							<text>{{item.status}}</text>
 						</view>
-						<text class="auctioning" v-show="item.rank">我的排位 {{item.rank}}</text>
+						<text class="auctioning" v-if="item.rank">我的排位 {{item.rank}}</text>
 						<view class="sell-icon" @tap="ordersMgt2(item.good_id)"
-						v-show="item.status!=''&&item.status!='完善收获信息'">···</view>
+						v-if="item.status!=''&&item.status!='完善收获信息'">···</view>
 				    </view>
 				</view>
 			</view>
@@ -191,7 +191,7 @@
 				:class="{outTime:(item.status=='无人竞拍已超时')}">
 				    <view class="item-img">
 						<image class="item-pic" mode="scaleToFill" :src="item.intro_image[0]"></image>
-						<view class="seller-item" v-show="item.portrait">
+						<view class="seller-item" v-if="item.portrait">
 							<image class="seller-pic" :src="item.portrait"></image>
 							<text class="seller-name">{{item.buyer_name}}</text>
 						</view>
@@ -199,10 +199,10 @@
 				    <view class="item-block">
 				        <view class="item-detail">
 							<text class="item-title">{{item.name}}</text>
-						    <text class="item-text" v-show="item.restTime!='已结束'">剩余时间 {{item.restTime}} 天</text>
-							<text class="item-text" v-show="item.getAunctionTime">拍得时间 {{item.getAunctionTime}}</text>
-						    <text class="item-text" v-show="item.maxBid_Recently">当前最高价格 {{item.maxBid_Recently}}</text>
-						    <text class="item-price" v-show="item.total_price">最终竞拍价格 ￥{{item.total_price}}</text>
+						    <text class="item-text" v-if="item.restTime!='已结束'">剩余时间 {{item.restTime}} 天</text>
+							<text class="item-text" v-if="item.getAunctionTime">拍得时间 {{item.getAunctionTime}}</text>
+						    <text class="item-text" v-if="item.maxBid_Recently">当前最高价格 {{item.maxBid_Recently}}</text>
+						    <text class="item-price" v-if="item.total_price">最终竞拍价格 ￥{{item.total_price}}</text>
 				        </view>
 						<!-- status : 0:未确认，1:去发货,2:查看物流,3:拍卖用户还未评价,4:退款中,5:拍卖用户已评价，6:重新上架 -->
 						<view class="sell-item"
@@ -214,9 +214,9 @@
 						<view class="sell-text" v-else-if="(item.status!='')">
 							<text>{{item.status}}</text>
 						</view>
-						<text class="auctioning" v-show="item.status==''">竞拍人数 {{item.totalBidPersons||0}}</text>
+						<text class="auctioning" v-if="item.status==''">竞拍人数 {{item.totalBidPersons||0}}</text>
 						<view class="sell-icon" @tap="ordersMgt2(item.good_id)"
-						v-show="item.status!=''&&item.status!='买家未正式下单'">···</view>
+						v-if="item.status!=''&&item.status!='买家未正式下单'">···</view>
 					</view>
 				</view>
 			</view>
@@ -297,6 +297,7 @@
 			},
 			marketsBuyProcess(index=0,update=false){
 				if(update==false){
+					this.showMarket=[]
 					this.showSpringBox1=false
 					this.marketBuyer.page=0
 					this.marketBuyer.items=[]
@@ -312,6 +313,7 @@
 			},
 			marketsSellProcess(index=0,update=false){
 				if(update==false){
+					this.showMarket=[]
 					this.showSpringBox1=false
 					this.marketSeller.page=0
 					this.marketSeller.items=[]
@@ -327,6 +329,7 @@
 			},
 			auctionsBuyProcess(index=0,update=false){
 				if(update==false){
+					this.showAuction=[]
 					this.showSpringBox2=false
 					this.auctionBuyer.page=0
 					this.auctionBuyer.items=[]
@@ -345,6 +348,7 @@
 			},
 			auctionsSellProcess(index=0,update=false){
 				if(update==false){
+					this.showAuction=[]
 					this.showSpringBox2=false
 					this.auctionSeller.page=0
 					this.auctionSeller.items=[]
@@ -380,7 +384,7 @@
 			},
 			
 			//市集——我的购买
-			async getMarketsBuy(k=null){
+			async getMarketsBuy(k=-1){
 				let res = await this.$myRequest({
 					url: "/order/buyer",
 					data:{
@@ -419,7 +423,7 @@
 			
 			
 			//市集——我的卖出
-			async getMarketsSell(k=null){
+			async getMarketsSell(k=-1){
 				let res = await this.$myRequest({
 					url: "/order/seller",
 					data:{
@@ -459,18 +463,35 @@
 			//拍卖——我的竞拍
 			async getAuctionsBuy(k=null){
 				console.log(k)
-				let res = await this.$myRequest({
-					url: "/goods/getMyBidAuctions",
-					data:{
-						id:2, //test
-						attribute:k,
-						// 1:未发货,2:确认收货,3:写评价,5:查看评价,
-						// 4:退款中:等待商家回应,6:退款中:商家已同意,7:退款中:商家未同意,
-						// 未拍：0:正式下单，8:完善收获信息，其他值返回status=""
-						pageNum:this.auctionBuyer.page,
-						pageSize:this.count,
-					},
-				})
+				let res = {}
+				if(k==null){
+					res = await this.$myRequest({
+						url: "/goods/getMyBidAuctions",
+						data:{
+							id:2, //test
+							// attribute:k,
+							// 1:未发货,2:确认收货,3:写评价,5:查看评价,
+							// 4:退款中:等待商家回应,6:退款中:商家已同意,7:退款中:商家未同意,
+							// 未拍：0:正式下单，8:完善收获信息，其他值返回status=""
+							pageNum:this.auctionBuyer.page,
+							pageSize:this.count,
+						},
+					})
+				}
+				else{
+					res = await this.$myRequest({
+						url: "/goods/getMyBidAuctions",
+						data:{
+							id:2, //test
+							attribute:k,
+							// 1:未发货,2:确认收货,3:写评价,5:查看评价,
+							// 4:退款中:等待商家回应,6:退款中:商家已同意,7:退款中:商家未同意,
+							// 未拍：0:正式下单，8:完善收获信息，其他值返回status=""
+							pageNum:this.auctionBuyer.page,
+							pageSize:this.count,
+						},
+					})
+				}
 				if(res.data.data.length){
 					this.auctionBuyer.page++
 					for(let i=0;i<res.data.data.length;i++){
@@ -504,18 +525,35 @@
 			//拍卖——我的拍品
 			async getAuctionsSell(k=null){
 				console.log(k)
-				let res = await this.$myRequest({
-					url: "/goods/getMyAuctions",
-					data:{
-						id:1, //test
-						//attribute指定0-6中的某个值(分别对应不同的进度，
-						//0:买家未正式下单，1:去发货,2:买家未收货,3:买家未评价,4:买家申请退款,5:查看评价，6:无人竞拍已超时
-						//不传默认id排列返回
-						attribute: k,
-						pageNum:this.auctionSeller.page,
-						pageSize:this.count,
-					},
-				})
+				let res = {}
+				if(k==null){
+					res = await this.$myRequest({
+						url: "/goods/getMyAuctions",
+						data:{
+							id:1, //test
+							//attribute指定0-6中的某个值(分别对应不同的进度，
+							//0:买家未正式下单，1:去发货,2:买家未收货,3:买家未评价,4:买家申请退款,5:查看评价，6:无人竞拍已超时
+							//不传默认id排列返回
+							// attribute: k,
+							pageNum:this.auctionSeller.page,
+							pageSize:this.count,
+						},
+					})
+				}
+				else{
+					res = await this.$myRequest({
+						url: "/goods/getMyAuctions",
+						data:{
+							id:1, //test
+							//attribute指定0-6中的某个值(分别对应不同的进度，
+							//0:买家未正式下单，1:去发货,2:买家未收货,3:买家未评价,4:买家申请退款,5:查看评价，6:无人竞拍已超时
+							//不传默认id排列返回
+							attribute: k,
+							pageNum:this.auctionSeller.page,
+							pageSize:this.count,
+						},
+					})
+				}
 				if(res.data.data.length){
 					this.auctionSeller.page++
 					for(let i=0;i<res.data.data.length;i++){

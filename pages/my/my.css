@@ -84,6 +84,7 @@
 
 .address{
 	float: right;
+	font-size: 32rpx;
 }
 
 
@@ -198,6 +199,7 @@
 .discounts{
 	/* right: 60rpx; */
 	margin-left: 35rpx;
+	font-size: 32rpx;
 }
 .areo-body-box{
 	letter-spacing: 2rpx;
@@ -274,7 +276,7 @@
 	float: left;
     font-size: 24rpx;
 	transform-origin: 0 0;
-	transform:scale(0.6);
+	transform:scale(0.7);
     line-height: 32rpx;
     color: #707070;
 }
@@ -312,5 +314,5 @@
     text-align: center;
     font-size: 22rpx;
     color: #006AD7;
-	margin-bottom: 140rpx;
+	margin-bottom: 20rpx;
 }
