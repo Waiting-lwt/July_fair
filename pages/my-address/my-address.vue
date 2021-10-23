@@ -13,35 +13,35 @@
 						<text class="addressInfo-text">电话</text>
 						<text class="addressInfo-text">地址</text>
 					</view>
-					<view class="addressInfo-block2" v-show="item.editable==0">
+					
+					<view  v-if="item.editable==0">
+					<view class="addressInfo-block2" v-if="item.editable==0">
 						<text class="addressInfo-text">{{item.tname||"name"}}</text>
 						<text class="addressInfo-text">{{item.phone||"phone"}}</text>
 						<text class="addressInfo-text">{{item.location||"address"}}</text>
 					</view>
+					</view>
 					<!-- 可编辑 or 添加新地址 -->
-					<view class="addressInfo-block2" v-show="item.editable==1">
-						<view class="addressInput-block">
-							<input v-model="item.tname" placeholder="name" class="addressInput-text"/>
-						</view>
-						<view class="addressInput-block">
-							<input v-model="item.phone" placeholder="phone" class="addressInput-text"/>
-						</view>
-						<view class="addressInput-block" @tap="selectAddress(index)" disabled>
-							<input v-model="item.location" placeholder="address" class="addressInput-text"/>
-						</view>
+					<view v-if="item.editable==1">
+					<view class="addressInfo-block2">
+						<input type="text" v-model="item.tname" placeholder="name" class="addressInput-text"/>
+						<input type="number" v-model="item.phone" placeholder="phone" class="addressInput-text"/>
+						<input type="text" v-model="item.location" placeholder="address" class="addressInput-text"
+						@tap="selectAddress(index)"/>
+					</view>
 					</view>
 				</view>
-				<text class="addressAlter" v-show="item.editable==0" @tap="alterAddress(index)">
+				<text class="addressAlter" v-if="item.editable==0" @tap="alterAddress(index)">
 					重新编辑
 				</text>
-				<view class="addressAdd" v-show="item.editable==1">
+				<view class="addressAdd" v-if="item.editable==1">
 					<text @tap="delAlter(index)">取消</text>
 					<text @tap="enterAlter(index)">确认修改</text>
 				</view>
 			</view>
 			
 			<!-- 添加新地址 -->
-			<view class="addressInfo" v-show="addAddress==true">
+			<view class="addressInfo" v-if="addAddress==true">
 				<view class="addressInfo-block">
 					<view class="addressInfo-block1">
 						<text class="addressInfo-text white-space">姓名</text>
@@ -49,13 +49,9 @@
 						<text class="addressInfo-text white-space">地址</text>
 					</view>
 					<view class="addressInfo-block2">
-						<view class="addressInput-block">
-							<input v-model="addAddr[0]" placeholder="name" class="addressInput-text"/>
-						</view>
-						<view class="addressInput-block">
-							<input v-model="addAddr[1]" placeholder="telephone" class="addressInput-text"/>
-						</view>
-						<view class="addressInput-block" @tap="selectAddress(-1)" disabled>
+						<input v-model="addAddr[0]" placeholder="name" class="addressInput-text"/>
+						<input v-model="addAddr[1]" placeholder="telephone" class="addressInput-text"/>
+						<view @tap="selectAddress(-1)" disabled>
 							<input v-model="addAddr[2]" placeholder="address" class="addressInput-text" disabled/>
 						</view>
 					</view>

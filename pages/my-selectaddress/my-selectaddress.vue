@@ -9,13 +9,13 @@
 				
 				<regionPicker @change="changeArea">
 					<!-- <view class="addressInput-block" @tap="selectArea"> -->
-					<view class="addressInput-block">
+					<!-- <view class="addressInput-block"> -->
 						<input v-model="areaName_text" placeholder="area" class="addressInput-text" disabled />
-					</view>
+					<!-- </view> -->
 				</regionPicker>
-				<view class="addressInput-block">
+				<!-- <view class="addressInput-block"> -->
 					<input v-model="detailAddress" placeholder="address" class="addressInput-text"/>
-				</view>
+				<!-- </view> -->
 			</view>
 		</view>
 		
@@ -23,8 +23,8 @@
 			<text class="selectOk-text">确定</text>
 		</view>
 		
-		<view class="modal-mask" v-show="showSelectArea==true" @tap="showSelectArea=false"></view>
-		<view class="selectArea" v-show="showSelectArea==true">
+		<view class="modal-mask" v-if="showSelectArea==true" @tap="showSelectArea=false"></view>
+		<view class="selectArea" v-if="showSelectArea==true">
 			<view class="selectArea-title">请选择所在地区</view>
 			<view class="area-block">
 				

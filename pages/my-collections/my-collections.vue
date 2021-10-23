@@ -4,7 +4,7 @@
 		
 		
 		<!-- 商品 -->
-		<view v-show="functionIndex==0">
+		<view v-if="functionIndex==0">
 		<!-- 排序 -->
 		<view class="title">
 			<view class="title-sort" @tap="showSpringBox=(showSpringBox+1)%2;">
@@ -21,8 +21,8 @@
 				</text>
 			</view>
 			<!-- 弹窗 -->
-			<view class="modal-mask" @tap="showSpringBox=(showSpringBox+1)%2;" v-show="showSpringBox==true"></view>
-			<view class="arrivalNavigation" v-show="showSpringBox">
+			<view class="modal-mask" @tap="showSpringBox=(showSpringBox+1)%2;" v-if="showSpringBox==true"></view>
+			<view class="arrivalNavigation" v-if="showSpringBox">
 				<view class="sideNavigation">
 					<view class="navigatorStyle" @tap="sort11()">
 						<text>{{sortTitle1[0]}}</text>
@@ -47,7 +47,7 @@
 			</view>
 		</view>
 		<!-- 商品详情 -->
-		<view class="content" v-show="functionIndex==0">
+		<view class="content" v-if="functionIndex==0">
 			<view class="goods-item" v-for="(item,index1) in showGoods" :key="index1" @tap="toClassify(item.id)">
 			    <view class="item-img">
 					<image class="item-pic" mode="scaleToFill" :src="item.introImage[0]"></image>
@@ -71,7 +71,7 @@
 		
 		
 		<!-- 拍卖品 -->
-		<view v-show="functionIndex==1">
+		<view v-if="functionIndex==1">
 		
 		<view class="title">
 			
@@ -92,8 +92,8 @@
 			
 			
 			<!-- 弹窗 -->
-			<view class="modal-mask" @tap="showSpringBox=(showSpringBox+1)%2;" v-show="showSpringBox==true"></view>
-			<view class="arrivalNavigation" v-show="showSpringBox">
+			<view class="modal-mask" @tap="showSpringBox=(showSpringBox+1)%2;" v-if="showSpringBox==true"></view>
+			<view class="arrivalNavigation" v-if="showSpringBox">
 				<view class="sideNavigation">
 					<view class="navigatorStyle" @tap="sort21()">
 						<text>{{sortTitle2[0]}}</text>

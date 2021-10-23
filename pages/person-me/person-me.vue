@@ -66,8 +66,8 @@
 						</text>
 					</view>
 					<!-- 弹窗 -->
-					<view class="modal-mask" @tap="showSpringBox=(showSpringBox+1)%2;" v-show="showSpringBox==true"></view>
-					<view class="arrivalNavigation" v-show="showSpringBox">
+					<view class="modal-mask" @tap="showSpringBox=(showSpringBox+1)%2;" v-if="showSpringBox==true"></view>
+					<view class="arrivalNavigation" v-if="showSpringBox">
 						<view class="sideNavigation">
 							<view class="navigatorStyle" @tap="sortGoods()">
 								<text>商品</text>

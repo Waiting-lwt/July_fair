@@ -55,8 +55,8 @@
 					<view class="maskcontainer">
 					<text>《七夕礼物》</text>
 					<view class="keyword">
-                         <view>莫兰蒂</view>   	
-		                 <view>故事</view> 
+                        <view>莫兰蒂</view>   	
+		                <view>故事</view> 
 					</view>
 					</view>
 				</view>
