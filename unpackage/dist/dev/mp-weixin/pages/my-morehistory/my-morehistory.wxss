@@ -5,8 +5,7 @@
 }
 .areo-history-track{
 	padding-top: 18rpx;
-    padding-left: 23rpx; /*48-25
- */
+    padding-left: 23rpx; /*48-25 */
 }
 .title{
     color: #1E6CB5;
@@ -41,9 +40,14 @@
 	margin-top: 5rpx;
     height: 194rpx;
     width: 194rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
 	float: left;
-    flex-flow: row-reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-flex-flow: row-reverse;
+            flex-flow: row-reverse;
 }
 .history-item image{
     width: 184rpx;
