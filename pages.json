@@ -85,6 +85,15 @@
             
         }
 		
+        ,{
+            "path" : "pages/goods-release/goods-release",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑商品详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

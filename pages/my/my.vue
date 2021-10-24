@@ -109,7 +109,7 @@
 					<text class="title-name">我的买卖</text>
 				</view>
 				<view class="collection-block">
-					<view class="collection-item" @tap="toOrder(0)">
+					<view class="collection-item" @click="toOrder(0)">
 						<text class="category">市集</text>
 						<text class="iconfont" style="float: right;">
 						<svg xmlns="http://www.w3.org/2000/svg" width="7.107" height="11.881" viewBox="0 0 7.107 11.881">
@@ -119,7 +119,7 @@
 						</svg></text>
 						<text class="collection-count">共{{ordergoodsNum}}个</text>
 					</view>
-					<view class="collection-item" @tap="toOrder(1)">
+					<view class="collection-item" @click="toOrder(1)">
 						<text class="category">拍卖</text>
 						<text class="iconfont" style="float: right;">
 						<svg xmlns="http://www.w3.org/2000/svg" width="7.107" height="11.881" viewBox="0 0 7.107 11.881">
@@ -135,7 +135,7 @@
 					<text class="title-name">我的收藏</text>
 				</view>
 				<view class="collection-block">
-					<view class="collection-item" @tap="toCollection(0)">
+					<view class="collection-item" @click="toCollection(0)">
 						<text class="category">商品</text>
 						<text class="iconfont" style="float: right;">
 						<svg xmlns="http://www.w3.org/2000/svg" width="7.107" height="11.881" viewBox="0 0 7.107 11.881">
@@ -145,7 +145,7 @@
 						</svg></text>
 						<text class="collection-count">共{{collgoodsNum}}个</text>
 					</view>
-					<view class="collection-item" @tap="toCollection(1)">
+					<view class="collection-item" @click="toCollection(1)">
 						<text class="category">拍卖品</text>
 						<text class="iconfont" style="float: right;">
 						<svg xmlns="http://www.w3.org/2000/svg" width="7.107" height="11.881" viewBox="0 0 7.107 11.881">
@@ -317,16 +317,12 @@
 			},
 			//收货地址
 			toAddress(){
-				// 加密传递的对象数据
-				let item = encodeURIComponent(JSON.stringify(this.userMine))
 				uni.navigateTo({
 					url: "../../pages/my-address/my-address" + "?userid=" + this.userid,
 				})
 			},
 			//查看更多历史踪迹
 			toMoreHistory(){
-				// 加密传递的对象数据
-				let item = encodeURIComponent(JSON.stringify(this.userMine))
 				uni.navigateTo({
 					url: "../../pages/my-morehistory/my-morehistory" + "?userid=" + this.userid,
 				})

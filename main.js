@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 import {myRequest} from "./utils/api.js"
+import {uploadFile} from "./utils/api.js"
+import {chooseImage} from "./utils/api.js"
 import {formatDate} from './utils/formatDate.js'
 import {formatTime} from './utils/formatDate.js'
 
@@ -14,6 +16,8 @@ import Mixin from './polyfill/mixins';
 Vue.mixin(Mixin);
 
 Vue.prototype.$myRequest = myRequest
+Vue.prototype.$uploadFile = uploadFile
+Vue.prototype.$chooseImage = chooseImage
 Vue.prototype.$formatDate = formatDate
 Vue.prototype.$formatTime = formatTime
 Vue.config.productionTip = false

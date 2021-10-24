@@ -458,16 +458,12 @@ var _default =
     },
     //收货地址
     toAddress: function toAddress() {
-      // 加密传递的对象数据
-      var item = encodeURIComponent(JSON.stringify(this.userMine));
       uni.navigateTo({
         url: "../../pages/my-address/my-address" + "?userid=" + this.userid });
 
     },
     //查看更多历史踪迹
     toMoreHistory: function toMoreHistory() {
-      // 加密传递的对象数据
-      var item = encodeURIComponent(JSON.stringify(this.userMine));
       uni.navigateTo({
         url: "../../pages/my-morehistory/my-morehistory" + "?userid=" + this.userid });
 

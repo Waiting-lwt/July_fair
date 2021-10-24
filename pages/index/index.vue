@@ -5,7 +5,7 @@
 			<view class="serch" @click="goSearch">
 				<image src="../../static/images/组330@2x.png" mode="aspectFit"></image>
 			</view>
-			<view class="paimaifabu">
+			<view class="paimaifabu" @click="toGoodsRelease()">
 				<image src="../../static/images/组610@2x.png" mode="aspectFit"></image>
 			</view>
 		</view>
@@ -122,7 +122,11 @@
 				this.swiperCurrent = e.detail.current;
 			},*/
 			
-		
+			toGoodsRelease(){
+				uni.navigateTo({
+					url: "../../pages/goods-release/goods-release?userid=" + this.userid
+				})
+			},
 
 
 			//商品列表

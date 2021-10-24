@@ -10,6 +10,8 @@
 /* WEBPACK VAR INJECTION */(function(createApp) {__webpack_require__(/*! uni-pages */ 4);var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 5));
 var _api = __webpack_require__(/*! ./utils/api.js */ 11);
+
+
 var _formatDate = __webpack_require__(/*! ./utils/formatDate.js */ 12);
 
 
@@ -30,8 +32,10 @@ var _mixins = _interopRequireDefault(__webpack_require__(/*! ./polyfill/mixins *
 
 
 
+
+
 var _springTabs = _interopRequireDefault(__webpack_require__(/*! ./components/springTabs/springTabs */ 16));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}_polyfill.default.init(); // 全局mixins，用于实现setData等功能';
-_vue.default.mixin(_mixins.default);_vue.default.prototype.$myRequest = _api.myRequest;_vue.default.prototype.$formatDate = _formatDate.formatDate;_vue.default.prototype.$formatTime = _formatDate.formatTime;_vue.default.config.productionTip = false;var loading = function loading() {__webpack_require__.e(/*! require.ensure | components/loading/loading */ "components/loading/loading").then((function () {return resolve(__webpack_require__(/*! ./components/loading/loading.vue */ 107));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};_vue.default.component('loading', loading);_vue.default.component('springTabs', _springTabs.default);var Tabs = function Tabs() {__webpack_require__.e(/*! require.ensure | components/Tabs/Tabs */ "components/Tabs/Tabs").then((function () {return resolve(__webpack_require__(/*! ./components/Tabs/Tabs */ 114));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+_vue.default.mixin(_mixins.default);_vue.default.prototype.$myRequest = _api.myRequest;_vue.default.prototype.$uploadFile = _api.uploadFile;_vue.default.prototype.$chooseImage = _api.chooseImage;_vue.default.prototype.$formatDate = _formatDate.formatDate;_vue.default.prototype.$formatTime = _formatDate.formatTime;_vue.default.config.productionTip = false;var loading = function loading() {__webpack_require__.e(/*! require.ensure | components/loading/loading */ "components/loading/loading").then((function () {return resolve(__webpack_require__(/*! ./components/loading/loading.vue */ 115));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};_vue.default.component('loading', loading);_vue.default.component('springTabs', _springTabs.default);var Tabs = function Tabs() {__webpack_require__.e(/*! require.ensure | components/Tabs/Tabs */ "components/Tabs/Tabs").then((function () {return resolve(__webpack_require__(/*! ./components/Tabs/Tabs */ 122));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 _vue.default.component('Tabs', Tabs);

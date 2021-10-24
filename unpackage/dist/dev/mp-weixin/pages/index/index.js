@@ -254,7 +254,11 @@ var _default = {
     	this.swiperCurrent = e.detail.current;
     },*/
 
+    toGoodsRelease: function toGoodsRelease() {
+      uni.navigateTo({
+        url: "../../pages/goods-release/goods-release?userid=" + this.userid });
 
+    },
 
 
     //商品列表

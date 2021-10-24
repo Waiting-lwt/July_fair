@@ -96,7 +96,7 @@ var components
 try {
   components = {
     Tabs: function() {
-      return __webpack_require__.e(/*! import() | components/Tabs/Tabs */ "components/Tabs/Tabs").then(__webpack_require__.bind(null, /*! @/components/Tabs/Tabs.vue */ 114))
+      return __webpack_require__.e(/*! import() | components/Tabs/Tabs */ "components/Tabs/Tabs").then(__webpack_require__.bind(null, /*! @/components/Tabs/Tabs.vue */ 122))
     }
   }
 } catch (e) {

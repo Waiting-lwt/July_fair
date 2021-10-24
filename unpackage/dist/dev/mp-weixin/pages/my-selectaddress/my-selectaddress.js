@@ -137,7 +137,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _regionPicker = _interopRequireDefault(__webpack_require__(/*! ../../components/region-picker/region-picker.js */ 104));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var regionPicker = function regionPicker() {__webpack_require__.e(/*! require.ensure | components/region-picker/region-picker */ "components/region-picker/region-picker").then((function () {return resolve(__webpack_require__(/*! ../../components/region-picker/region-picker.vue */ 128));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _regionPicker = _interopRequireDefault(__webpack_require__(/*! ../../components/region-picker/region-picker.js */ 104));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var regionPicker = function regionPicker() {__webpack_require__.e(/*! require.ensure | components/region-picker/region-picker */ "components/region-picker/region-picker").then((function () {return resolve(__webpack_require__(/*! ../../components/region-picker/region-picker.vue */ 136));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   data: function data() {
     return {

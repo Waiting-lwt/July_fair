@@ -10,7 +10,8 @@
         "pages/my-collections/my-collections",
         "pages/my-address/my-address",
         "pages/my-morehistory/my-morehistory",
-        "pages/my-selectaddress/my-selectaddress"
+        "pages/my-selectaddress/my-selectaddress",
+        "pages/goods-release/goods-release"
     ],
     "subPackages": [],
     "window": {
