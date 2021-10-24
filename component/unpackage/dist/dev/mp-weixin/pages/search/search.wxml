@@ -1,0 +1,1 @@
+<view><zy-search vue-id="50cad900-1" is-focus="{{false}}" theme="{{themeClass}}" show-want="{{true}}" speechEngine="{{speechEngine}}" hot-list="{{hotList}}" data-event-opts="{{[['^getSearchText',[['getSearchText']]]]}}" bind:getSearchText="__e" bind:__l="__l"></zy-search></view>

@@ -100,17 +100,102 @@ var render = function() {
   if (!_vm._isMounted) {
     _vm.e0 = function($event) {
       _vm.url_type = 0
+      _vm.userCancelIndex = 0
       _vm.changeBigNavClass1()
+      _vm.getgoodslist()
     }
 
     _vm.e1 = function($event) {
       _vm.url_type = 1
+      _vm.userCancelIndex = 0
       _vm.changeBigNavClass2()
+      _vm.getgoodslist()
     }
 
     _vm.e2 = function($event) {
       _vm.url_type = 2
+      _vm.userCancelIndex = 1
       _vm.changeBigNavClass3()
+      _vm.getuserList()
+    }
+
+    _vm.e3 = function($event) {
+      _vm.dropdownList = 0
+    }
+
+    _vm.e4 = function($event) {
+      ;(this.way = ""), (this.tag = "")
+      _vm.goodsListfl()
+    }
+
+    _vm.e5 = function($event) {
+      this.way = 2
+      _vm.goodsListsort()
+    }
+
+    _vm.e6 = function($event) {
+      this.way = 3
+      _vm.goodsListsort()
+    }
+
+    _vm.e7 = function($event) {
+      this.way = 0
+      _vm.goodsListsort()
+    }
+
+    _vm.e8 = function($event) {
+      this.way = 1
+      _vm.goodsListsort()
+    }
+
+    _vm.e9 = function($event) {
+      this.way = 4
+      _vm.goodsListsort()
+    }
+
+    _vm.e10 = function($event) {
+      this.way = 5
+      _vm.goodsListsort()
+    }
+
+    _vm.e11 = function($event) {
+      this.tag = "服装"
+      _vm.goodsListfl()
+    }
+
+    _vm.e12 = function($event) {
+      this.tag = "历史"
+      _vm.goodsListfl()
+    }
+
+    _vm.e13 = function($event) {
+      this.tag = "建筑"
+      _vm.goodsListfl()
+    }
+
+    _vm.e14 = function($event) {
+      this.tag = "摄影"
+      _vm.goodsListfl()
+    }
+
+    _vm.e15 = function($event) {
+      this.tag = "服装"
+      _vm.goodsListfl()
+    }
+
+    _vm.e16 = function($event) {
+      this.tag = "历史"
+      _vm.goodsListfl()
+    }
+
+    _vm.e17 = function($event) {
+      this.tag = "建筑"
+      _vm.goodsListfl()
+    }
+
+    _vm.e18 = function($event) {
+      this.tag = "摄影"
+      _vm.goodsListfl()
     }
   }
 }
@@ -146,7 +231,56 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -247,13 +381,25 @@ var _default =
 {
   data: function data() {
     return {
+      userCancelIndex: '',
+      user: [],
+      byIndex: 0,
+      fhIndex: 0,
       dropdownList: 0, //下拉筛选列表切换
       url_type: 0, //三个大导航栏修改url的type参数，商品0 拍卖品1，用户2
       goods: [], //商品列表
+      goods_bf: [],
       keyword: '', //所搜索的关键字
       Istrue_url_type1: true, //切换大导航三个按钮的下边框样式
       Istrue_url_type2: false,
-      Istrue_url_type3: false };
+      Istrue_url_type3: false,
+      tag: '', //条件筛选用的数据们
+      minMoney: '',
+      maxMoney: '',
+      way: '',
+      address: '',
+      support: '' };
+
 
   },
   onLoad: function onLoad(e) {
@@ -262,7 +408,14 @@ var _default =
     //this.keyword = e.text
     console.log(e);
   },
+
+
+
   methods: {
+    // 输入自定义最低价
+    ipt_minMoney: function ipt_minMoney() {
+      event.detail = { value: value };
+    },
     // 返回搜索页面
     goBackToSearch: function goBackToSearch() {
       uni.navigateBack({});
@@ -295,8 +448,90 @@ var _default =
                     '&pageNum=0&pageSize=100' }));case 2:res = _context.sent;
 
                 console.log(res);
-                _this.goods = res.data.data;case 5:case "end":return _context.stop();}}}, _callee);}))();
+                _this.goods = res.data.data;
+                _this.goods_bf = res.data.data;
+                console.log(_this.goods);case 7:case "end":return _context.stop();}}}, _callee);}))();
     },
+    // 获取用户列表
+    getuserList: function getuserList() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _this2.$myRequest({
+                    url: '/search/discover/key/user?key=' + _this2.keyword + '&pageNum=0&pageSize=100' }));case 2:res = _context2.sent;
+
+                console.log(res);
+                _this2.user = res.data.data;case 5:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
+
+
+    //搜索结果页面-条件筛选-排序
+    goodsListsort: function goodsListsort() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                  _this3.$myRequest(_defineProperty({
+                    method: 'POST',
+                    url: '/search/conditions?tag=' + _this3.tag + '&minMoney=' +
+                    _this3.minMoney + '&maxMoney=' + _this3.maxMoney + '&support=' +
+                    _this3.support + '&address=' + _this3.address + '&way=' + _this3.way,
+                    data: _this3.goods.data }, "data",
+                  JSON.stringify(_this3.goods))));case 2:res = _context3.sent;
+
+
+                console.log(res);
+                _this3.goods = res.data.data;
+                if (_this3.tag == '') {
+                  _this3.goods_bf = res.data.data;
+                }
+                _this3.dropdownList = 0;case 7:case "end":return _context3.stop();}}}, _callee3);}))();
+    },
+    //搜索结果页面-条件筛选-分类
+    goodsListfl: function goodsListfl() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+                  _this4.$myRequest(_defineProperty({
+                    method: 'POST',
+                    url: '/search/conditions?tag=' + _this4.tag + '&minMoney=' +
+                    _this4.minMoney + '&maxMoney=' + _this4.maxMoney + '&support=' +
+                    _this4.support + '&address=' + _this4.address + '&way=' + _this4.way,
+                    data: _this4.goods_bf.data }, "data",
+                  JSON.stringify(_this4.goods_bf))));case 2:res = _context4.sent;
+
+
+                console.log(res);
+                _this4.goods = res.data.data;
+
+                _this4.dropdownList = 0;case 6:case "end":return _context4.stop();}}}, _callee4);}))();
+    },
+    // 下拉筛选菜单-包邮按钮
+    changeIndex_by: function changeIndex_by() {
+      if (this.byIndex == 0) {
+        this.byIndex = 1;
+      } else if (this.byIndex == 1) {
+        this.byIndex = 0;
+      }
+    },
+    changeIndex_fh: function changeIndex_fh() {
+      if (this.fhIndex == 0) {
+        this.fhIndex = 2;
+      } else if (this.fhIndex == 2) {
+        this.fhIndex = 0;
+      }
+    },
+    // 下拉菜单的筛选-按下确定
+    sure_sx: function sure_sx() {
+      var minMoney = this.minMoney;
+      var maxMoney = this.maxMoney;
+      var address = this.address;
+      this.support = Number(this.byIndex) + Number(this.fhIndex);
+      this.goodsListfl();
+      console.log(this.support);
+    },
+    // 按下重置
+    reset_sx: function reset_sx() {
+      this.maxMoney = '';
+      this.minMoney = '';
+      this.address = '';
+      this.goodsListfl();
+    },
+
+
+
+
+
     // 商品列表遮罩层开关
     mask_on: function mask_on(val) {
       val == 1 ? this.mask = true : this.mask = false;

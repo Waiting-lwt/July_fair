@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我的买卖",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "tabs": "/components/Tabs/Tabs"
+  }
+}
