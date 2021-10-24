@@ -26,10 +26,10 @@
 			// 	this.getHotlist()
 			// },
 			getSearchText(e) {
-				uni.showToast({
-					title:'回调的搜索信息: ' + e,
-					icon:"none"
-				})
+				// uni.showToast({
+				// 	title:'回调的搜索信息: ' + e,
+				// 	icon:"none"
+				// })
 			},
 			async getHotlist() {
 				const res = await this.$myRequest({

@@ -169,6 +169,17 @@
 .search_Tabs_border3 text {
   border-bottom: 8rpx solid #0080ff;
 }
+.bigMask1 {
+  position: relative;
+}
+.bigMask1 .bigMask {
+  position: absolute;
+  top: 8rpx;
+  width: 750rpx;
+  height: 978rpx;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.7);
+}
 .filter {
   display: -webkit-box;
   display: -webkit-flex;
@@ -187,10 +198,11 @@
   position: relative;
 }
 .father_xiangdui .dropdownList-zh,
-.father_xiangdui .dropdownList-fl {
+.father_xiangdui .dropdownList-fl,
+.father_xiangdui .dropdownList-sx {
   border-radius: 0 0 30rpx 30rpx;
   margin: 8rpx 0 0 0;
-  background-color: #f4f4f4;
+  background-color: #ffffff;
   position: absolute;
   top: 0;
   left: 0;
@@ -210,7 +222,8 @@
           align-items: center;
   height: 70rpx;
   width: 96%;
-  border-bottom: 1rpx solid #999999;
+  margin-left: 10rpx;
+  border-bottom: 1rpx solid #e1e1e1;
 }
 .father_xiangdui .dropdownList-zh > view text,
 .father_xiangdui .dropdownList-fl > view text {
@@ -221,6 +234,7 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
+<<<<<<< HEAD
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
@@ -228,9 +242,129 @@
   -webkit-align-items: center;
           align-items: center;
   margin-left: 10rpx;
+=======
+  justify-content: center;
+  align-items: center;
+>>>>>>> yedn
 }
 .father_xiangdui .dropdownList-fl > view text {
   -webkit-transform: translateX(-46rpx);
           transform: translateX(-46rpx);
+}
+.father_xiangdui .dropdownList-sx .container-sx {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 80%;
+  height: 500rpx;
+  margin-left: 10%;
+}
+.father_xiangdui .dropdownList-sx .container-sx .textTitle-sx {
+  font-size: 28rpx;
+  color: #008dd8;
+}
+.father_xiangdui .dropdownList-sx .container-sx .support-btn .btn-by,
+.father_xiangdui .dropdownList-sx .container-sx .support-btn .btn-fh {
+  margin-right: 90rpx;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 2.3;
+  padding: 0 1.34em;
+  background-color: #f8f8f8;
+  border: 1px solid #C0C0C0;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  overflow: hidden;
+  padding-left: 14px;
+  padding-right: 14px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+}
+.father_xiangdui .dropdownList-sx .container-sx .support-btn .btn_sx_by {
+  background-color: #008dd8;
+  color: #FFFFFF;
+}
+.father_xiangdui .dropdownList-sx .container-sx .support-btn .btn_sx_fh {
+  background-color: #008dd8;
+  color: #FFFFFF;
+}
+.father_xiangdui .dropdownList-sx .container-sx .price-range {
+  display: flex;
+  justify-content: space-between;
+}
+.father_xiangdui .dropdownList-sx .container-sx .price-range .input-sx {
+  width: 40%;
+  border: 1px solid #C0C0C0;
+  border-radius: 12rpx;
+  background-color: #ffffff;
+}
+.father_xiangdui .dropdownList-sx .container-sx .price-range .input-sx input {
+  font-size: 13px;
+  line-height: 2.3;
+  padding-left: 10rpx;
+}
+.father_xiangdui .dropdownList-sx .container-sx .price-range .separate-sx {
+  flex: 1;
+  margin: 0 10rpx;
+  height: 50%;
+  border-bottom: 2rpx solid #C0C0C0;
+}
+.father_xiangdui .dropdownList-sx .container-sx .address {
+  width: 40%;
+  border: 1px solid #C0C0C0;
+  border-radius: 12rpx;
+  background-color: #ffffff;
+}
+.father_xiangdui .dropdownList-sx .container-sx .address input {
+  font-size: 13px;
+  line-height: 2.3;
+  padding-left: 10rpx;
+}
+.father_xiangdui .dropdownList-sx .container-sx .btn-sx {
+  display: flex;
+  justify-content: space-between;
+}
+.father_xiangdui .dropdownList-sx .container-sx .btn-sx button {
+  width: 40%;
+  background-color: #008dd8;
+  color: #FFFFFF;
+}
+.container-userResult {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 80%;
+  margin-left: 10%;
+}
+.container-userResult .user {
+  display: flex;
+  justify-content: flex-start;
+  border: 2px solid #006FFF;
+  width: 100%;
+  border-radius: 30rpx;
+  margin-top: 30rpx;
+}
+.container-userResult .user .portrait {
+  margin: 30rpx 26rpx;
+  width: 134rpx;
+  height: 134rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.container-userResult .user .portrait image {
+  height: 100%;
+  width: 100%;
+}
+.container-userResult .user .user-info-searchres {
+  box-sizing: border-box;
+  padding-top: 30rpx;
+  font-size: 26rpx;
+  margin-left: 10rpx;
+}
+.container-userResult .user .user-info-searchres view {
+  padding-top: 6rpx;
 }
 

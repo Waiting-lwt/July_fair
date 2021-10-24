@@ -2084,7 +2084,11 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.chooseImage = exports.uploadFile = exports.myRequest = void 0;var BASE_URL = 'http://120.24.48.171:8081';
+=======
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.myRequest = void 0;var BASE_URL = 'http://106.55.252.195:8081'; //'http://120.24.48.171'  //新的服务器;
+>>>>>>> yedn
 var myRequest = function myRequest(option) {
   return new Promise(function (resolve, reject) {
     uni.request({

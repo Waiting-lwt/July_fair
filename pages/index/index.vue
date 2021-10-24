@@ -45,18 +45,24 @@
 		<!-- 拍卖商品列表 -->
 		<!-- @click='onclick(index)' -->
 		<view class="paimai-list">
-			<view class="goodslist" v-for="(item,index) in goods" :key="item.id" @click="remove(1)" @touchmove="closeMask()">
+			<view class="goodslist" v-for="(item,index) in goods" :key="item.id" @click="goToDetail(index)" @longpress="remove_mask(index)" @touchmove="closeMask()" :class="{'goodsmask_hidden': maskIndex === index }" >
 				<image :src="item.introImage" mode=""></image>
 				<!-- 遮罩层 -->
-				<view class="goodsmask" v-show="mask">
+				<view class="goodsmask" >
 					<view class="fv">
 						<!-- <image src="../../static/images/收藏.png" mode="aspectFill"></image> -->
 					</view>
 					<view class="maskcontainer">
-					<text>《七夕礼物》</text>
+					<text>《{{ item.name.substring(0,5) }}》</text>
 					<view class="keyword">
+<<<<<<< HEAD
                         <view>莫兰蒂</view>   	
 		                <view>故事</view> 
+=======
+                         <view>{{ item.tags[0] }}</view>   	
+		                 <view>{{ item.tags[1] }}</view>
+						 <view>{{ item.tags[2] }}</view>
+>>>>>>> yedn
 					</view>
 					</view>
 				</view>
@@ -84,6 +90,7 @@
 				btn_bg1: false,
 				btn_bg2: false,
 				btn_bg3: false,
+				maskIndex: -1,
 				// isactive: -1
 				url: '/goods/random?type=0&pageNum=0&pageSize=10'
 			}
@@ -121,11 +128,18 @@
 			/*changeSwiper(e) {
 				this.swiperCurrent = e.detail.current;
 			},*/
+<<<<<<< HEAD
 			
 			toGoodsRelease(){
 				uni.navigateTo({
 					url: "../../pages/goods-release/goods-release?userid=" + this.userid
 				})
+=======
+			// 点击商品去商品详情页
+		    goToDetail(index){
+				console.log(this.goods[index])
+			    
+>>>>>>> yedn
 			},
 
 
@@ -190,13 +204,12 @@
 				})
 			},
 			// 点击显示遮罩层
-			remove(val) {
-				val == 1 ? this.mask = true : this.mask = false
-				
+			remove_mask(index) {
+				this.maskIndex = index
 			},
 			// 滑动关闭遮罩层
 			closeMask() {
-				this.mask = false
+				this.maskIndex = -1
 			}
 
 			// 获取用户历史标签列表,传userid url : /search/tags/history
@@ -208,4 +221,9 @@
 <style lang="less">
 	@import "index.less";
 	@import "goodsListStyle";
+	.goodsmask_hidden {
+		.goodsmask {
+			display: block !important
+		}
+	}
 </style>

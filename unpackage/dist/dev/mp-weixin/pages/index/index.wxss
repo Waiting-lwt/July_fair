@@ -140,6 +140,7 @@ swiper swiper-item image {
   position: relative;
 }
 .paimai-list .goodslist .goodsmask {
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -173,14 +174,15 @@ swiper swiper-item image {
 .paimai-list .goodslist .goodsmask .maskcontainer text {
   position: absolute;
   top: 20rpx;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  left: 40%;
+  -webkit-transform: translateX(-34%);
+          transform: translateX(-34%);
   font-size: 24rpx;
   color: #ffffff;
   z-index: 999;
 }
 .paimai-list .goodslist .goodsmask .maskcontainer .keyword {
+  color: #FFFFFF;
   width: 94%;
   height: 100%;
   padding: 3px 3%;
@@ -225,5 +227,8 @@ swiper swiper-item image {
   margin: 10rpx auto;
   color: #0c8ee5;
   text-align: center;
+}
+.goodsmask_hidden .goodsmask {
+  display: block !important;
 }
 

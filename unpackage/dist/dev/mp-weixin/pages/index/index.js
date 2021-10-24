@@ -97,6 +97,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.goods, function(item, index) {
+    var $orig = _vm.__get_orig(item)
+
+    var g0 = item.name.substring(0, 5)
+    return {
+      $orig: $orig,
+      g0: g0
+    }
+  })
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -199,6 +217,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 //import goodsmask from '../../components/goodsmask/goodsmask.vue'
 var _default = {
@@ -216,6 +235,7 @@ var _default = {
       btn_bg1: false,
       btn_bg2: false,
       btn_bg3: false,
+      maskIndex: -1,
       // isactive: -1
       url: '/goods/random?type=0&pageNum=0&pageSize=10' };
 
@@ -253,11 +273,17 @@ var _default = {
     /*changeSwiper(e) {
     	this.swiperCurrent = e.detail.current;
     },*/
+    // 点击商品去商品详情页
+    goToDetail: function goToDetail(index) {
+      console.log(this.goods[index]);
 
+<<<<<<< HEAD
     toGoodsRelease: function toGoodsRelease() {
       uni.navigateTo({
         url: "../../pages/goods-release/goods-release?userid=" + this.userid });
 
+=======
+>>>>>>> yedn
     },
 
 
@@ -322,13 +348,12 @@ var _default = {
 
     },
     // 点击显示遮罩层
-    remove: function remove(val) {
-      val == 1 ? this.mask = true : this.mask = false;
-
+    remove_mask: function remove_mask(index) {
+      this.maskIndex = index;
     },
     // 滑动关闭遮罩层
     closeMask: function closeMask() {
-      this.mask = false;
+      this.maskIndex = -1;
     }
 
     // 获取用户历史标签列表,传userid url : /search/tags/history

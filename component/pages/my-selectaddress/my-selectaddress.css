@@ -1,0 +1,153 @@
+
+.selectOk{
+	position: fixed;
+	bottom: 0rpx;
+	height: 100rpx;
+	width: 100%;
+	background-color: #041746;
+	z-index: 89;
+    color: #fff;
+}
+.selectOk-text{
+	font-size: 32rpx;
+	line-height: 100rpx;
+	display: block;
+	text-align: center;
+}
+
+.addressInfo-block{
+	height: 180rpx;
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 30rpx;
+	padding-bottom: 5rpx;
+}
+.addressInfo-block1{
+	display: block;
+    position: absolute;
+}
+.addressInfo-block2{
+	display: block;
+	margin-left: 120rpx;
+}
+.addressInfo-text{
+	display: block;
+	font-size: 24rpx;
+	line-height: 34rpx;
+	padding: 15rpx 10rpx 15rpx 20rpx;
+}
+.addressDetail-text{
+	font-size: 24rpx;
+	line-height: 30rpx;
+	padding: 10rpx 10rpx 10rpx 20rpx;
+}
+.white-space {
+	white-space:pre;
+}
+.addressAlter{
+	display: block;
+	font-size: 24rpx;
+	text-align: center;
+	line-height: 80rpx;
+}
+
+.addressAdd{
+	display: flex;
+	justify-content: space-around;
+	position: relative;
+	font-size: 24rpx;
+	text-align: center;
+	line-height: 80rpx;
+}
+
+.addressInput-block{
+	display: inline-block;
+	height: 32rpx;
+	margin: 15rpx 10rpx 15rpx 20rpx;
+	padding-left: 15rpx;
+	border: 1rpx solid #98abaf;
+	background-color: #def2ff;
+	border-radius: 10rpx;
+}
+.addressInput-text{
+	font-size: 24rpx;
+	height: 24rpx;
+	width:200px;
+}
+
+
+.modal-mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 90;
+  background-color: #000000;
+  filter: opacity(50%);
+}
+.selectArea{
+	position: fixed;
+	bottom: 0rpx;
+	height: 900rpx;
+	width: 100%;
+	background-color: #ffffff;
+	border-radius: 20px 20px 0px 0px;
+	z-index: 99;
+    color: #041746;
+}
+.selectArea-title{
+	font-size: 32rpx;
+	line-height: 100rpx;
+	display: block;
+	text-align: center;
+}
+.selectArea-text{
+	font-size: 32rpx;
+	line-height: 100rpx;
+	text-align: center;
+}
+.area-block{
+	/* margin: 0 50rpx 20rpx 50rpx; */
+	height: 50rpx;
+}
+.area-block-item{
+	/* 750/3=250 */
+	display: inline-block;
+	position: relative;
+	width: 150rpx;
+	height: 50rpx;
+	margin: 0rpx 50rpx 0rpx 50rpx;
+	border-radius: 18rpx;
+	background-color: #ffffff;
+	color: #FFFFFF;
+}
+.area-block-active{
+	/* margin: 0 50rpx 20rpx 50rpx; */
+	background-color: #0069D6 !important;
+	filter: opacity(50%);
+}
+.area-block-text{
+	display: block;
+	font-size: 28rpx;
+	line-height: 50rpx;
+	text-align: center;
+}
+
+.area-bar{
+	margin: 5rpx 107.5rpx 20rpx 107.5rpx;
+	height: 50rpx;
+}
+.area-bar-circle{
+	width: 23rpx;
+	height: 23rpx;
+	display: inline-block;
+	border-radius: 23rpx;
+	border: 1rpx solid #000000;
+	margin: 0rpx 8rpx 0rpx 8rpx;
+}
+
+.selectArea-block{
+	margin: 20rpx 50rpx 0rpx 50rpx;
+}
