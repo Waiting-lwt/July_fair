@@ -128,18 +128,15 @@
 			/*changeSwiper(e) {
 				this.swiperCurrent = e.detail.current;
 			},*/
-<<<<<<< HEAD
-			
 			toGoodsRelease(){
 				uni.navigateTo({
 					url: "../../pages/goods-release/goods-release?userid=" + this.userid
 				})
-=======
+			},
 			// 点击商品去商品详情页
 		    goToDetail(index){
 				console.log(this.goods[index])
 			    
->>>>>>> yedn
 			},
 
 

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-const BASE_URL='http://120.24.48.171:8081'
-=======
 const BASE_URL='http://106.55.252.195:8081'//'http://120.24.48.171'  //新的服务器;
->>>>>>> yedn
 export const myRequest = (option) => {
 	return new Promise((resolve, reject) => {
 		uni.request({
