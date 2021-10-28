@@ -1,1 +1,0 @@
-<picker mode="multiSelector" range="{{range}}" value="{{dataValue}}" disabled="{{dataDisabled}}" data-event-opts="{{[['change',[['region_change',['$event']]]],['columnchange',[['region_change_col',['$event']]]],['cancel',[['region_cancel',['$event']]]]]}}" bindchange="__e" bindcolumnchange="__e" bindcancel="__e"><slot></slot></picker>

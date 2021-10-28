@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "发现",
-  "usingComponents": {
-    "zy-search": "/components/zy-search/zy-search"
-  }
-}

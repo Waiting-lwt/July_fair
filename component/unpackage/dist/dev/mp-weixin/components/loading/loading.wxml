@@ -1,1 +1,0 @@
-<view hidden="{{!(showLoading)}}" class="box"><view class="container"><view class="loader"><text class="ball"></text></view><text class="text">loading</text></view></view>

@@ -1,1 +1,0 @@
-{"version":3,"sources":["uni-app:///main.js"],"names":["createPage","Page"],"mappings":";;;;;;;;;;kDAAA;AACA;AACA,yH;AACAA,UAAU,CAACC,uBAAD,CAAV,C","file":"pages/wander-discover/wander-discover.js","sourcesContent":["import 'uni-pages';\nimport Vue from 'vue'\nimport Page from './pages/wander-discover/wander-discover.vue'\ncreatePage(Page)"],"sourceRoot":""}

@@ -88,5 +88,14 @@
 	  content: "\e72a";
 	}
 	
-	
+	radio{
+		transform:scale(0.6);
+	}
+	radio .uni-radio-input.uni-radio-input-checked{
+		background: #041746 !important;
+		border-color: #041746 !important;
+	}
+	radio .uni-radio-input.uni-radio-input-checked::before{
+		font-size: 0rpx; /* 对勾大小 去掉 */
+	}
 </style>
