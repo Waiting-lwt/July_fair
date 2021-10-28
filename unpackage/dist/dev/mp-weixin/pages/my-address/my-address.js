@@ -245,9 +245,9 @@ var _default =
     //重新编辑
     alterAddress: function alterAddress(index) {
       if (this.alterAddressTag == true) {
-        uni.showModal({
-          title: "提示",
-          content: "不能同时编辑多个地址" });
+        uni.showToast({
+          title: "不能同时编辑多个地址",
+          icon: "none" });
 
         return;
       }
@@ -270,13 +270,34 @@ var _default =
       this.$forceUpdate();
     },
     //确认修改
-    enterAlter: function enterAlter(index) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+    enterAlter: function enterAlter(index) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:if (!(
+                _this2.address[index].tname == '')) {_context2.next = 5;break;}
+                uni.showToast({
+                  title: "请收货人名称",
+                  icon: 'none' });return _context2.abrupt("return");case 5:if (!(
+
+
+
+                _this2.address[index].location == '')) {_context2.next = 10;break;}
+                uni.showToast({
+                  title: "请收货人地址",
+                  icon: 'none' });return _context2.abrupt("return");case 10:if (!(
+
+
+
+                _this2.address[index].phone == 0)) {_context2.next = 13;break;}
+                uni.showToast({
+                  title: "请收货人电话",
+                  icon: 'none' });return _context2.abrupt("return");case 13:_context2.next = 15;return (
+
+
+
                   _this2.$myRequest({
                     method: "PUT",
                     url: "/address/update?id=" + _this2.address[index].id +
                     "&tname=" + _this2.address[index].tname +
                     "&location=" + _this2.address[index].location +
-                    "&phone=" + _this2.address[index].phone }));case 2:res = _context2.sent;
+                    "&phone=" + _this2.address[index].phone }));case 15:res = _context2.sent;
 
                 console.log(res);
                 if (res.data.data == "OK") {
@@ -287,7 +308,7 @@ var _default =
                 }
                 _this2.$set(_this2.address[index], 'editable', 0);
                 //虽然这样写好笨，但我也不知道为啥真的刷新不了555，跪求一位大佬改改
-                _this2.$forceUpdate();case 7:case "end":return _context2.stop();}}}, _callee2);}))();
+                _this2.$forceUpdate();case 20:case "end":return _context2.stop();}}}, _callee2);}))();
     },
     //取消新增
     delAdd: function delAdd() {
@@ -295,16 +316,36 @@ var _default =
       this.addAddr = ['', '', ''];
     },
     //确认新增地址
-    enterAdd: function enterAdd() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
-                //	/address/add?userId=xxx&tname=xxx&location=xxx&phone=xxx
-                console.log(_this3.addAddr);_context3.next = 3;return (
+    enterAdd: function enterAdd() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:if (!(
+                _this3.addAddr[0] == '')) {_context3.next = 5;break;}
+                uni.showToast({
+                  title: "请收货人名称",
+                  icon: 'none' });return _context3.abrupt("return");case 5:if (!(
+
+
+
+                _this3.addAddr[2] == '')) {_context3.next = 10;break;}
+                uni.showToast({
+                  title: "请收货人地址",
+                  icon: 'none' });return _context3.abrupt("return");case 10:if (!(
+
+
+
+                _this3.addAddr[1] == '')) {_context3.next = 13;break;}
+                uni.showToast({
+                  title: "请收货人电话",
+                  icon: 'none' });return _context3.abrupt("return");case 13:
+
+
+
+                console.log(_this3.addAddr);_context3.next = 16;return (
                   _this3.$myRequest(_defineProperty({
                     method: "POST",
                     url: "/address/add" }, "url",
                   "/address/add?userId=" + _this3.userid +
                   "&tname=" + _this3.addAddr[0] +
                   "&phone=" + _this3.addAddr[1] +
-                  "&location=" + _this3.addAddr[2])));case 3:res = _context3.sent;
+                  "&location=" + _this3.addAddr[2])));case 16:res = _context3.sent;
 
 
 
@@ -319,7 +360,7 @@ var _default =
 
                 }
                 _this3.delAdd();
-                _this3.getAddress();case 7:case "end":return _context3.stop();}}}, _callee3);}))();
+                _this3.getAddress();case 20:case "end":return _context3.stop();}}}, _callee3);}))();
     } },
 
   onLoad: function onLoad(option) {

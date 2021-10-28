@@ -28,25 +28,25 @@ export const myRequest = (option) => {
 
 export const uploadFile = (option) => {
 	return new Promise((resolve, reject) => {
-		// uni.uploadFile({
-		// 	url:BASE_URL+option.url,
-		// 	method:option.method || "POST",
-		// 	filePath: option.tempFilePaths[0],
-		// 	name: 'file', //后台接收字段名
-		// 	success: (res) => {
-		// 		if (res.statusCode == 200) {
-		// 			console.log('请求成功', res)
-		// 		}
-		// 		else{
-		// 			console.log('上传失败', res)
-		// 		}
-		// 		resolve(res)
-		// 	},
-		// 	fail: (err) => {
-		// 		console.log('请求失败', err)
-		// 		reject(err)
-		// 	}
-		// })
+		uni.uploadFile({
+			url:BASE_URL+option.url,
+			method:option.method || "POST",
+			filePath: option.tempFilePaths[0],
+			name: 'file', //后台接收字段名
+			success: (res) => {
+				if (res.statusCode == 200) {
+					console.log('上传成功', res)
+				}
+				else{
+					console.log('上传失败', res)
+				}
+				resolve(res)
+			},
+			fail: (err) => {
+				console.log('请求失败', err)
+				reject(err)
+			}
+		})
 	})
 }
 

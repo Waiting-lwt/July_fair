@@ -11,7 +11,8 @@
         "pages/my-address/my-address",
         "pages/my-morehistory/my-morehistory",
         "pages/my-selectaddress/my-selectaddress",
-        "pages/goods-release/goods-release"
+        "pages/goods-release/goods-release",
+        "pages/auctions_goods-tagsadd/auctions_goods-tagsadd"
     ],
     "subPackages": [],
     "window": {

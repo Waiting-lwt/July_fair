@@ -125,6 +125,24 @@ input{
     color: #041746 !important;
 }
 
+.selfTags-block{
+	display: inline;
+	vertical-align: 25%;
+	padding-left: 20rpx;
+}
+.selfTags-box{
+	display: inline-block;
+	height: 50rpx;
+	padding: 0rpx 20rpx 0rpx 20rpx;
+	margin: 10rpx 10rpx 20rpx 5rpx;
+	background-color: #cfe1f4;
+	border-radius: 20rpx;
+	
+	font-size: 28rpx;
+	color: #0069D6;
+	line-height: 50rpx;
+	text-align: center;
+}
 
 .bottom-block{
 	position: fixed;

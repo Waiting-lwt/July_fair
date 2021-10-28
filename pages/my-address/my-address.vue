@@ -24,8 +24,8 @@
 					<!-- 可编辑 or 添加新地址 -->
 					<view v-if="item.editable==1">
 					<view class="addressInfo-block2">
-						<input type="text" v-model="item.tname" placeholder="name" class="addressInput-text"/>
-						<input type="number" v-model="item.phone" placeholder="phone" class="addressInput-text"/>
+						<input type="text" v-model="item.tname" placeholder="name" class="addressInput-text" maxlength="20"/>
+						<input type="number" v-model="item.phone" placeholder="phone" class="addressInput-text" maxlength="11"/>
 						<input type="text" v-model="item.location" placeholder="address" class="addressInput-text"
 						@tap="selectAddress(index)"/>
 					</view>
@@ -49,10 +49,10 @@
 						<text class="addressInfo-text white-space">地址</text>
 					</view>
 					<view class="addressInfo-block2">
-						<input v-model="addAddr[0]" placeholder="name" class="addressInput-text"/>
-						<input v-model="addAddr[1]" placeholder="telephone" class="addressInput-text"/>
+						<input type="text" v-model="addAddr[0]" placeholder="name" class="addressInput-text" maxlength="20"/>
+						<input type="number" v-model="addAddr[1]" placeholder="telephone" class="addressInput-text" maxlength="11"/>
 						<view @tap="selectAddress(-1)" disabled>
-							<input v-model="addAddr[2]" placeholder="address" class="addressInput-text" disabled/>
+							<input type="text" v-model="addAddr[2]" placeholder="address" class="addressInput-text" disabled/>
 						</view>
 					</view>
 				</view>
@@ -108,9 +108,9 @@
 			//重新编辑
 			alterAddress(index){
 				if(this.alterAddressTag==true){
-					uni.showModal({
-						title:"提示",
-						content:"不能同时编辑多个地址"
+					uni.showToast({
+						title:"不能同时编辑多个地址",
+						icon:"none"
 					})
 					return
 				}
@@ -134,6 +134,27 @@
 			},
 			//确认修改
 			async enterAlter(index){
+				if(this.address[index].tname==''){
+					uni.showToast({
+						title:"请收货人名称",
+						icon:'none'
+					})
+					return
+				}
+				else if(this.address[index].location==''){
+					uni.showToast({
+						title:"请收货人地址",
+						icon:'none'
+					})
+					return
+				}
+				else if(this.address[index].phone==0){
+					uni.showToast({
+						title:"请收货人电话",
+						icon:'none'
+					})
+					return
+				}
 				let res = await this.$myRequest({
 					method:"PUT",
 					url: "/address/update?id="+this.address[index].id
@@ -159,7 +180,27 @@
 			},
 			//确认新增地址
 			async enterAdd(){
-				//	/address/add?userId=xxx&tname=xxx&location=xxx&phone=xxx
+				if(this.addAddr[0]==''){
+					uni.showToast({
+						title:"请收货人名称",
+						icon:'none'
+					})
+					return
+				}
+				else if(this.addAddr[2]==''){
+					uni.showToast({
+						title:"请收货人地址",
+						icon:'none'
+					})
+					return
+				}
+				else if(this.addAddr[1]==''){
+					uni.showToast({
+						title:"请收货人电话",
+						icon:'none'
+					})
+					return
+				}
 				console.log(this.addAddr)
 				let res = await this.$myRequest({
 					method:"POST",

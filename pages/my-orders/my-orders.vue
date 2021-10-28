@@ -395,11 +395,12 @@
 						pageSize:this.count,
 					},
 				})
+				console.log(res)
 				if(res.data.data.length){
 					this.marketBuyer.page++
 					for(let i=0;i<res.data.data.length;i++){
 						res.data.data[i].time=this.$formatDate(res.data.data[i].time)
-						res.data.data[i].introImage=res.data.data[i].introImage.slice(2,res.data.data[i].introImage.length-2)
+						// res.data.data[i].introImage=res.data.data[i].introImage.slice(2,res.data.data[i].introImage.length-2)
 						let image = await this.$myRequest({
 							url: "/user/baseInformation",
 							data:{
@@ -438,7 +439,7 @@
 					this.marketSeller.page++
 					for(let i=0;i<res.data.data.length;i++){
 						res.data.data[i].time=this.$formatDate(res.data.data[i].time)
-						res.data.data[i].introImage=res.data.data[i].introImage.slice(2,res.data.data[i].introImage.length-2)
+						// res.data.data[i].introImage=res.data.data[i].introImage.slice(2,res.data.data[i].introImage.length-2)
 						let image = await this.$myRequest({
 							url: "/user/baseInformation",
 							data:{

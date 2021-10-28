@@ -94,6 +94,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/auctions_goods-tagsadd/auctions_goods-tagsadd",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "添加标签",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

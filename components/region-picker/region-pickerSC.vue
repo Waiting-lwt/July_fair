@@ -10,7 +10,7 @@ import zones_data from './region-picker.js';
 export default {
 	name: "regionPicker",
 	props: {
-		value:{ type: [Array,String,Number], default: ()=>[0,0,0] },
+		value:{ type: [Array,String], default: ()=>[0,0] },
 		disabled:{ type: Boolean, default: false },
 		//like https://api.591tuangou.com/cache/region-picker.php
 		jsonPath:{ type:String, default: null },
@@ -78,13 +78,13 @@ export default {
 			if(typeof(value)=='string'){
 				this.zones_tree.forEach((sv,si)=>{
 					sv.children.forEach((cv,ci)=>{
-						cv.children.forEach((zv,zi)=>{
-							if(zv.code==value){
+						// cv.children.forEach((zv,zi)=>{
+							// if(zv.code==value){
 								sk=si;
 								ck=ci;
-								zk=zi;
-							}
-						})
+								// zk=zi;
+							// }
+						// })
 					})
 				})
 				// this.dataValue=[sk,ck,zk];
@@ -96,32 +96,33 @@ export default {
 						sv.children.forEach((cv,ci)=>{
 							if(cv.code==value[1]){
 								ck=ci;
-								cv.children.forEach((zv,zi)=>{
-									if(zv.code==value[2]){
-										zk=zi;
-									}
-								})
+								// cv.children.forEach((zv,zi)=>{
+								// 	if(zv.code==value[2]){
+								// 		zk=zi;
+								// 	}
+								// })
 							}
 						})
 					}
 				})
-				this.dataValue=[sk,ck,zk];
+				// this.dataValue=[sk,ck,zk];
+				this.dataValue=[sk,ck];
 			}else{
 				this.dataValue=value;
 			}
 		},
 		range_set() { //展示的省市县[[全部省],[所选省份的对应市],[所选市的对应县]]
-			var zones_ary=[[],[],[]];
+			var zones_ary=[[],[]];
 			this.zones_tree.forEach((sv,si)=>{
 				zones_ary[0].push(sv.name);
 				if(si==this.dataValue[0]){
 					sv.children.forEach((cv,ci)=>{
 						zones_ary[1].push(cv.name);
-						if(ci==this.dataValue[1]){
-							cv.children.forEach((zv,zi)=>{
-								zones_ary[2].push(zv.name);
-							})
-						}
+						// if(ci==this.dataValue[1]){
+							// cv.children.forEach((zv,zi)=>{
+							// 	zones_ary[2].push(zv.name);
+							// })
+						// }
 					})
 				}
 			})
@@ -136,10 +137,10 @@ export default {
 			var cv=sv.children[v[1]];
 			value.push(cv.name)
 			code.push(cv.code)
-			var zv=cv.children[v[2]];
-			value.push(zv.name)
-			code.push(zv.code)
-			e.detail={code:code,value:value,data:zv}
+			// var zv=cv.children[v[2]];
+			// value.push(zv.name)
+			// code.push(zv.code)
+			e.detail={code:code,value:value,data:cv}
 			this.$emit('change',e)
 		},
 		region_change_col(e){

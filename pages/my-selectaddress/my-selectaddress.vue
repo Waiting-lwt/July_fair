@@ -6,16 +6,10 @@
 				<text class="addressInfo-text white-space">详细地址</text>
 			</view>
 			<view class="addressInfo-block2">
-				
 				<regionPicker @change="changeArea">
-					<!-- <view class="addressInput-block" @tap="selectArea"> -->
-					<!-- <view class="addressInput-block"> -->
-						<input v-model="areaName_text" placeholder="area" class="addressInput-text" disabled />
-					<!-- </view> -->
+						<input type="text" v-model="areaName_text" placeholder="area" class="addressInput-text" disabled />
 				</regionPicker>
-				<!-- <view class="addressInput-block"> -->
-					<input v-model="detailAddress" placeholder="address" class="addressInput-text"/>
-				<!-- </view> -->
+				<input type="text" v-model="detailAddress" placeholder="address" class="addressInput-text"/>
 			</view>
 		</view>
 		

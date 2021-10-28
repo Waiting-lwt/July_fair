@@ -55,14 +55,11 @@
 					<view class="maskcontainer">
 					<text>《{{ item.name.substring(0,5) }}》</text>
 					<view class="keyword">
-<<<<<<< HEAD
                         <view>莫兰蒂</view>   	
 		                <view>故事</view> 
-=======
                          <view>{{ item.tags[0] }}</view>   	
 		                 <view>{{ item.tags[1] }}</view>
 						 <view>{{ item.tags[2] }}</view>
->>>>>>> yedn
 					</view>
 					</view>
 				</view>
