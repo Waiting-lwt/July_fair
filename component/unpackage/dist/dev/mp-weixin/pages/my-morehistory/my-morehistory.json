@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "更多历史踪迹",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "tabs": "/components/Tabs/Tabs"
-  }
-}

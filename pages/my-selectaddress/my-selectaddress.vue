@@ -57,7 +57,7 @@
 
 <script>
 import regionPicker from "../../components/region-picker/region-picker.vue"
-import zones_data from '../../components/region-picker/region-picker.js'
+// import zones_data from '../../components/region-picker/region-picker.js'
 	export default {
 		data() {
 			return {
