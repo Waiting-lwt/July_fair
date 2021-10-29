@@ -218,6 +218,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 //import goodsmask from '../../components/goodsmask/goodsmask.vue'
 var _default = {
@@ -273,17 +275,15 @@ var _default = {
     /*changeSwiper(e) {
     	this.swiperCurrent = e.detail.current;
     },*/
-    // 点击商品去商品详情页
-    goToDetail: function goToDetail(index) {
-      console.log(this.goods[index]);
-
-<<<<<<< HEAD
     toGoodsRelease: function toGoodsRelease() {
       uni.navigateTo({
         url: "../../pages/goods-release/goods-release?userid=" + this.userid });
 
-=======
->>>>>>> yedn
+    },
+    // 点击商品去商品详情页
+    goToDetail: function goToDetail(index) {
+      console.log(this.goods[index]);
+
     },
 
 

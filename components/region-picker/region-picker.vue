@@ -87,7 +87,8 @@ export default {
 						})
 					})
 				})
-				this.dataValue=[sk,ck,zk];
+				// this.dataValue=[sk,ck,zk];
+				this.dataValue=[sk,ck];
 			}else if(typeof(value[0])=='string' || value[0]>999){
 				this.zones_tree.forEach((sv,si)=>{
 					if(sv.code==value[0]){
@@ -144,10 +145,10 @@ export default {
 		region_change_col(e){
 			if (e.detail.column === 0) { 
 				this.dataValue[1] = 0; 
-				this.dataValue[2] = 0; 
+				// this.dataValue[2] = 0; 
 			} 
 			if (e.detail.column === 1) { 
-				this.dataValue[2] = 0; 
+				// this.dataValue[2] = 0; 
 			} 
 			this.dataValue[e.detail.column]=e.detail.value
 			this.range_set();

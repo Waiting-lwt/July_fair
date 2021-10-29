@@ -96,7 +96,7 @@ var components
 try {
   components = {
     Tabs: function() {
-      return __webpack_require__.e(/*! import() | components/Tabs/Tabs */ "components/Tabs/Tabs").then(__webpack_require__.bind(null, /*! @/components/Tabs/Tabs.vue */ 122))
+      return __webpack_require__.e(/*! import() | components/Tabs/Tabs */ "components/Tabs/Tabs").then(__webpack_require__.bind(null, /*! @/components/Tabs/Tabs.vue */ 129))
     }
   }
 } catch (e) {
@@ -564,22 +564,23 @@ var _default =
                       type: 0, //0:普通商品，1:拍卖品
                       status: k,
                       pageNum: _this.marketBuyer.page,
-                      pageSize: _this.count } }));case 3:res = _context.sent;if (!
+                      pageSize: _this.count } }));case 3:res = _context.sent;
 
 
+                console.log(res);if (!
                 res.data.data.length) {_context.next = 18;break;}
                 _this.marketBuyer.page++;
-                i = 0;case 7:if (!(i < res.data.data.length)) {_context.next = 18;break;}
+                i = 0;case 8:if (!(i < res.data.data.length)) {_context.next = 18;break;}
                 res.data.data[i].time = _this.$formatDate(res.data.data[i].time);
-                res.data.data[i].introImage = res.data.data[i].introImage.slice(2, res.data.data[i].introImage.length - 2);_context.next = 12;return (
-                  _this.$myRequest({
-                    url: "/user/baseInformation",
-                    data: {
-                      id: res.data.data[i].buyerId } }));case 12:image = _context.sent;
+                // res.data.data[i].introImage=res.data.data[i].introImage.slice(2,res.data.data[i].introImage.length-2)
+                _context.next = 12;return _this.$myRequest({
+                  url: "/user/baseInformation",
+                  data: {
+                    id: res.data.data[i].buyerId } });case 12:image = _context.sent;
 
 
                 res.data.data[i]['userImage'] = image.data.data.portrait;
-                res.data.data[i]['userName'] = image.data.data.name;case 15:i++;_context.next = 7;break;case 18:
+                res.data.data[i]['userName'] = image.data.data.name;case 15:i++;_context.next = 8;break;case 18:
 
 
                 _this.marketBuyer.items = [].concat(_toConsumableArray(_this.marketBuyer.items), _toConsumableArray(res.data.data));
@@ -606,19 +607,19 @@ var _default =
                       pageSize: _this2.count } }));case 3:res = _context2.sent;if (!
 
 
-                res.data.data.length) {_context2.next = 18;break;}
+                res.data.data.length) {_context2.next = 17;break;}
                 _this2.marketSeller.page++;
-                i = 0;case 7:if (!(i < res.data.data.length)) {_context2.next = 18;break;}
+                i = 0;case 7:if (!(i < res.data.data.length)) {_context2.next = 17;break;}
                 res.data.data[i].time = _this2.$formatDate(res.data.data[i].time);
-                res.data.data[i].introImage = res.data.data[i].introImage.slice(2, res.data.data[i].introImage.length - 2);_context2.next = 12;return (
-                  _this2.$myRequest({
-                    url: "/user/baseInformation",
-                    data: {
-                      id: res.data.data[i].sellerId } }));case 12:image = _context2.sent;
+                // res.data.data[i].introImage=res.data.data[i].introImage.slice(2,res.data.data[i].introImage.length-2)
+                _context2.next = 11;return _this2.$myRequest({
+                  url: "/user/baseInformation",
+                  data: {
+                    id: res.data.data[i].sellerId } });case 11:image = _context2.sent;
 
 
                 res.data.data[i]['userImage'] = image.data.data.portrait;
-                res.data.data[i]['userName'] = image.data.data.name;case 15:i++;_context2.next = 7;break;case 18:
+                res.data.data[i]['userName'] = image.data.data.name;case 14:i++;_context2.next = 7;break;case 17:
 
 
                 _this2.marketSeller.items = [].concat(_toConsumableArray(_this2.marketSeller.items), _toConsumableArray(res.data.data));
@@ -629,7 +630,7 @@ var _default =
                 if (k == 6) {
                   _this2.getMarketsSell(7);
                 }
-                console.log(_this2.showMarket);case 22:case "end":return _context2.stop();}}}, _callee2);}))();
+                console.log(_this2.showMarket);case 21:case "end":return _context2.stop();}}}, _callee2);}))();
     },
 
     //拍卖——我的竞拍
