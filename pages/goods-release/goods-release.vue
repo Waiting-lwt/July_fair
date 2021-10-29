@@ -7,10 +7,9 @@
 			<view class="length-limit">{{descripTatVal}}/{{maxTextArea}}</view>
 		
 			<scroll-view class="goods-pics" scroll-x="true" @scroll>
-			    <view class="pic-block" v-for="(item,index) in goodsPics" :key="index"
-				 @tap="toShowPic()">
-			    </view>
-				
+				<view class="pic-block"v-for="(item,index) in goodsPics" :key="index">
+					<img class="pic-item" @tap="toShowPic()" :src="item">
+				</view>
 			    <view class="pic-block" @tap="toAddPic()">
 					<text class="text-addpic">+</text>
 			    </view>
@@ -80,6 +79,7 @@
 		<!-- <view v-if="showChooseCity==true">
 			<view class="modal-mask" @tap="showChooseCity=(showChooseCity+1)%2;"></view>
 		</view> -->
+		
 		<view class="bottom-block" @tap="releaseGoods()">发布</view>
 	</view>
 </template>
@@ -89,6 +89,7 @@ import regionPicker from "../../components/region-picker/region-pickerSC.vue"
 	export default {
 		data() {
 			return {
+				userid:-1,
 				goodsName:'',
 				goodsDescription:'',
 				descripTatVal: 0,
@@ -117,6 +118,25 @@ import regionPicker from "../../components/region-picker/region-pickerSC.vue"
 				radio_check:true,
 			}
 		},
+		onShow() {
+			if(this.userid==-1){
+				uni.showModal({
+					content:"用户未登录,\n请前往个人界面进行登录。",
+					success(res) {
+						if(res.confirm){
+							uni.navigateTo({
+								url:"../my/my"
+							})
+						}
+						else{
+							uni.navigateTo({
+								url:"../index/index"
+							})
+						}
+					}
+				})
+			}
+		},
 		methods: {
 			descripInput(){
 				this.descripTatVal = this.goodsDescription.length;
@@ -137,7 +157,20 @@ import regionPicker from "../../components/region-picker/region-pickerSC.vue"
 					tempFilePaths: res1.tempFilePaths
 				})
 				var obj = JSON.parse(res2.data);
-				console.log(res2)
+				if(obj.status==0){
+					console.log(obj.data[0])
+					this.goodsPics.push(obj.data[0])
+					uni.showToast({
+						icon:"none",
+						title:"上传成功"
+					})
+				}
+				else{
+					uni.showModal({
+						title:"上传失败",
+						content: 'error:'+obj.message,
+					});
+				}
 			},
 			editPrice(){
 				this.showEditPrice=true
@@ -189,6 +222,49 @@ import regionPicker from "../../components/region-picker/region-pickerSC.vue"
 				console.log(e)
 				this.deliverCity=e.detail.value[0]+e.detail.value[1]
 			},
+			async release(){
+				res = await this.$myRequest({
+					url: "/goods/add",
+					method:  "GET",
+					
+					data:{
+						userId: 0,
+						// addressId: 0,
+						startTime: 0,
+						endTime: -1,
+						heat: 0,
+						// id: 0,
+						introImage: this.goodsPics,
+						introduction: this.goodsDescription,
+						inventory: 0,
+						name: this.goodsName,
+						price: this.sell_price,
+						tags: this.tags,
+						type: 0,
+					},
+				})
+				if(res.data.status==0){
+					uni.showModal({
+						content:"发布成功",
+						confirmText:"查看我的竞拍",
+						cancelText:"确定",
+						success(res){
+						if(res.confirm){ //查看我的竞拍
+							console.log("查看我的竞拍")
+						}
+						else{ //确定
+							console.log("确定")
+							uni.navigateBack({})
+						}
+						}
+					})
+				}
+				else{
+					uni.showModal({
+						content:"发布失败",
+					})
+				}
+			},
 			releaseGoods(){
 				console.log(this.goodsName)
 				console.log(this.goodsDescription)
@@ -203,37 +279,51 @@ import regionPicker from "../../components/region-picker/region-pickerSC.vue"
 						title:"请填写商品名称",
 						icon:'none'
 					})
+					// return
 				}
-				else if(this.goodsDescription==''){
+				if(this.goodsDescription==''){
 					uni.showToast({
 						title:"请填写商品详细描述",
 						icon:'none'
 					})
 				}
-				else if(this.goodsPics.length==0){
+				if(this.goodsPics.length==0){
 					uni.showToast({
 						title:"请上传商品图片",
 						icon:'none'
 					})
 				}
-				else if(this.sell_price==''){
+				if(this.sell_price==''){
 					uni.showToast({
 						title:"请填写商品单价和数量",
 						icon:'none'
 					})
 				}
-				else if(this.tags==''){
+				if(this.tags==''){
 					uni.showToast({
 						title:"请添加商品标签",
 						icon:'none'
 					})
 				}
-				else if(this.deliverCity==''){
+				if(this.deliverCity==''){
 					uni.showToast({
 						title:"请选择发货城市",
 						icon:'none'
 					})
 				}
+				let self = this
+				uni.showModal({
+					content:"确定要发布吗？",
+					success(res) {
+					if(res.confirm){ //发布
+						console.log("确定")
+						self.release();
+					}
+					else{ //不发布
+						console.log("取消")
+					}
+					}
+				})
 			},
 		},
 		components:{

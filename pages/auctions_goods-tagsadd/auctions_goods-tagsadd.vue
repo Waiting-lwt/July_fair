@@ -19,7 +19,7 @@
 			<view class="tags-block">
 				<text class="tags-block-title">自定义标签</text>
 				<view class="tagsInput-block">
-					<input type="text" v-model="tag" placeholder="请输入自定义标签文本" class="tagsInput"/>
+					<input type="text" v-model="tag" placeholder="请输入自定义标签文本" class="tagsInput" maxlength="5"/>
 					<view class="tagsInput-confirm" @tap="addTag">确认添加</view>
 				</view>
 			</view>

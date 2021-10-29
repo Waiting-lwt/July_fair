@@ -226,6 +226,7 @@ __webpack_require__.r(__webpack_exports__);
 {
   data: function data() {
     return {
+      userid: -1,
       goodsName: '',
       goodsDescription: '',
       descripTatVal: 0,
@@ -254,6 +255,25 @@ __webpack_require__.r(__webpack_exports__);
       radio_check: true };
 
   },
+  onShow: function onShow() {
+    if (this.userid == -1) {
+      uni.showModal({
+        content: "用户未登录,\n请前往个人界面进行登录。",
+        success: function success(res) {
+          if (res.confirm) {
+            uni.navigateTo({
+              url: "../my/my" });
+
+          } else
+          {
+            uni.navigateTo({
+              url: "../index/index" });
+
+          }
+        } });
+
+    }
+  },
   methods: {
     descripInput: function descripInput() {
       this.descripTatVal = this.goodsDescription.length;
@@ -274,7 +294,20 @@ __webpack_require__.r(__webpack_exports__);
                     tempFilePaths: res1.tempFilePaths }));case 8:res2 = _context.sent;
 
                 obj = JSON.parse(res2.data);
-                console.log(res2);case 11:case "end":return _context.stop();}}}, _callee);}))();
+                if (obj.status == 0) {
+                  console.log(obj.data[0]);
+                  _this.goodsPics.push(obj.data[0]);
+                  uni.showToast({
+                    icon: "none",
+                    title: "上传成功" });
+
+                } else
+                {
+                  uni.showModal({
+                    title: "上传失败",
+                    content: 'error:' + obj.message });
+
+                }case 11:case "end":return _context.stop();}}}, _callee);}))();
     },
     editPrice: function editPrice() {
       this.showEditPrice = true;
@@ -326,6 +359,49 @@ __webpack_require__.r(__webpack_exports__);
       console.log(e);
       this.deliverCity = e.detail.value[0] + e.detail.value[1];
     },
+    release: function release() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _this2.$myRequest({
+                    url: "/goods/add",
+                    method: "GET",
+
+                    data: {
+                      userId: 0,
+                      // addressId: 0,
+                      startTime: 0,
+                      endTime: -1,
+                      heat: 0,
+                      // id: 0,
+                      introImage: _this2.goodsPics,
+                      introduction: _this2.goodsDescription,
+                      inventory: 0,
+                      name: _this2.goodsName,
+                      price: _this2.sell_price,
+                      tags: _this2.tags,
+                      type: 0 } }));case 2:res = _context2.sent;
+
+
+                if (res.data.status == 0) {
+                  uni.showModal({
+                    content: "发布成功",
+                    confirmText: "查看我的竞拍",
+                    cancelText: "确定",
+                    success: function success(res) {
+                      if (res.confirm) {//查看我的竞拍
+                        console.log("查看我的竞拍");
+                      } else
+                      {//确定
+                        console.log("确定");
+                        uni.navigateBack({});
+                      }
+                    } });
+
+                } else
+                {
+                  uni.showModal({
+                    content: "发布失败" });
+
+                }case 4:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
     releaseGoods: function releaseGoods() {
       console.log(this.goodsName);
       console.log(this.goodsDescription);
@@ -340,37 +416,51 @@ __webpack_require__.r(__webpack_exports__);
           title: "请填写商品名称",
           icon: 'none' });
 
-      } else
+        // return
+      }
       if (this.goodsDescription == '') {
         uni.showToast({
           title: "请填写商品详细描述",
           icon: 'none' });
 
-      } else
+      }
       if (this.goodsPics.length == 0) {
         uni.showToast({
           title: "请上传商品图片",
           icon: 'none' });
 
-      } else
+      }
       if (this.sell_price == '') {
         uni.showToast({
           title: "请填写商品单价和数量",
           icon: 'none' });
 
-      } else
+      }
       if (this.tags == '') {
         uni.showToast({
           title: "请添加商品标签",
           icon: 'none' });
 
-      } else
+      }
       if (this.deliverCity == '') {
         uni.showToast({
           title: "请选择发货城市",
           icon: 'none' });
 
       }
+      var self = this;
+      uni.showModal({
+        content: "确定要发布吗？",
+        success: function success(res) {
+          if (res.confirm) {//发布
+            console.log("确定");
+            self.release();
+          } else
+          {//不发布
+            console.log("取消");
+          }
+        } });
+
     } },
 
   components: {

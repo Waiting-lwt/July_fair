@@ -51,7 +51,7 @@
 				<view class="goods-item" v-for="(item,index1) in showMarket" @tap="toClassify(item.id)">
 				    <view class="item-img">
 						<view>
-							<image class="item-pic" mode="scaleToFill" :src="item.introImage"></image>
+							<image class="item-pic" mode="scaleToFill" :src="item.introImage[0]"></image>
 						</view>
 						<view class="seller-item">
 							<image class="seller-pic" :src="item.userImage"></image>
