@@ -1,6 +1,6 @@
 {
-    "name" : "temp",
-    "appid" : "wx7f54c9af63ea279b",
+    "name" : "July_fair",
+    "appid" : "__UNI__ED2831D",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -68,5 +68,17 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2"
+    "vueVersion" : "2",
+    "h5" : {
+        "devServer" : {
+			// "https" : true,
+			// "port" : ""
+			"https" : false,
+			"port" : "",
+			"host" : "0.0.0.0",
+			"public" : "116.56.150.191:8080",
+			"hot" : true,
+			"disableHostCheck" : true
+        }
+    }
 }

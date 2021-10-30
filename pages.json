@@ -103,6 +103,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/auctions-release/auctions-release",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑拍卖品详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

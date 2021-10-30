@@ -88,12 +88,16 @@
 	  content: "\e72a";
 	}
 	
-	radio{
+	radio .uni-radio-input{
 		transform:scale(0.6);
 	}
-	radio .uni-radio-input.uni-radio-input-checked{
+	radio.free .uni-radio-input.uni-radio-input-checked{
 		background: #041746 !important;
 		border-color: #041746 !important;
+	}
+	radio.fast .uni-radio-input.uni-radio-input-checked{
+		background: #f05050 !important;
+		border-color: #ff0000 !important;
 	}
 	radio .uni-radio-input.uni-radio-input-checked::before{
 		font-size: 0rpx; /* 对勾大小 去掉 */

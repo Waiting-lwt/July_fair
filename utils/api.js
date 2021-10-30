@@ -54,8 +54,8 @@ export const chooseImage = () => {
 	return new Promise((resolve, reject) => {
 		uni.chooseImage({
 			count: 1, //上传图片的数量，默认是9
-			sizeType: ['original', 'compressed'], 
-			// sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+			// sizeType: ['original', 'compressed'], 
+			sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
 			sourceType: ['album'], //从相册选择
 			success: (res) => {
 				console.log('请求成功', res)
