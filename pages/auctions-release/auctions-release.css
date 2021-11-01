@@ -168,7 +168,7 @@ input{
 }
 .edit-time-block{
 	display: inline-block;
-	height: 80rpx;
+	height: 50rpx;
 	font-size: 32rpx;
 	line-height: 50rpx;
 	text-align: center;
@@ -180,7 +180,7 @@ input{
 	background-color: #eeeeee; 
 	width: 100rpx;
 	height: 50rpx;
-	margin: 0rpx 20rpx 0rpx 40rpx;
+	margin: 0rpx 20rpx 0rpx 20rpx;
 	text-align: center;
     color: #041746 !important;
 }

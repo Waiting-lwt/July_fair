@@ -140,7 +140,7 @@ import regionPicker from "../../components/region-picker/region-pickerSC.vue"
 				// 		}
 				// 	}
 				// })
-				this.userid=-1
+				this.userid=1
 			}
 		},
 		methods: {
@@ -228,6 +228,7 @@ import regionPicker from "../../components/region-picker/region-pickerSC.vue"
 				console.log(timestamp)
 				let support = 0 //0:不支持,1:支持包邮,2:支持极速发货,3:支持包邮和极速发货
 				if(this.postage_free===1){
+					this.sell_postage=0
 					if(this.postage_fast==1) support = 3
 					else support = 1
 				}
@@ -245,7 +246,7 @@ import regionPicker from "../../components/region-picker/region-pickerSC.vue"
 						heat: 0,
 						introImage: this.goodsPics,
 						introduction: this.goodsDescription,
-						inventory: 0,
+						inventory: this.sell_num,
 						name: this.goodsName,
 						postage: this.sell_postage,
 						price: this.sell_price,

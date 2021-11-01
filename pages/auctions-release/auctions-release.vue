@@ -33,7 +33,7 @@
 				<view class="detailInfo-block" @tap="editEndTime()">
 					<image class="detailInfo-icon"></image>
 					<text class="detailInfo-text" v-if="endTime.length==0">编辑截至时间</text>
-					<text class="detailInfo-text" v-else>{{endTime}}</text>
+					<text class="detailInfo-text" v-else>{{endTime_text}}</text>
 				</view>
 				<regionPicker @change="chooseCity">
 					<view class="detailInfo-block">
@@ -90,16 +90,25 @@
 			<view class="modal-mask" @tap="showEditTime=(showEditTime+1)%2;"></view>
 			<view class="edit-time">
 				<view class="edit-time-block">
-					<input type="digit" v-model="endTime" placeholder="" class="timeInput-text"/>
+					<!-- <input type="digit" v-model="endTime_year" placeholder="" class="timeInput-text"/>
 					<text>年</text>
-					<input type="digit" v-model="endTime" placeholder="" class="timeInput-text"/>
+					<input type="digit" v-model="endTime_month" placeholder="" class="timeInput-text"/>
 					<text>月</text>
-					<input type="digit" v-model="endTime" placeholder="" class="timeInput-text"/>
-					<text>日</text>
+					<input type="digit" v-model="endTime_day" placeholder="" class="timeInput-text"/>
+					<text>日</text> -->
+					<picker mode="date" :value="endTime_time" @change="bindDateChange">
+						<text>编辑日期：</text>
+						<input type="text" v-model="endTime_year" placeholder="" class="timeInput-text" disabled ></input>
+						<text>年</text>
+						<input type="text" v-model="endTime_month" placeholder="" class="timeInput-text" disabled ></input>
+						<text>月</text>
+						<input type="text" v-model="endTime_day" placeholder="" class="timeInput-text" disabled ></input>
+						<text>日</text>
+					</picker>
 				</view>
-				<picker mode="multiSelector" :value="dateTime" @change="changeDateTime"  @columnchange="changeDateTimeColumn" :range="dateTimeArray">
+				<!-- <picker mode="multiSelector" :value="dateTime" @change="changeDateTime"  @columnchange="changeDateTimeColumn" :range="dateTimeArray">
 					<view>{{timeStr}}</view>
-				</picker>
+				</picker> -->
 				<view class="edit-time-block">
 					<!-- <input type="digit" v-model="endTime" placeholder="" class="timeInput-text"/>
 					<text>时</text>
@@ -107,12 +116,17 @@
 					<text>分</text>
 					<input type="digit" v-model="endTime" placeholder="" class="timeInput-text"/>
 					<text>秒</text> -->
-					
-					
-					
+					<picker mode="time" :value="endTime_time" @change="bindTimeChange">
+						<text>编辑时间：</text>
+						<input type="text" v-model="endTime_hour" placeholder="" class="timeInput-text" disabled ></input>
+						<text>时</text>
+						<input type="text" v-model="endTime_minu" placeholder="" class="timeInput-text" disabled ></input>
+						<text>分</text>
+					</picker>
 				</view>
 			</view>
-			<view class="bottom-block" style="z-index: 91;" @tap="confirmTime()">确认</view>
+				<view class="bottom-block" style="z-index: 91;" @tap="confirmTime()">确认</view>
+				
 		</view>
 		<!-- 选择发货物城市 -->
 		<!-- <view v-if="showChooseCity==true">
@@ -125,8 +139,8 @@
 
 <script>
 import regionPicker from "../../components/region-picker/region-pickerSC.vue"
-const { dateTimePicker,getMonthDay,generateTimeStr} = require('../../utils/dateTimePicker.js');
-			
+// const { dateTimePicker,getMonthDay,generateTimeStr} = require('../../utils/dateTimePicker.js');
+		
 	export default {
 		data() {
 			return {
@@ -150,11 +164,19 @@ const { dateTimePicker,getMonthDay,generateTimeStr} = require('../../utils/dateT
 				showEditTime:false,
 				endTime:"",
 				endTime_text:'',
+				endTime_year:'',
+				endTime_month:'',
+				endTime_day:'',
+				endTime_hour:'',
+				endTime_minu:'',
+				endTime_sec:'00',
+				endTime_date:'',
+				endTime_time:'',
 				
-				dateTime: null,
-				dateTimeArray: null,
-				startYear: 2000,
-                timeStr:'0',
+				// dateTime: null,
+				// dateTimeArray: null,
+				// startYear: 2000,
+				// timeStr:'',
 				
 				deliverCity:'',
 				
@@ -178,7 +200,7 @@ const { dateTimePicker,getMonthDay,generateTimeStr} = require('../../utils/dateT
 				// 		}
 				// 	}
 				// })
-				this.userid=-1
+				this.userid=1
 			}
 		},
 		methods: {
@@ -262,47 +284,67 @@ const { dateTimePicker,getMonthDay,generateTimeStr} = require('../../utils/dateT
 			
 			editEndTime(){
 				this.showEditTime=true
-				this.initTime()
+				// this.initTime()
 			},
-			initTime(){
-				let date = new Date();
-				let endYear = date.getFullYear();
-				// 获取完整的年月日 时分秒，以及默认显示的数组
-				let obj = dateTimePicker(this.startYear, endYear);
-				// 精确到分的处理，将数组的秒去掉
-				// let lastArray = obj.dateTimeArray.pop();
-				// let lastTime = obj.dateTime.pop();
+			
+	// 		initTime(){
+	// 			let date = new Date();
+	// 			let endYear = date.getFullYear();
+	// 			// 获取完整的年月日 时分秒，以及默认显示的数组
+	// 			let obj = dateTimePicker(this.startYear, endYear);
+	// 			// 精确到分的处理，将数组的秒去掉
+	// 			// let lastArray = obj.dateTimeArray.pop();
+	// 			// let lastTime = obj.dateTime.pop();
  
-				this.dateTimeArray=obj.dateTimeArray
-				this.dateTime=obj.dateTime
+	// 			this.dateTimeArray=obj.dateTimeArray
+	// 			this.dateTime=obj.dateTime
+	// 		},
+	// 		changeDateTime(e) {
+	// 		    this.dateTime = e.detail.value;
+ //                this.timeStr= generateTimeStr(this.dateTimeArray,this.dateTime);
+ //                //ios时间不能用'-'解析成时间戳
+	// 			console.log(tihs.dateTime)
+	// 		 },
+ //            /*年,月切换时重新更新计算*/
+	// 		changeDateTimeColumn(e) {
+	// 			//let {id} = e.target;
+	// 			let {column,value} = e.detail;
+	// 			if(column==0 || column==1){
+ //                    //直接修改数组下标视图不更新,用深拷贝之后替换数组
+	// 				let dateTime = JSON.parse(JSON.stringify(this.dateTime));
+ //                    let dateTimeArray = JSON.parse(JSON.stringify(this.dateTimeArray));
+	// 				dateTime[column] = value;
+	// 				dateTimeArray[2] = getMonthDay(dateTimeArray[0][dateTime[0]], dateTimeArray[1][dateTime[1]]);
+ //                    this.dateTime = dateTime;
+ //                    this.dateTimeArray = dateTimeArray;
+	// 			}
+	// 		},
+			bindDateChange: function(e) {
+				this.endTime_date = e.detail.value
+				console.log(e)
+				this.endTime_year = e.detail.value.toString().substr(0,4)
+				this.endTime_month = e.detail.value.toString().substr(5,2)
+				this.endTime_day = e.detail.value.toString().substr(8,2)
 			},
-			changeDateTime(e) {
-			    this.dateTime = e.detail.value;
-                this.timeStr= generateTimeStr(this.dateTimeArray,this.dateTime);
-                //ios时间不能用'-'解析成时间戳
-			 },
-            /*年,月切换时重新更新计算*/
-			changeDateTimeColumn(e) {
-				//let {id} = e.target;
-				let {column,value} = e.detail;
-				if(column==0 || column==1){
-                    //直接修改数组下标视图不更新,用深拷贝之后替换数组
-					let dateTime = JSON.parse(JSON.stringify(this.dateTime));
-                    let dateTimeArray = JSON.parse(JSON.stringify(this.dateTimeArray));
-					dateTime[column] = value;
-					dateTimeArray[2] = getMonthDay(dateTimeArray[0][dateTime[0]], dateTimeArray[1][dateTime[1]]);
-                    this.dateTime = dateTime;
-                    this.dateTimeArray = dateTimeArray;
-				}
+			bindTimeChange: function(e) {
+				this.endTime_time = e.detail.value
+				console.log(e)
+				this.endTime_hour = e.detail.value.toString().substr(0,2)
+				this.endTime_minu = e.detail.value.toString().substr(3,2)
 			},
 			confirmTime(){
-				if(this.endTime===''){
+				// yyyy-MM-dd HH:mm:ss
+				if(this.endTime_time===''||this.endTime_date==''){
 					uni.showToast({
 						title:"请完成信息填写",
 						icon:'none'
 					})
 					return;
 				}
+				this.endTime_text = this.endTime_date +' '+ this.endTime_time
+				this.endTime = new Date(this.endTime_text).getTime().toString().substr(0,10)
+				console.log(this.endTime)
+				this.showEditTime = false
 			},
 			
 			chooseCity(e){//{code:{s,c,z},value:{s,c,z},data:{z_id,z_name,z_code}}
@@ -315,11 +357,12 @@ const { dateTimePicker,getMonthDay,generateTimeStr} = require('../../utils/dateT
 				console.log(startTime)
 				let support = 0 //0:不支持,1:支持包邮,2:支持极速发货,3:支持包邮和极速发货
 				if(this.postage_free===1){
-					if(this.postage_fast==1) support = 3
+					this.sell_postage=0
+					if(this.postage_fast===1) support = 3
 					else support = 1
 				}
 				else{
-					if(this.postage_fast==1) support = 2
+					if(this.postage_fast===1) support = 2
 				}
 				let res = await this.$myRequest({
 					url: "/goods/add",
@@ -328,18 +371,18 @@ const { dateTimePicker,getMonthDay,generateTimeStr} = require('../../utils/dateT
 					data:{
 						userId: this.userid,
 						city: this.deliverCity,
-						endTime: -1,
+						endTime: this.endTime,
 						heat: 0,
 						introImage: this.goodsPics,
 						introduction: this.goodsDescription,
-						inventory: 0,
+						inventory: 1,
 						name: this.goodsName,
 						postage: this.sell_postage,
 						price: this.sell_price,
 						startTime: startTime,
 						support: support,
 						tags: this.tags,
-						type: 0,
+						type: 1,
 					},
 				})
 				if(res.data.status==0){
@@ -374,9 +417,9 @@ const { dateTimePicker,getMonthDay,generateTimeStr} = require('../../utils/dateT
 				console.log(this.goodsDescription)
 				console.log(this.goodsPics)
 				console.log(this.sell_price)
-				console.log(this.sell_num)
 				console.log(this.sell_postage)
 				console.log(this.tags)
+				console.log(this.endTime)
 				console.log(this.deliverCity)
 				if(this.goodsName==''){
 					uni.showToast({
@@ -416,6 +459,12 @@ const { dateTimePicker,getMonthDay,generateTimeStr} = require('../../utils/dateT
 				if(this.deliverCity==''){
 					uni.showToast({
 						title:"请选择发货城市",
+						icon:'none'
+					})
+				}
+				if(this.endTime==''){
+					uni.showToast({
+						title:"请编辑截止时间",
 						icon:'none'
 					})
 				}
