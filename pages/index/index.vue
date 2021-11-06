@@ -45,7 +45,7 @@
 		<!-- 拍卖商品列表 -->
 		<!-- @click='onclick(index)' -->
 		<view class="paimai-list">
-			<view class="goodslist" v-for="(item,index) in goods" :key="item.id" @click="goToDetail(index)" @longpress="remove_mask(index)" @touchmove="closeMask()" :class="{'goodsmask_hidden': maskIndex === index }" >
+			<view class="goodslist" v-for="(item,index) in goods" :key="item.id" @click="goToDetail(item.id)" @longpress="remove_mask(index)" @touchmove="closeMask()" :class="{'goodsmask_hidden': maskIndex === index }" >
 				<image :src="item.introImage" mode=""></image>
 				<!-- 遮罩层 -->
 				<view class="goodsmask" >
@@ -129,11 +129,10 @@
 				})
 			},
 			// 点击商品去商品详情页
-		    goToDetail(index){
-				// 加密传递的对象数据
-				let item = encodeURIComponent(JSON.stringify(this.goods[index]))
+		    goToDetail(id){
+				console.log(id)
 			    uni.navigateTo({
-			    	url: "../../pages/goods-detail/goods-detail?" + "?goodItem=" + item,
+			    	url: "../../pages/goods-detail/goods-detail?goodId=" + id,
 			    })
 			},
 

@@ -112,6 +112,33 @@
             }
             
         }
+		,{
+		    "path" : "pages/auction/auction",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/auction-goodsdetail-userlist/auction-goodsdetail-userlist",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/goods-detail-auction/goods-detail-auction",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
         ,{
             "path" : "pages/goods-detail/goods-detail",
             "style" :                                                                                    
@@ -135,11 +162,11 @@
 				"iconPath":"./static/icon/wander.png",
 				"selectedIconPath":"./static/icon/wanderSelected.png"
 			},
-			// {
-			// 	 "pagePath":"pages/index/index",
-			// 	"iconPath":"./static/icon/deotion.png",
-			// 	"selectedIconPath":"./static/icon/deotionSelected.png"
-			// },
+			{
+				 "pagePath":"pages/auction/auction",
+				"iconPath":"./static/icon/deotion.png",
+				"selectedIconPath":"./static/icon/deotionSelected.png"
+			},
 			{
 				"pagePath":"pages/my/my",
 				"iconPath":"./static/icon/mine.png",

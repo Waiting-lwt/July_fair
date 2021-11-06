@@ -1,5 +1,58 @@
 <template>
-	<view>
+	<view class="container">
+		<!-- 带有商品图片的大盒子 -->
+		<view class="image-container">
+			<view class="goods-image">
+				<image :src="goodInfo.intro_image[0]" mode="aspectFill"></image>
+			</view>
+			<view class="goods-info">
+				<view class="goods-info-left">
+					<view class="goods-info-price">
+						￥{{goodInfo.price}}
+					</view>
+					<text>库存：{{goodInfo.inventory}}</text>
+				</view>
+				<view class="goods-info-iconfav">
+					<image src="../../static/images/shoucang.png" mode=""></image>
+				</view>
+			</view>
+		</view>
+		
+		<view class="goods-name">
+			<view class="tab-info">
+				<text></text>
+				<text>{{goodInfo.name}}</text>
+			</view>
+			<view class="works-tags">
+				<view class="works-tags-item" v-for="item in goodInfo.goods_tags">
+					<text>{{item}}</text>
+				</view>
+			</view>
+			<view class="works-intro-p">
+				<view>{{goodInfo.introduction}}</view>
+			</view>
+		</view>
+		
+		<view class="author-intro">
+			<view class="tab-info">
+				<text></text>
+				<text>作者介绍</text>
+			</view>
+			<view class="author-intro-info">
+				<view class="author-intro-img">
+					<image :src="goodInfo.portrait" mode="aspectFill"></image>
+				</view>
+				<view class="author-intro-right">
+					<text>{{goodInfo.user_name}}</text>
+					<view class="works-tags">
+						<view class="works-tags-item" v-for="item in goodInfo.user_tags">
+							<text>{{item}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		
 		
 		<view class="bottom-block" @click="showEditNum=true">
 			购买
@@ -16,38 +69,24 @@
 				</view>
 				<view class="show-price-block">
 					<text>邮费</text>
-					<text class="show-price-num">{{goodItem.postage}}</text>
+					<text class="show-price-num">postage</text>
 					<text>元</text>
 				</view>
 				<view class="show-price-block">
 					<text>单价</text>
-					<text class="show-price-num">{{goodItem.price}}</text>
+					<text class="show-price-num">{{goodInfo.price}}</text>
 					<text>元</text>
 				</view>
 				<view class="show-price-block">
 					<text>总价</text>
-					<text class="show-price-num">{{goodItem.postage+goodItem.postage*buy_num}}</text>
+					<!-- {{goodInfo.postage+goodInfo.postage*buy_num}} -->
+					<text class="show-price-num"></text>
 					<text>元</text>
 				</view>
 			</view>
-			<view class="bottom-block" style="z-index: 91;" @tap="confirmPrice()">确认</view>
+			<view class="bottom-block" style="z-index: 91;" @tap="confirmNum()">确认</view>
 		</view>
-<!-- 		city
-		collect
-		endTime
-		heat
-		id
-		introImage
-		introduction
-		inventory
-		name
-		postage
-		price
-		startTime
-		support
-		tags
-		type
-		userId -->
+
 	</view>
 </template>
 
@@ -55,24 +94,33 @@
 	export default {
 		data() {
 			return {
-				goodItem:{},
+				goodInfo:{},
+				goodId:1,
 				showEditNum:false,
 				buy_num:1,
 			}
 		},
 		methods: {
-			
+			async getGoodInfo() {
+				const res = await this.$myRequest({
+					url: '/goods/getGoodStatus?id=' + this.goodId
+				})
+				this.goodInfo = res.data.data[0]
+				console.log(this.goodInfo)
+			},
+			confirmNum(){
+				
+			}
 		},
 		/**
 		 * 生命周期函数--监听页面加载
 		 */
 		
 		onLoad(option) {
-			// decodeURIComponent 解密传过来的对象字符串
 			if(JSON.stringify(option) != "{}"){
-				this.goodItem = JSON.parse(decodeURIComponent(option.goodItem));
+				this.goodId = option.goodId;
 			}
-			console.log(this.goodItem)
+			this.getGoodInfo()
 		},
 	}
 </script>
