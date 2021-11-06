@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/Tabs/Tabs":1,"components/loading/loading":1,"components/zy-search/zy-search":1,"components/region-picker/region-picker":1,"components/region-picker/region-pickerSC":1};
+/******/ 		var cssChunks = {"components/Tabs/Tabs":1,"components/loading/loading":1,"components/uni-popup/uni-popup":1,"components/zy-search/zy-search":1,"components/region-picker/region-picker":1,"components/region-picker/region-pickerSC":1,"components/uni-transition/uni-transition":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/Tabs/Tabs":"components/Tabs/Tabs","components/loading/loading":"components/loading/loading","components/zy-search/zy-search":"components/zy-search/zy-search","components/region-picker/region-picker":"components/region-picker/region-picker","components/region-picker/region-pickerSC":"components/region-picker/region-pickerSC"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/Tabs/Tabs":"components/Tabs/Tabs","components/loading/loading":"components/loading/loading","components/uni-popup/uni-popup":"components/uni-popup/uni-popup","components/zy-search/zy-search":"components/zy-search/zy-search","components/region-picker/region-picker":"components/region-picker/region-picker","components/region-picker/region-pickerSC":"components/region-picker/region-pickerSC","components/uni-transition/uni-transition":"components/uni-transition/uni-transition"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

@@ -65,60 +65,59 @@
 			};
 		},
 		methods: {
-			searchStart (){
-					uni.navigateTo({
-						url: "../../pages/search_result/search_result?keyword=" + this.searchText
-					})
-				},
 			
-			// searchStart: function() {	//触发搜索
-			// 	let _this = this;
-			// 	if (_this.searchText == '') {
-			// 		uni.showToast({
-			// 			title: '请输入关键字',
-			// 			icon: 'none',
-			// 			duration: 1000
-			// 		});
-			// 	}else{
-			// 		_this.$emit('getSearchText', _this.searchText);
-			// 		uni.getStorage({
-			// 			key:'search_cache',
-			// 			success(res){
-			// 				let list = res.data;
-			// 				if(list.length > 5){
-			// 					for(let item of list){
-			// 						if(item == _this.searchText){
-			// 							return;
-			// 						}
-			// 					}
-			// 					list.pop();
-			// 					list.unshift(_this.searchText);
-			// 				}else{
-			// 					for(let item of list){
-			// 						if(item == _this.searchText){
-			// 							return;
-			// 						}
-			// 					}
-			// 					list.unshift(_this.searchText);
-			// 				}
-			// 				_this.hList = list;
-			// 				uni.setStorage({
-			// 					key: 'search_cache',
-			// 					data: _this.hList
-			// 				});
-			// 			},
-			// 			fail() {
-			// 				_this.hList = [];
-			// 				_this.hList.push(_this.searchText);
-			// 				uni.setStorage({
-			// 					key: 'search_cache',
-			// 					data: _this.hList
-			// 				});
-			// 				_this.$emit('getSearchText', _this.searchText);
-			// 			}
-			// 		})
-			// 	}
-			// },
+			
+			searchStart: function() {	//触发搜索
+			uni.navigateTo({
+								url: "../../pages/search_result/search_result?keyword=" + this.searchText
+							})
+				let _this = this;
+				if (_this.searchText == '') {
+					uni.showToast({
+						title: '请输入关键字',
+						icon: 'none',
+						duration: 1000
+					});
+				}else{
+					_this.$emit('getSearchText', _this.searchText);
+					uni.getStorage({
+						key:'search_cache',
+						success(res){
+							let list = res.data;
+							if(list.length > 5){
+								for(let item of list){
+									if(item == _this.searchText){
+										return;
+									}
+								}
+								list.pop();
+								list.unshift(_this.searchText);
+							}else{
+								for(let item of list){
+									if(item == _this.searchText){
+										return;
+									}
+								}
+								list.unshift(_this.searchText);
+							}
+							_this.hList = list;
+							uni.setStorage({
+								key: 'search_cache',
+								data: _this.hList
+							});
+						},
+						fail() {
+							_this.hList = [];
+							_this.hList.push(_this.searchText);
+							uni.setStorage({
+								key: 'search_cache',
+								data: _this.hList
+							});
+							_this.$emit('getSearchText', _this.searchText);
+						}
+					})
+				}
+			},
 			keywordsClick (item) {	//关键词搜索与历史搜索
 				this.searchText = item;
 				//this.searchStart();

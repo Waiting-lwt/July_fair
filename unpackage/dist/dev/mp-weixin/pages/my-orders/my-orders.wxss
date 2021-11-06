@@ -113,10 +113,6 @@
     border-radius: 20rpx;
     box-shadow: 0 3rpx 10rpx rgb(200,200,200) inset,0 3rpx 10rpx rgb(200,200,200);
 
-    display: -webkit-box;
-
-    display: -webkit-flex;
-
     display: flex;
     /* position: relative; */
 }

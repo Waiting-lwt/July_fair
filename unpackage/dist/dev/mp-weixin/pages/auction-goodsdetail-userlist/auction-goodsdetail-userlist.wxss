@@ -1,0 +1,111 @@
+.container .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 152rpx;
+  width: 100%;
+  width: 666rpx;
+  margin-left: 42rpx;
+}
+.container .top .goBack {
+  height: 29rpx;
+  width: 24rpx;
+}
+.container .top .goBack image {
+  width: 100%;
+  height: 100%;
+}
+.container .top .icon-report {
+  width: 35rpx;
+  height: 40rpx;
+}
+.container .top .icon-report image {
+  width: 100%;
+  height: 100%;
+}
+.container .container-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 564rpx;
+  margin: 100rpx 93rpx 0;
+}
+.container .container-main .championPortrait {
+  position: relative;
+  height: 183rpx;
+  width: 188rpx;
+  border-radius: 24rpx;
+  background-color: #00FFF9;
+}
+.container .container-main .championPortrait image {
+  height: 183rpx;
+  width: 188rpx;
+}
+.container .container-main .championPortrait .image-icon {
+  position: absolute;
+  width: 50rpx;
+  height: 60rpx;
+  top: 146rpx;
+  right: 68rpx;
+}
+.container .container-main .championPortrait .image-icon image {
+  width: 100%;
+  height: 100%;
+}
+.container .container-main .userName {
+  margin-top: 30rpx;
+  font-size: 44rpx;
+}
+.container .container-main .time {
+  margin: 22rpx 0;
+  font-size: 16rpx;
+}
+.container .container-main .userOffer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 302rpx;
+  height: 88rpx;
+  border-radius: 20rpx;
+  background-color: #B4B4B4;
+  box-shadow: 4rpx 5rpx 7rpx rgba(0, 0, 0, 0.3);
+  margin-bottom: 105rpx;
+}
+.container .container-main .userOffer text {
+  font-size: 44rpx;
+  color: #FFFFFF;
+}
+.container .container-main .userList {
+  width: 100%;
+}
+.container .container-main .userList .userOfferInfo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 50rpx;
+}
+.container .container-main .userList .userOfferInfo .userProtrait {
+  width: 92rpx;
+  height: 88rpx;
+  margin-right: 28rpx;
+}
+.container .container-main .userList .userOfferInfo .userProtrait image {
+  width: 100%;
+  height: 100%;
+}
+.container .container-main .userList .userOfferInfo .null {
+  flex: 1;
+}
+.container .container-main .userList .userOfferInfo text:nth-child(1) {
+  font-size: 30rpx;
+  margin-right: 30rpx;
+}
+.container .container-main .userList .userOfferInfo text:nth-child(2) {
+  font-size: 36rpx;
+}
+.container .container-main .userList .userOfferInfo text:nth-child(3) {
+  font-size: 30rpx;
+}
+

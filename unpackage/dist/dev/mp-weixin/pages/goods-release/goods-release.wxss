@@ -37,8 +37,6 @@ input{
 }
 .goods-pics{
 	margin: 100rpx 0rpx 0rpx 30rpx;
-	display: -webkit-box;
-	display: -webkit-flex;
 	display: flex;
 	overflow: hidden;
 	white-space: nowrap;
@@ -108,10 +106,6 @@ input{
 	background-color: #FFFFFF;
 	z-index: 91;
     color: #041746;
-
-	display: -webkit-box;
-
-	display: -webkit-flex;
 
 	display: flex;
 	font-size: 32rpx;

@@ -1,0 +1,103 @@
+// 商品列表样式
+    
+	.paimai-list {
+		display: flex;
+		// position: relative;
+		justify-content: space-between;
+		flex-wrap: wrap;
+        
+		.goodslist {
+			position: relative;
+
+			.goodsmask {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: #e5e5e5;
+				opacity: 0.5;
+				z-index: 99;
+				.fv {
+					position: absolute;
+					top: 16rpx;
+					right: 24rpx;
+					width: 32rpx;
+					height: 32rpx;
+					// image {
+					// 	position: absolute;
+					// 	top: 0;
+					// 	left: 0;
+					// }
+				}
+				.fv::before {
+					content: '\e6ab';
+					font-family: 'iconfont';
+				}
+				.maskcontainer {
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					height: 30%;
+					width: 100%;
+					z-index: 990;
+					background-image: linear-gradient(#c7c7c7 , #2a2a2a , #000000 );
+				  text {
+					position: absolute;
+					top: 20rpx;
+					left: 40%;
+					transform: translateX(-34%);
+					font-size: 24rpx;
+					color: #ffffff;
+					z-index: 999;
+				}
+			       .keyword {
+					   color: #FFFFFF;
+					  width:94%;
+					  height: 100%;
+					  padding:3px 3%;
+				      display: flex;
+					// flex-flow:wrap;
+					  justify-content:center;
+					}
+			    .keyword>view {
+					display:flex;
+					justify-content:center;
+					align-items:center;
+					border-radius:10rpx;
+					padding:3rpx 10rpx;
+					margin:54rpx 20rpx 2rpx 0;
+					height:14rpx;
+					font-size:18rpx;
+					background-color:rgb(242,242,242);
+					color:#6b6b6b;}
+				
+			}
+			
+			}
+		}
+        
+
+		>view {
+			// width: 309rpx;
+			// height: 303rpx;
+			width: 300rpx;
+			height: 298rpx;
+			margin-bottom: 25rpx;
+			border-radius: 28rpx;
+			overflow: hidden;
+			box-shadow: -2rpx 2rpx 6rpx 2rpx rgba(0, 0, 0, .3);
+
+			image {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+	//已经到底啦
+	.footer {
+		margin: 10rpx auto;
+		color: #0c8ee5;
+		text-align: center;
+	}

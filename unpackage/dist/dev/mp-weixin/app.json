@@ -1,6 +1,8 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/goods-detail-auction/goods-detail-auction",
+        "pages/auction/auction",
         "pages/search/search",
         "pages/search_result/search_result",
         "pages/my/my",
@@ -12,7 +14,8 @@
         "pages/my-morehistory/my-morehistory",
         "pages/my-selectaddress/my-selectaddress",
         "pages/goods-release/goods-release",
-        "pages/auctions_goods-tagsadd/auctions_goods-tagsadd"
+        "pages/auctions_goods-tagsadd/auctions_goods-tagsadd",
+        "pages/auction-goodsdetail-userlist/auction-goodsdetail-userlist"
     ],
     "subPackages": [],
     "window": {
@@ -24,6 +27,11 @@
         "list": [
             {
                 "pagePath": "pages/index/index",
+                "iconPath": "./static/icon/bazzar.png",
+                "selectedIconPath": "./static/icon/bazzarSelected.png"
+            },
+            {
+                "pagePath": "pages/auction/auction",
                 "iconPath": "./static/icon/wander.png",
                 "selectedIconPath": "./static/icon/wanderSelected.png"
             },

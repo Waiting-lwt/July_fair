@@ -51,11 +51,8 @@
 	line-height: 80rpx;
 }
 .addressAdd{
-	display: -webkit-box;
-	display: -webkit-flex;
 	display: flex;
-	-webkit-justify-content: space-around;
-	        justify-content: space-around;
+	justify-content: space-around;
 	position: relative;
 	font-size: 24rpx;
 	text-align: center;
