@@ -27,25 +27,41 @@ image {
 }
 
 .goods-info {
-	margin: 48rpx 0rpx 0 0rpx;
+	margin: 20rpx 0rpx 0 0rpx;
 	display: flex;
+	font-size: 24rpx;
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
 }
-
 .goods-info-left {
 	height: 64rpx;
-	margin-left: 44rpx;
-	font-size: 16rpx;
-	margin-right: 20rpx;
+	margin-left: 20rpx;
+	margin-right: 10rpx;
 	color: #8D8D8D;
+	white-space: pre-line;
+}
+.goods-info-price{
+	font-size: 34rpx;
+	height: 60rpx;
+	line-height: 60rpx;
 }
 .goods-info-iconfav {
+	width: 350rpx;
+	height: 50rpx;
+	margin-right: 20rpx;
+}
+.goods-info-iconfav image{
+	float: right;
 	width: 50rpx;
 	height: 50rpx;
-	margin-right: 44rpx;
-
+}
+.goods-info-iconfav text{
+	clear: right;
+	float: right;
+	font-size: 24rpx;
+	line-height: 50rpx;
+	height: 50rpx;
 }
 
 .goods-name{

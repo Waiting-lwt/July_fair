@@ -10,10 +10,12 @@
 					<view class="goods-info-price">
 						￥{{goodInfo.price}}
 					</view>
+					<text>购买量：{{goodInfo.inventory}}{{" "}}</text>
 					<text>库存：{{goodInfo.inventory}}</text>
 				</view>
 				<view class="goods-info-iconfav">
 					<image src="../../static/images/shoucang.png" mode=""></image>
+					<text>发货地：{{goodInfo.city}}</text>
 				</view>
 			</view>
 		</view>
@@ -69,7 +71,7 @@
 				</view>
 				<view class="show-price-block">
 					<text>邮费</text>
-					<text class="show-price-num">postage</text>
+					<text class="show-price-num">{{goodItem.postage}}</text>
 					<text>元</text>
 				</view>
 				<view class="show-price-block">
@@ -79,8 +81,7 @@
 				</view>
 				<view class="show-price-block">
 					<text>总价</text>
-					<!-- {{goodInfo.postage+goodInfo.postage*buy_num}} -->
-					<text class="show-price-num"></text>
+					<text class="show-price-num">{{goodItem.postage+goodInfo.price*buy_num}}</text>
 					<text>元</text>
 				</view>
 			</view>
@@ -95,6 +96,7 @@
 		data() {
 			return {
 				goodInfo:{},
+				goodItem:{},
 				goodId:1,
 				showEditNum:false,
 				buy_num:1,
@@ -118,7 +120,9 @@
 		
 		onLoad(option) {
 			if(JSON.stringify(option) != "{}"){
-				this.goodId = option.goodId;
+				this.goodItem = JSON.parse(decodeURIComponent(option.goodItem));
+				this.goodId = this.goodItem.id;
+				console.log(this.goodItem)
 			}
 			this.getGoodInfo()
 		},

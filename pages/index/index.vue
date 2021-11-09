@@ -45,7 +45,7 @@
 		<!-- 拍卖商品列表 -->
 		<!-- @click='onclick(index)' -->
 		<view class="paimai-list">
-			<view class="goodslist" v-for="(item,index) in goods" :key="item.id" @click="goToDetail(item.id)" @longpress="remove_mask(index)" @touchmove="closeMask()" :class="{'goodsmask_hidden': maskIndex === index }" >
+			<view class="goodslist" v-for="(item,index) in goods" :key="item.id" @click="goToDetail(index)" @longpress="remove_mask(index)" @touchmove="closeMask()" :class="{'goodsmask_hidden': maskIndex === index }" >
 				<image :src="item.introImage" mode=""></image>
 				<!-- 遮罩层 -->
 				<view class="goodsmask" >
@@ -129,10 +129,12 @@
 				})
 			},
 			// 点击商品去商品详情页
-		    goToDetail(id){
-				console.log(id)
+		    goToDetail(index){
+				// 加密传递的对象数据
+				let item = encodeURIComponent(JSON.stringify(this.goods[index]))
+				console.log(this.goods[index])
 			    uni.navigateTo({
-			    	url: "../../pages/goods-detail/goods-detail?goodId=" + id,
+			    	url: "../../pages/goods-detail/goods-detail?goodItem=" + item,
 			    })
 			},
 
@@ -141,7 +143,6 @@
 			// 获取精华列表
 			async getgoodslist_jh() {
 				const res = await this.$myRequest({
-
 					url: '/goods/essence?type=0&pageNum=0&pageSize=100'
 				})
 				console.log(res)
@@ -150,7 +151,6 @@
 			//获取随机商品列表
 			async getgoodslist() {
 				const res = await this.$myRequest({
-
 					url: '/goods/random?type=0&pageNum=0&pageSize=100'
 				})
 				console.log(res)
