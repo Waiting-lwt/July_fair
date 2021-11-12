@@ -6,7 +6,12 @@
 				"navigationBarTitleText": "主页"
 			}
 		},
-		
+		{
+			"path": "pages/auction/auction",
+			"style": {
+				"navigationBarTitleText": "拍卖"
+			}
+		},
 		{
 			"path": "pages/search/search",
 			"style": {
@@ -102,7 +107,16 @@
                 "enablePullDownRefresh": false
             }
             
-        }
+        },
+		{
+		    "path" : "pages/auction-goodsdetail-userlist/auction-goodsdetail-userlist",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
         ,{
             "path" : "pages/auctions-release/auctions-release",
             "style" :                                                                                    
@@ -111,7 +125,16 @@
                 "enablePullDownRefresh": false
             }
             
-        }
+        },
+		{
+		    "path" : "pages/goods-detail-auction/goods-detail-auction",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "拍卖商品详情",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
         ,{
             "path" : "pages/goods-detail/goods-detail",
             "style" :                                                                                    
@@ -132,14 +155,14 @@
 		"list":[
 			{
 				"pagePath":"pages/index/index",
+				"iconPath":"./static/icon/bazzar.png",
+				"selectedIconPath":"./static/icon/bazzarSelected.png"
+			},
+			{
+				 "pagePath":"pages/auction/auction",
 				"iconPath":"./static/icon/wander.png",
 				"selectedIconPath":"./static/icon/wanderSelected.png"
 			},
-			// {
-			// 	 "pagePath":"pages/index/index",
-			// 	"iconPath":"./static/icon/deotion.png",
-			// 	"selectedIconPath":"./static/icon/deotionSelected.png"
-			// },
 			{
 				"pagePath":"pages/my/my",
 				"iconPath":"./static/icon/mine.png",

@@ -192,7 +192,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 82:
+/***/ 66:
 /*!****************************************************************************************!*\
   !*** D:/七月/GitHub仓库/July_fair/main.js?{"page":"components%2FspringTabs%2FspringTabs"} ***!
   \****************************************************************************************/
@@ -208,5 +208,5 @@ createPage(_springTabs.default);
 
 /***/ })
 
-},[[82,"common/runtime","common/vendor"]]]);
+},[[66,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/components/springTabs/springTabs.js.map

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "拍卖商品详情",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "uni-popup": "/components/uni-popup/uni-popup"

@@ -280,7 +280,10 @@ var _default = {
     },
     // 点击商品去商品详情页
     goToDetail: function goToDetail(index) {
-      console.log(this.goods[index]);
+      // 加密传递的对象数据
+      var item = encodeURIComponent(JSON.stringify(this.goods[index]));
+      uni.navigateTo({
+        url: "../../pages/goods-detail/goods-detail?" + "?goodItem=" + item });
 
     },
 

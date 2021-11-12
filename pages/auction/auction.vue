@@ -141,6 +141,7 @@
 				uni.navigateTo({
 					url: '../goods-detail-auction/goods-detail-auction?objo=' + this.objo
 				});
+				
 				console.log(this.objo)
 				
 				
