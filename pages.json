@@ -148,6 +148,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/goods-confirm-buy/goods-confirm-buy",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

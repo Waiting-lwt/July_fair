@@ -71,7 +71,7 @@
 				</view>
 				<view class="show-price-block">
 					<text>邮费</text>
-					<text class="show-price-num">{{goodItem.postage}}</text>
+					<text class="show-price-num">{{goodInfo.postage}}</text>
 					<text>元</text>
 				</view>
 				<view class="show-price-block">
@@ -81,7 +81,7 @@
 				</view>
 				<view class="show-price-block">
 					<text>总价</text>
-					<text class="show-price-num">{{goodItem.postage+goodInfo.price*buy_num}}</text>
+					<text class="show-price-num">{{goodInfo.postage+goodInfo.price*buy_num}}</text>
 					<text>元</text>
 				</view>
 			</view>
@@ -96,10 +96,9 @@
 		data() {
 			return {
 				goodInfo:{},
-				goodItem:{},
 				goodId:1,
 				showEditNum:false,
-				buy_num:1,
+				buy_num:'',
 			}
 		},
 		methods: {
@@ -111,20 +110,35 @@
 				console.log(this.goodInfo)
 			},
 			confirmNum(){
-				
+				// 加密传递的对象数据
+				this.goodInfo.buy_num = this.buy_num
+				this.goodInfo.totalPrice = this.goodInfo.postage +
+				this.goodInfo.price*this.goodInfo.buy_num
+				console.log(this.goodInfo)
+				let item = encodeURIComponent(JSON.stringify(this.goodInfo))
+				uni.navigateTo({
+					url: "../../pages/goods-confirm-buy/goods-confirm-buy?goodInfo=" + item,
+				})
 			}
 		},
 		/**
 		 * 生命周期函数--监听页面加载
 		 */
 		
-		onLoad(option) {
+		async onLoad(option) {
+			let goodItem
 			if(JSON.stringify(option) != "{}"){
-				this.goodItem = JSON.parse(decodeURIComponent(option.goodItem));
-				this.goodId = this.goodItem.id;
-				console.log(this.goodItem)
+				goodItem = JSON.parse(decodeURIComponent(option.goodItem));
+				this.goodId = goodItem.id
+				window.sessionStorage.setItem('goodId',this.goodId)
+				console.log(goodItem)
+			} else{
+				this.goodInfo.goodId = window.sessionStorage.getItem('goodId')
 			}
-			this.getGoodInfo()
+			await this.getGoodInfo()
+			this.goodInfo.postage = goodItem.postage
+			this.goodInfo.goodId = goodItem.id
+			console.log(this.goodInfo)
 		},
 	}
 </script>

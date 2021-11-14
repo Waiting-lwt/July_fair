@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "编辑拍卖品详情",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "region-picker": "/components/region-picker/region-pickerSC"
+  }
+}

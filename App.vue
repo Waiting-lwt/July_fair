@@ -2,7 +2,6 @@
 	export default {
 		globalData: {
 			text: 'text',
-			BASE_URL:"http://106.55.252.195:8081",
 			openid: "",
 			userid: "1",
 		},  

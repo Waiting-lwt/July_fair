@@ -66,6 +66,7 @@ input{
 }
 .goods-detailInfo{
 	margin-top: 20rpx;
+	width: 700rpx;
 	border-top: 1rpx solid #000000;
 }
 .detailInfo-block{

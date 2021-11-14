@@ -5,8 +5,7 @@
 }
 .areo-history-track{
 	padding-top: 18rpx;
-    padding-left: 23rpx; /*48-25
- */
+    padding-left: 23rpx; /*48-25 */
 }
 .title{
     color: #1E6CB5;

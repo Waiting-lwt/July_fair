@@ -25,7 +25,7 @@
 			<view class="userOfferInfo">
 				<text>2</text>
 				<view class="userProtrait">
-					<image src="../../static/images/NoPath%20-%20副本%20(4).png" mode="aspectFill"></image>
+					<!-- <image src="../../static/images/NoPath%20-%20副本%20(4).png" mode="aspectFill"></image> -->
 				</view>
 				<text>伊尔萨</text>
 				<view class="null"></view>
@@ -34,7 +34,7 @@
 			<view class="userOfferInfo">
 				<text>2</text>
 				<view class="userProtrait">
-					<image src="../../static/images/NoPath%20-%20副本%20(4).png" mode="aspectFill"></image>
+					<!-- <image src="../../static/images/NoPath%20-%20副本%20(4).png" mode="aspectFill"></image> -->
 				</view>
 				<text>伊尔萨</text>
 				<view class="null"></view>
