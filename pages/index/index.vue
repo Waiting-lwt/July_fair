@@ -132,8 +132,9 @@
 		    goToDetail(index){
 				// 加密传递的对象数据
 				let item = encodeURIComponent(JSON.stringify(this.goods[index]))
+				console.log(this.goods[index])
 			    uni.navigateTo({
-			    	url: "../../pages/goods-detail/goods-detail?" + "?goodItem=" + item,
+			    	url: "../../pages/goods-detail/goods-detail?goodItem=" + item,
 			    })
 			},
 
@@ -142,7 +143,6 @@
 			// 获取精华列表
 			async getgoodslist_jh() {
 				const res = await this.$myRequest({
-
 					url: '/goods/essence?type=0&pageNum=0&pageSize=100'
 				})
 				console.log(res)
@@ -151,7 +151,6 @@
 			//获取随机商品列表
 			async getgoodslist() {
 				const res = await this.$myRequest({
-
 					url: '/goods/random?type=0&pageNum=0&pageSize=100'
 				})
 				console.log(res)

@@ -360,6 +360,7 @@ var _default =
     toLogin: function toLogin() {
       console.log("tologin");
       this.hasLogin = true;
+      window.sessionStorage.setItem('userId', 1);
     },
     isLogin: function isLogin() {
       if (uni.getStorageSync('user')) {

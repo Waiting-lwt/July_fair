@@ -219,6 +219,7 @@
 			toLogin(){
 				console.log("tologin")
 				this.hasLogin=true
+				window.sessionStorage.setItem('userId',1)
 			},
 			isLogin(){
 				if(uni.getStorageSync('user')){

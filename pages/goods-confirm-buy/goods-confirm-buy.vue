@@ -1,0 +1,134 @@
+<template>
+	<view>
+		<!-- 带有商品图片的大盒子 -->
+		<view class="image-container">
+			<view class="goods-image">
+				<image :src="goodInfo.intro_image[0]" mode="aspectFill"></image>
+			</view>
+			<view class="goods-info">
+				<view class="goods-info-name">
+					<text>{{goodInfo.name}}</text>
+				</view>
+				<view class="goods-info-sellerName">
+					<text>买家：{{goodInfo.user_name}}</text>
+				</view>
+				<view class="goods-info-num">
+					<text>购买量：{{goodInfo.buy_num}}</text>
+				</view>
+				<text class="goods-info-price">邮费￥{{goodInfo.postage}}</text>
+				<text class="goods-info-price">单价￥{{goodInfo.price}}</text>
+				<text class="goods-info-price">总价￥{{goodInfo.totalPrice}}</text>
+			</view>
+		</view>
+		
+		<view class="myAddress">
+			<text class="defaultAddress-text">默认地址</text>
+			<view class="addressInfo">
+				<view class="addressInfo-block">
+					<view class="addressInfo-block1">
+						<text class="addressInfo-text">姓名</text>
+						<text class="addressInfo-text">电话</text>
+						<text class="addressInfo-text">地址</text>
+					</view>
+					
+					<view  v-if="addrEdit==0">
+					<view class="addressInfo-block2" v-if="addrEdit==0">
+						<text class="addressInfo-text">{{address.tname||"name"}}</text>
+						<text class="addressInfo-text">{{address.phone||"phone"}}</text>
+						<text class="addressInfo-text">{{address.location||"address"}}</text>
+					</view>
+					</view>
+					<!-- 可编辑 or 添加新地址 -->
+					<view v-if="addrEdit==1">
+					<view class="addressInfo-block2">
+						<input type="text" v-model="address.tname" placeholder="name" class="addressInput-text" maxlength="20"/>
+						<input type="number" v-model="address.phone" placeholder="phone" class="addressInput-text" maxlength="11"/>
+						<input type="text" v-model="address.location" placeholder="address" class="addressInput-text"
+						@tap="selectAddress(index)"/>
+					</view>
+					</view>
+				</view>
+				<text class="addressAlter" v-if="addrEdit==1" @tap="alterAddress(index)">
+					重新编辑
+				</text>
+				<view class="addressAdd" v-if="addrEdit==0">
+					<text @tap="editAddr()">重新修改</text>
+					<text @tap="confirmAddr()">确认编辑</text>
+				</view>
+			</view>
+		</view>
+		<view class="bottom-block" @click="postOrder">
+			提交订单
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				goodInfo: {},
+				address: {},
+				addrEdit: 0, 
+			}
+		},
+		methods: {
+			//获取用户地址
+			async getAddress(){
+				let res = await this.$myRequest({
+					url: "/address/getByUserId",
+					data:{
+						userId: window.sessionStorage.getItem('userId')
+					},
+				})
+				this.address=res.data.data[0]
+				console.log(this.address)
+			},
+			postOrder(){
+				uni.showModal({
+					content: "向"+this.goodInfo.user_name+"支付\n￥"+this.goodInfo.totalPrice,
+					success: (res) => {
+						if(res.confirm) {  
+							console.log('comfirm') //点击确定之后执行的代码
+							uni.showModal({
+								content: "购买成功"
+							})
+						} else {  
+							console.log('cancel') //点击取消之后执行的代码
+						}  
+					}
+				})
+			},
+		},
+		onLoad(option) {
+			if(JSON.stringify(option) != "{}"){
+				this.goodInfo = JSON.parse(decodeURIComponent(option.goodInfo));
+				console.log(this.goodInfo)
+			} else{
+				this.goodInfo = {
+					buy_num:2,
+					postage:0,
+					goodId:1,
+					heat:12,
+					city:"广东省广州市",
+					intro_image:["http://120.24.48.171:8081/goodsImage/5.jpg"],
+					user_name:"haha",
+					inventory:0,
+					portrait:"http://120.24.48.171:8081/userImage/a.jpg",
+					start_time:1627023422,
+					user_tags:["最新的","草间弥生","服装"],
+					user_id:1,
+					price:100.00,
+					name:"中式小沙弥摆件禅意小和尚书房茶室装饰艺术品客厅隔断柜家居摆设",
+					goods_tags:["最新的","草间弥生","服装"],"id":1,"introduction":"走进布面油画的空间里，感受当下社会文化意识与人文思想中的丰富维度。",
+				}
+			}
+			this.getAddress()
+			console.log(this.goodInfo)
+		}
+	}
+</script>
+
+<style>
+@import url("./goods-confirm-buy.css");
+</style>
