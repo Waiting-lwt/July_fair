@@ -22,7 +22,7 @@
 		</view>
 		
 		<view class="myAddress">
-			<text class="defaultAddress-text">默认地址</text>
+			<text class="defaultAddress-text">收货地址</text>
 			<view class="addressInfo">
 				<view class="addressInfo-block">
 					<view class="addressInfo-block1">
@@ -52,8 +52,8 @@
 					重新编辑
 				</text>
 				<view class="addressAdd" v-if="addrEdit==0">
-					<text @tap="editAddr()">重新修改</text>
-					<text @tap="confirmAddr()">确认编辑</text>
+					<text @tap="editAddr()">选择地址</text>
+					<!-- <text @tap="confirmAddr()">确认</text> -->
 				</view>
 			</view>
 		</view>
@@ -68,11 +68,16 @@
 		data() {
 			return {
 				goodInfo: {},
-				address: {},
+				address: {tname:'',phone:'',location:''},
 				addrEdit: 0, 
 			}
 		},
 		methods: {
+			editAddr(){
+				uni.navigateTo({
+					url: "../orders-select-address/orders-select-address"
+				})
+			},
 			//获取用户地址
 			async getAddress(){
 				let res = await this.$myRequest({
