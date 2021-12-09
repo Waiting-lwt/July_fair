@@ -1,0 +1,89 @@
+
+
+
+.addAddress-text{
+	font-size: 32rpx;
+	line-height: 100rpx;
+	display: block;
+	text-align: center;
+}
+
+.myAddress{
+	margin-top: 50rpx;
+	margin-left: 50rpx;
+	margin-right: 50rpx;
+    color: #0d3254;
+}
+.defaultAddress-text{
+	display: block;
+    font-size: 28rpx;
+    line-height: 30rpx;
+    margin-bottom: 30rpx;
+}
+.addressInfo{
+	width: 640rpx;
+	margin-bottom: 50rpx;
+	border: 1rpx solid #0d3254;
+	border-radius: 20rpx;
+    box-shadow: 0rpx 4rpx 8rpx #738eae, -4rpx 0 8rpx #738eae, 4rpx 0 8rpx #738eae;
+}
+.addressInfo-block{
+	width: 90%;
+	margin: 0 auto;
+	padding-top: 15rpx;
+	/* padding-bottom: 5rpx; */
+	border-bottom: 1rpx solid #0d3254;
+}
+.addressInfo-block1{
+	display: block;
+    position: absolute;
+}
+.addressInfo-block2{
+	display: block;
+	padding-left: 80rpx;
+}
+.addressInfo-text{
+	display: block;
+	font-size: 24rpx;
+	line-height: 32rpx;
+	padding: 15rpx 10rpx 15rpx 20rpx;
+	white-space: pre-wrap;
+}
+
+input{
+	min-height:24rpx;
+}
+.addressInput-text{
+	display: block;
+	margin: 15rpx 10rpx 28rpx 20rpx;
+	padding-left: 15rpx;
+	border: 1rpx solid #cae3e8;
+	background-color: #e1efff;
+	border-radius: 10rpx;
+	
+	font-size: 24rpx;
+	line-height: 30rpx;
+	height: 30rpx;
+}
+
+.addressDetail-text{
+	font-size: 24rpx;
+	line-height: 30rpx;
+	padding: 10rpx 10rpx 10rpx 20rpx;
+}
+.addressAlter{
+	display: block;
+	font-size: 24rpx;
+	text-align: center;
+	line-height: 80rpx;
+}
+
+.addressAdd{ 
+	display: flex;
+	justify-content: space-around;
+	position: relative;
+	font-size: 24rpx;
+	text-align: center;
+	line-height: 80rpx;
+}
+
