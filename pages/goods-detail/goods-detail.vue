@@ -125,6 +125,13 @@
 			},
 			confirmNum(){
 				// 加密传递的对象数据
+				if(!(this.buy_num>0&&this.buy_num<this.goodInfo.inventory)){
+					uni.showModal({
+						content:"购买数量填写不合法"
+					})
+					this.buy_num=""
+					return
+				}
 				this.goodInfo.buy_num = this.buy_num
 				this.goodInfo.totalPrice = this.goodInfo.postage +
 				this.goodInfo.price*this.goodInfo.buy_num

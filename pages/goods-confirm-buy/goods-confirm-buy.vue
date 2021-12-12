@@ -78,20 +78,24 @@
 				this.address=res.data.data[0]
 				console.log(this.address)
 			},
-			postOrder(){
+			async commitOrder(){
+				//提交订单
+			},
+			async postOrder(){
+				let self = this
 				uni.showModal({
 					content: "向"+this.goodInfo.user_name+"支付\n￥"+this.goodInfo.totalPrice,
-					success: (res) => {
-						if(res.confirm) {  
+					success: async function(res){
+						if(res.confirm) {
+							await self.commitOrder()
 							console.log('comfirm') //点击确定之后执行的代码
 							// 提交订单
-							
 							uni.showModal({
 								content: "购买成功"
 							})
 						} else {  
 							console.log('cancel') //点击取消之后执行的代码
-						}  
+						}
 					}
 				})
 			},
@@ -101,7 +105,8 @@
 			if(JSON.stringify(option) != "{}"){
 				this.goodInfo = JSON.parse(decodeURIComponent(option.goodInfo));
 				console.log(this.goodInfo)
-			} else{
+				this.goodInfo.totalPrice = this.goodInfo.buy_num*this.goodInfo.price+this.goodInfo.postage
+			} else{  //记得删掉！
 				this.goodInfo = {
 					buy_num:2,
 					postage:0,

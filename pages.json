@@ -166,8 +166,36 @@
             }
             
         }
+        ,
+		{
+            "path" : "pages/goods-confirm-buy/goods-confirm-buy",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
         
         
+        ,{
+            "path" : "pages/goods-success-order/goods-success-order",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "订单详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/goods-success-order-logistics/goods-success-order-logistics",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
