@@ -31,29 +31,15 @@
 						<text class="addressInfo-text">地址</text>
 					</view>
 					
-					<view  v-if="addrEdit==0">
-					<view class="addressInfo-block2" v-if="addrEdit==0">
+					<view class="addressInfo-block2">
 						<text class="addressInfo-text">{{address.tname||"name"}}</text>
 						<text class="addressInfo-text">{{address.phone||"phone"}}</text>
 						<text class="addressInfo-text">{{address.location||"address"}}</text>
 					</view>
-					</view>
-					<!-- 可编辑 or 添加新地址 -->
-					<view v-if="addrEdit==1">
-					<view class="addressInfo-block2">
-						<input type="text" v-model="address.tname" placeholder="name" class="addressInput-text" maxlength="20"/>
-						<input type="number" v-model="address.phone" placeholder="phone" class="addressInput-text" maxlength="11"/>
-						<input type="text" v-model="address.location" placeholder="address" class="addressInput-text"
-						@tap="selectAddress(index)"/>
-					</view>
-					</view>
+					
 				</view>
-				<text class="addressAlter" v-if="addrEdit==1" @tap="alterAddress(index)">
-					重新编辑
-				</text>
-				<view class="addressAdd" v-if="addrEdit==0">
+				<view class="addressAdd">
 					<text @tap="editAddr()">选择地址</text>
-					<!-- <text @tap="confirmAddr()">确认</text> -->
 				</view>
 			</view>
 		</view>
@@ -68,8 +54,11 @@
 		data() {
 			return {
 				goodInfo: {},
-				address: {tname:'',phone:'',location:''},
-				addrEdit: 0, 
+				address: {
+					tname: "",
+					phone: "",
+					location: ""
+				}
 			}
 		},
 		methods: {
@@ -95,6 +84,8 @@
 					success: (res) => {
 						if(res.confirm) {  
 							console.log('comfirm') //点击确定之后执行的代码
+							// 提交订单
+							
 							uni.showModal({
 								content: "购买成功"
 							})
@@ -106,6 +97,7 @@
 			},
 		},
 		onLoad(option) {
+			console.log(this.address.tname)
 			if(JSON.stringify(option) != "{}"){
 				this.goodInfo = JSON.parse(decodeURIComponent(option.goodInfo));
 				console.log(this.goodInfo)

@@ -7,23 +7,26 @@
 
 // 上半页面商品图片的大盒子
 .image-container {
-	margin: 40rpx auto 0 auto;
+	margin: 20rpx auto 0 auto;
 	width: 600rpx;
-	padding: 0 20rpx 0 20rpx;
 	height: 700rpx;
-	background-color: #E8E8E8;
+	/* background-color: #E8E8E8; */
 	margin-bottom: 40rpx;
 	border: 1rpx solid #000000;
 	position: relative;
+	border-radius: 2rpx;
+	box-shadow: 0rpx 1rpx 2rpx #8b9aae, -1rpx 0 2rpx #8b9aae, 1rpx 0 2rpx #8b9aae;
 }
 
 .goods-image {
-	width: 600rpx;
+	width: 480rpx;
 	height: 460rpx;
 	background-color: #D5D5D5;
-	top: -20rpx;
-	left: 25rpx;
 	position: absolute;
+	top: -20rpx;
+	margin: 0 50rpx;
+	box-shadow: 0rpx 1rpx 2rpx #8b9aae, -1rpx 0 2rpx #8b9aae, 1rpx 0 2rpx #8b9aae;
+	/* left: 25rpx; */
 }
 
 image {
@@ -35,13 +38,13 @@ image {
 	margin: 460rpx 0rpx 0 0rpx;
 	font-size: 24rpx;
 	align-items: center;
-	width: 100%;
+	padding: 0 30rpx 0 30rpx;
 }
 
 .goods-info-name{
 	font-size: 30rpx;
-	height: 70rpx;
-	line-height: 32rpx;
+	height: 75rpx;
+	line-height: 36rpx;
 }
 .goods-info-sellerName{
 	height: 50rpx;
@@ -92,7 +95,7 @@ image {
 	margin-bottom: 50rpx;
 	border: 1rpx solid #0d3254;
 	border-radius: 20rpx;
-    box-shadow: 0rpx 4rpx 8rpx #738eae, -4rpx 0 8rpx #738eae, 4rpx 0 8rpx #738eae;
+    box-shadow: 0rpx 1rpx 2rpx #738eae, -1rpx 0 2rpx #738eae, 1rpx 0 2rpx #738eae;
 }
 .addressInfo-block{
 	width: 90%;

@@ -56,7 +56,7 @@
 		</view>
 		
 		
-		<view class="bottom-block" @click="showEditNum=true">
+		<view class="bottom-block" @click="editNum()">
 			购买
 		</view>
 		
@@ -71,7 +71,7 @@
 				</view>
 				<view class="show-price-block">
 					<text>邮费</text>
-					<text class="show-price-num">{{goodInfo.postage}}</text>
+					<text class="show-price-num">{{goodInfo.postage||0}}</text>
 					<text>元</text>
 				</view>
 				<view class="show-price-block">
@@ -102,6 +102,20 @@
 			}
 		},
 		methods: {
+			editNum(){
+				// if(!window.sessionStorage.getItem('userId')){
+				// 	uni.showModal({
+				// 		content:"请前往登录",
+				// 		showCancel:false,
+				// 		success: (res) => {
+				// 			uni.navigateTo({
+				// 				url: "../../pages/my/my",
+				// 			})
+				// 		}
+				// 	})
+				// }
+				this.showEditNum=true
+			},
 			async getGoodInfo() {
 				const res = await this.$myRequest({
 					url: '/goods/getGoodStatus?id=' + this.goodId
