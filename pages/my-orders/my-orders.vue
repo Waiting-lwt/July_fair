@@ -168,7 +168,8 @@
 				            <text class="item-price" v-if="item.total_price">最终竞拍价格 ￥{{item.total_price}}</text>
 				        </view>
 						<!-- 0:未确认，1:未发货，2:未收货，3:未评价，4:退款中，5:已评价 -->
-						<view class="sell-item" 
+						<!-- yedn添加 @click="goToConfirmAdress()"-->
+						<view class="sell-item"  @click="goToConfirmAddress(index1)"
 						v-if="(item.status=='完善收获信息'||
 						item.status=='确认收货'||
 						item.status=='写评价'||
@@ -179,6 +180,7 @@
 							<text>{{item.status}}</text>
 						</view>
 						<text class="auctioning" v-if="item.rank">我的排位 {{item.rank}}</text>
+						
 						<view class="sell-icon" @tap="ordersMgt2(item.good_id)"
 						v-if="item.status!=''&&item.status!='完善收获信息'">···</view>
 				    </view>
@@ -263,6 +265,8 @@
 				showAuction:[],
 				
 				count:4,
+				// yedn添加obj_o
+				objo:'',
 			}
 		},
 		methods: {
@@ -276,6 +280,19 @@
 				else{
 					this.changeAucIndex(this.auctionIndex)
 				}
+			},
+			//yedn:跳转到生成订单页面
+			goToConfirmAddress(index1) {
+				console.log(index1)
+				console.log(this.showAuction[index1])
+				this.objo = this.showAuction[index1]
+				this.objo = JSON.stringify(this.objo)
+				if(this.showAuction[index1].status =='完善收获信息') {
+					uni.navigateTo({
+						url:"../auctions-success-address/auctions-success-address?objo=" + this.objo
+					})
+				}
+				
 			},
 			changeMarIndex(index){
 				this.marketIndex=index

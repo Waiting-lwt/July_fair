@@ -1,0 +1,131 @@
+.container {
+  width: 666rpx;
+  margin-left: 42rpx;
+}
+.container .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 152rpx;
+  width: 100%;
+}
+.container .top > text {
+  color: #707070;
+}
+.container .top .goBack {
+  height: 29rpx;
+  width: 24rpx;
+}
+.container .top .goBack image {
+  width: 100%;
+  height: 100%;
+}
+.container .img-container {
+  position: absolute;
+  margin-left: 54rpx;
+  width: 544rpx;
+  height: 624rpx;
+  background-color: #A0A0A0;
+}
+.container .img-container > image {
+  width: 100%;
+  height: 100%;
+}
+.container .goodsInfo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: 124rpx;
+  width: 652rpx;
+  height: 712rpx;
+  background-color: #DADADA;
+}
+.container .goodsInfo-container .infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 144rpx;
+  margin: 20rpx 0 52rpx 52rpx;
+}
+.container .goodsInfo-container .infoContainer > text:nth-child(1) {
+  font-size: 32rpx;
+}
+.container .goodsInfo-container .infoContainer > text:nth-child(2) {
+  font-size: 20rpx;
+}
+.container .goodsInfo-container .infoContainer .info-price {
+  display: flex;
+  justify-content: space-between;
+  color: #8E8E8E;
+  font-size: 20rpx;
+}
+.container .addressInfo,
+.container .addressInfo1 {
+  width: 652rpx;
+  height: 200rpx;
+  margin: 50rpx 0;
+  background-color: #DADADA;
+}
+.container .addressInfo .addressInfo-block,
+.container .addressInfo1 .addressInfo-block {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 15rpx;
+  /* padding-bottom: 5rpx; */
+}
+.container .addressInfo .addressInfo-block .addressInfo-block1,
+.container .addressInfo1 .addressInfo-block .addressInfo-block1 {
+  display: block;
+  position: absolute;
+}
+.container .addressInfo .addressInfo-block .addressInfo-block2,
+.container .addressInfo1 .addressInfo-block .addressInfo-block2 {
+  display: block;
+  padding-left: 80rpx;
+}
+.container .addressInfo .addressInfo-block .addressInfo-text1,
+.container .addressInfo1 .addressInfo-block .addressInfo-text1,
+.container .addressInfo .addressInfo-block .addressInfo-text2,
+.container .addressInfo1 .addressInfo-block .addressInfo-text2,
+.container .addressInfo .addressInfo-block .addressInfo-text,
+.container .addressInfo1 .addressInfo-block .addressInfo-text {
+  display: block;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  padding: 15rpx 10rpx 15rpx 20rpx;
+  white-space: pre-wrap;
+}
+.container .addressInfo .addressInfo-block .addressInfo-text1,
+.container .addressInfo1 .addressInfo-block .addressInfo-text1 {
+  padding-left: 50rpx;
+}
+.container .addressInfo1 {
+  height: 140rpx;
+}
+.container input {
+  min-height: 24rpx;
+}
+.container .bottom3Btn {
+  display: flex;
+  justify-content: space-between;
+  height: 73rpx;
+  font-size: 28rpx;
+  color: #4F73A5;
+  margin-bottom: 50rpx;
+}
+.container .bottom3Btn .bt1Btn,
+.container .bottom3Btn .bt2Btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  background-color: #ffffff;
+  border-radius: 14rpx;
+  box-shadow: 0rpx 4rpx 8rpx #738eae, -4rpx 0 8rpx #738eae, 4rpx 0 8rpx #738eae;
+}
+.container .bottom3Btn .bt2Btn {
+  width: 38%;
+  color: #FFFFFF;
+  background-color: #008dd8;
+}
+

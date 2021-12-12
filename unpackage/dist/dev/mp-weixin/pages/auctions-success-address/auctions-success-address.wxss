@@ -1,0 +1,199 @@
+.container {
+  width: 666rpx;
+  margin-left: 42rpx;
+}
+.container .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 152rpx;
+  width: 100%;
+}
+.container .top > text {
+  color: #707070;
+}
+.container .top .goBack {
+  height: 29rpx;
+  width: 24rpx;
+}
+.container .top .goBack image {
+  width: 100%;
+  height: 100%;
+}
+.container .img-container {
+  position: absolute;
+  margin-left: 54rpx;
+  width: 544rpx;
+  height: 624rpx;
+  background-color: #A0A0A0;
+}
+.container .img-container > image {
+  width: 100%;
+  height: 100%;
+}
+.container .goodsInfo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: 124rpx;
+  width: 652rpx;
+  height: 712rpx;
+  background-color: #DADADA;
+}
+.container .goodsInfo-container .infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 144rpx;
+  margin: 20rpx 0 52rpx 52rpx;
+}
+.container .goodsInfo-container .infoContainer > text:nth-child(1) {
+  font-size: 32rpx;
+}
+.container .goodsInfo-container .infoContainer > text:nth-child(2) {
+  font-size: 20rpx;
+}
+.container .goodsInfo-container .infoContainer .info-price {
+  display: flex;
+  justify-content: space-between;
+  color: #8E8E8E;
+  font-size: 20rpx;
+}
+.container .tab-paimai-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 56rpx 0 8rpx 0;
+}
+.container .tab-paimai-info text:first-child {
+  width: 10rpx;
+  height: 24rpx;
+  background-color: #21277B;
+  border-radius: 4rpx;
+  margin-right: 17rpx;
+}
+.container .tab-paimai-info text:nth-child(2) {
+  font-size: 28rpx;
+  color: #4F73A5;
+  font-weight: 700;
+  margin-right: 25rpx;
+}
+.container .btn-container {
+  display: flex;
+  justify-content: space-between;
+  height: 78rpx;
+  margin-top: 68rpx;
+}
+.container .btn-container .btn-1,
+.container .btn-container .btn-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 78rpx;
+  width: 260rpx;
+  border-radius: 20rpx;
+  background-color: #006AD7;
+}
+.container .btn-container .btn-1 text,
+.container .btn-container .btn-2 text {
+  color: #FFFFFF;
+  font-size: 28rpx;
+}
+.container .footer {
+  font-size: 16rpx;
+  color: #8E8E8E;
+  padding-bottom: 20rpx;
+}
+.addressInfo {
+  width: 640rpx;
+  height: 300rpx;
+  margin-bottom: 50rpx;
+  border: 1rpx solid #0d3254;
+  border-radius: 20rpx;
+  box-shadow: 0rpx 4rpx 8rpx #738eae, -4rpx 0 8rpx #738eae, 4rpx 0 8rpx #738eae;
+}
+.addressInfo .addressInfo-block {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 15rpx;
+  /* padding-bottom: 5rpx; */
+  border-bottom: 1rpx solid #0d3254;
+}
+.addressInfo .addressInfo-block .addressInfo-block1 {
+  display: block;
+  position: absolute;
+}
+.addressInfo .addressInfo-block .addressInfo-block2 {
+  display: block;
+  padding-left: 80rpx;
+}
+.addressInfo .addressInfo-block .addressInfo-text {
+  display: block;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  padding: 15rpx 10rpx 15rpx 20rpx;
+  white-space: pre-wrap;
+}
+.addressInfo .addressInfo-block .addressInput-text {
+  display: block;
+  margin: 15rpx 10rpx 28rpx 20rpx;
+  padding-left: 15rpx;
+  border: 1rpx solid #cae3e8;
+  background-color: #e1efff;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  line-height: 30rpx;
+  height: 30rpx;
+}
+.addressInfo .addressAdd {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
+input {
+  min-height: 24rpx;
+}
+.confirmPrice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 600rpx;
+  height: 342rpx;
+  background-color: #ffffff;
+  border-radius: 34rpx;
+  box-sizing: border-box;
+}
+.confirmPrice > text {
+  font-size: 36rpx;
+  padding: 40rpx 0 0 10rpx;
+}
+.confirmPrice > text:nth-child(1) {
+  margin-bottom: -140rpx;
+}
+.confirmPrice > text:nth-child(2) {
+  margin-top: -10rpx;
+}
+.confirmPrice .confirmPrice-btn {
+  display: flex;
+  justify-content: space-between;
+  width: 468rpx;
+  padding-bottom: 40rpx;
+}
+.confirmPrice .confirmPrice-btn .confirm-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 162rpx;
+  height: 62rpx;
+  background-color: #006AD7;
+  border-radius: 20rpx;
+}
+.confirmPrice .confirmPrice-btn .confirm-btn > text {
+  color: #ffffff;
+  font-size: 20rpx;
+}
+
